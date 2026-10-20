@@ -1,0 +1,662 @@
+[
+{
+"k": "La puissance",
+"t": "La puissance",
+"q": "Pourquoi un pays riche peut-il peser moins qu'un pays pauvre doté d'une armée ?"
+},
+{
+"k": "Nation, État, frontières",
+"t": "Nation, État, frontières",
+"q": "Pourquoi les Kurdes, 30 millions de personnes, n'ont-ils pas de pays ?"
+},
+{
+"k": "Les États-Unis",
+"t": "Les États-Unis",
+"q": "Pourquoi le dollar donne-t-il un super-pouvoir aux États-Unis ?"
+},
+{
+"k": "La Chine",
+"t": "La Chine",
+"q": "Comment un pays très pauvre en 1980 est-il devenu l'usine du monde en 40 ans ?"
+},
+{
+"k": "La Russie",
+"t": "La Russie",
+"q": "Pourquoi le plus grand pays du monde se sent-il menacé ?"
+},
+{
+"k": "L'Union européenne",
+"t": "L'Union européenne",
+"q": "Comment des pays qui se sont fait la guerre pendant des siècles en sont-ils venus à partager une monnaie ?"
+},
+{
+"k": "L'ONU et le Conseil de sécurité",
+"t": "L'ONU et le Conseil de sécurité",
+"q": "Pourquoi cinq pays seulement peuvent-ils tout bloquer à l'ONU ?"
+},
+{
+"k": "L'OTAN",
+"t": "L'OTAN",
+"q": "Qu'est-ce qui oblige 32 pays à se défendre les uns les autres ?"
+},
+{
+"k": "Terrorisme et djihadisme",
+"t": "Terrorisme et djihadisme",
+"q": "Pourquoi des jeunes nés en Europe sont-ils partis combattre en Syrie ?"
+},
+{
+"k": "Migrations",
+"t": "Migrations",
+"q": "Qui migre vraiment, vers où, et pourquoi ?"
+},
+{
+"k": "Le Moyen-Orient en clés",
+"t": "Le Moyen-Orient en clés",
+"q": "Pourquoi cette région concentre-t-elle autant de guerres ?"
+},
+{
+"k": "L'Afrique, continent jeune",
+"t": "L'Afrique, continent jeune",
+"q": "En 2050, un humain sur quatre pourrait être africain : chance ou bombe à retardement ?"
+},
+{
+"k": "Révolution néolithique",
+"t": "Révolution néolithique",
+"q": "L'agriculture a rendu les humains plus nombreux : mais les a-t-elle rendus plus heureux ?"
+},
+{
+"k": "Premières civilisations et écriture",
+"t": "Premières civilisations et écriture",
+"q": "Pourquoi les premiers textes de l'histoire sont-ils… des comptes ?"
+},
+{
+"k": "Grèce antique et démocratie athénienne",
+"t": "Grèce antique et démocratie athénienne",
+"q": "Les Athéniens ont inventé la démocratie : mais qui avait vraiment le droit de voter ?"
+},
+{
+"k": "Rome : République, Empire, chute",
+"t": "Rome : République, Empire, chute",
+"q": "Comment une petite cité a-t-elle conquis tout le monde méditerranéen, puis s'est effondrée ?"
+},
+{
+"k": "Féodalité et rôle de l'Église",
+"t": "Féodalité et rôle de l'Église",
+"q": "Comment vivait-on dans un monde sans État, où le seigneur et le curé décidaient de tout ?"
+},
+{
+"k": "Naissance et expansion de l'islam",
+"t": "Naissance et expansion de l'islam",
+"q": "Comment une religion née dans le désert a-t-elle atteint l'Espagne et l'Inde en un siècle ?"
+},
+{
+"k": "Renaissance et imprimerie",
+"t": "Renaissance et imprimerie",
+"q": "Comment une machine à imprimer a-t-elle changé la religion et la science ?"
+},
+{
+"k": "Grandes découvertes et colonisation des Amériques",
+"t": "Grandes découvertes et colonisation des Amériques",
+"q": "Pourquoi quelques centaines de conquistadors ont-ils fait tomber des empires de millions d'habitants ?"
+},
+{
+"k": "Traite négrière et esclavage",
+"t": "Traite négrière et esclavage",
+"q": "Comment 12 millions d'Africains ont-ils été déportés à travers l'Atlantique ?"
+},
+{
+"k": "Révolution française et Napoléon",
+"t": "Révolution française et Napoléon",
+"q": "Comment la France est-elle passée du roi à la République, puis à l'empereur, en quinze ans ?"
+},
+{
+"k": "Révolution industrielle",
+"t": "Révolution industrielle",
+"q": "Comment la machine à vapeur a-t-elle changé la vie de tout le monde ?"
+},
+{
+"k": "Première Guerre mondiale",
+"t": "Première Guerre mondiale",
+"q": "Comment un assassinat à Sarajevo a-t-il entraîné le monde entier dans la guerre ?"
+},
+{
+"k": "Seconde Guerre mondiale et Shoah",
+"t": "Seconde Guerre mondiale et Shoah",
+"q": "Comment la guerre la plus meurtrière de l'histoire a-t-elle été possible ?"
+},
+{
+"k": "Guerre froide",
+"t": "Guerre froide",
+"q": "Pourquoi deux superpuissances se sont-elles affrontées 45 ans sans jamais se faire la guerre directement ?"
+},
+{
+"k": "Construction européenne",
+"t": "Construction européenne",
+"q": "Comment le charbon et l'acier ont-ils réconcilié la France et l'Allemagne ?"
+},
+{
+"k": "Chute du mur et fin de l'URSS",
+"t": "Chute du mur et fin de l'URSS",
+"q": "Comment le mur de Berlin est-il tombé en une nuit, sans un coup de feu ?"
+},
+{
+"k": "Mai 68",
+"t": "Mai 68",
+"q": "Comment une révolte d'étudiants a-t-elle paralysé la France entière ?"
+},
+{
+"k": "La conquête spatiale",
+"t": "La conquête spatiale",
+"q": "Pourquoi un petit bip radio en 1957 a-t-il terrifié les Américains ?"
+},
+{
+"k": "11 septembre et guerres d'Afghanistan et d'Irak",
+"t": "11 septembre et guerres d'Afghanistan et d'Irak",
+"q": "Comment une matinée de septembre a-t-elle déclenché vingt ans de guerres ?"
+},
+{
+"k": "Covid-19",
+"t": "Covid-19",
+"q": "Comment un virus apparu sur un marché a-t-il mis la moitié de l'humanité en confinement ?"
+},
+{
+"k": "Guerre en Ukraine",
+"t": "Guerre en Ukraine",
+"q": "Pourquoi la plus grande guerre en Europe depuis 1945 a-t-elle éclaté en 2022 ?"
+},
+{
+"k": "Égypte des pharaons",
+"t": "Égypte des pharaons",
+"q": "Comment une civilisation a-t-elle duré 3 000 ans au bord d'un seul fleuve ?"
+},
+{
+"k": "Empire romain",
+"t": "Empire romain",
+"q": "Qu'est-ce que Rome nous a laissé, de nos routes à notre langue ?"
+},
+{
+"k": "Jules César",
+"t": "Jules César",
+"q": "Comment un général ambitieux a-t-il mis fin à la République romaine ?"
+},
+{
+"k": "Charlemagne",
+"t": "Charlemagne",
+"q": "Charlemagne a-t-il vraiment inventé l'école ?"
+},
+{
+"k": "Jeanne d'Arc",
+"t": "Jeanne d'Arc",
+"q": "Comment une paysanne de 17 ans s'est-elle retrouvée à la tête d'une armée ?"
+},
+{
+"k": "Louis XIV",
+"t": "Louis XIV",
+"q": "Pourquoi le Roi-Soleil a-t-il fait construire Versailles ?"
+},
+{
+"k": "Napoléon",
+"t": "Napoléon",
+"q": "Héros ou tyran : pourquoi Napoléon divise-t-il encore autant ?"
+},
+{
+"k": "Hitler",
+"t": "Hitler",
+"q": "Comment un ancien soldat raté est-il arrivé au pouvoir… par les urnes ?"
+},
+{
+"k": "De Gaulle",
+"t": "De Gaulle",
+"q": "Comment un général inconnu a-t-il incarné la France libre depuis Londres ?"
+},
+{
+"k": "Gandhi",
+"t": "Gandhi",
+"q": "Comment un avocat sans armes a-t-il fait reculer l'Empire britannique ?"
+},
+{
+"k": "Mandela",
+"t": "Mandela",
+"q": "Comment un prisonnier de 27 ans est-il devenu président et a évité une guerre civile ?"
+},
+{
+"k": "Monarchie absolue et constitutionnelle",
+"t": "Monarchie absolue et constitutionnelle",
+"q": "Pourquoi le Royaume-Uni a-t-il encore un roi alors qu'il est une démocratie ?"
+},
+{
+"k": "République et démocratie libérale",
+"t": "République et démocratie libérale",
+"q": "Une république est-elle forcément démocratique ?"
+},
+{
+"k": "Gauche et droite",
+"t": "Gauche et droite",
+"q": "Pourquoi parle-t-on de « gauche » et de « droite » ? Tout est parti d'une histoire de places dans une salle."
+},
+{
+"k": "Les grandes familles politiques",
+"t": "Les grandes familles politiques",
+"q": "Écologistes, socialistes, libéraux, nationalistes : qu'est-ce qui les sépare vraiment ?"
+},
+{
+"k": "La séparation des pouvoirs",
+"t": "La séparation des pouvoirs",
+"q": "Que se passe-t-il quand la même personne fait les lois, les applique et juge ?"
+},
+{
+"k": "Le président",
+"t": "Le président",
+"q": "Pourquoi le président français est-il l'un des plus puissants des démocraties ?"
+},
+{
+"k": "Le gouvernement",
+"t": "Le gouvernement",
+"q": "Qui décide vraiment : le président ou le Premier ministre ?"
+},
+{
+"k": "L'Assemblée et le Sénat",
+"t": "L'Assemblée et le Sénat",
+"q": "Pourquoi deux assemblées pour voter les mêmes lois ?"
+},
+{
+"k": "Les différentes élections",
+"t": "Les différentes élections",
+"q": "Pour qui vote-t-on, et pour quoi faire, à chaque élection ?"
+},
+{
+"k": "S'inscrire, voter, procuration",
+"t": "S'inscrire, voter, procuration",
+"q": "Comment voter, même quand on n'est pas là le jour J ?"
+},
+{
+"k": "Commune, département, région",
+"t": "Commune, département, région",
+"q": "Qui s'occupe de ton lycée, de tes bus et de tes poubelles ?"
+},
+{
+"k": "Fiches des partis",
+"t": "Fiches des partis",
+"q": "Que veulent vraiment les partis, au-delà des slogans ?"
+},
+{
+"k": "Les sondages d'opinion",
+"t": "Les sondages d'opinion",
+"q": "Comment interroger 1 000 personnes peut-il dire ce que pensent 50 millions d'électeurs ?"
+},
+{
+"k": "Offre et demande",
+"t": "Offre et demande",
+"q": "Pourquoi un billet de concert peut-il coûter dix fois son prix ?"
+},
+{
+"k": "Le circuit économique",
+"t": "Le circuit économique",
+"q": "Où va l'argent que tu dépenses ?"
+},
+{
+"k": "PIB et croissance",
+"t": "PIB et croissance",
+"q": "Que mesure vraiment la croissance, et que rate-t-elle ?"
+},
+{
+"k": "Le pouvoir d'achat",
+"t": "Le pouvoir d'achat",
+"q": "Pourquoi a-t-on l'impression de s'appauvrir même quand les statistiques disent le contraire ?"
+},
+{
+"k": "Le marché du logement",
+"t": "Le marché du logement",
+"q": "Pourquoi se loger coûte-t-il de plus en plus cher ?"
+},
+{
+"k": "Qu'est-ce que la monnaie",
+"t": "Qu'est-ce que la monnaie",
+"q": "Pourquoi un bout de papier ou un chiffre sur un écran a-t-il de la valeur ?"
+},
+{
+"k": "Inflation et déflation",
+"t": "Inflation et déflation",
+"q": "Pourquoi des prix qui montent un peu valent-ils mieux que des prix qui baissent ?"
+},
+{
+"k": "L'euro",
+"t": "L'euro",
+"q": "Pourquoi partager sa monnaie avec une vingtaine de pays, c'est à la fois une force et un piège ?"
+},
+{
+"k": "Impôts et cotisations",
+"t": "Impôts et cotisations",
+"q": "Sur 100 € de salaire, combien part en impôts et cotisations, et pour quoi ?"
+},
+{
+"k": "Chômage",
+"t": "Chômage",
+"q": "Pourquoi y a-t-il à la fois des chômeurs et des emplois non pourvus ?"
+},
+{
+"k": "Salaire, productivité, Smic",
+"t": "Salaire, productivité, Smic",
+"q": "Qu'est-ce qui décide de ton salaire ?"
+},
+{
+"k": "Lire sa fiche de paie",
+"t": "Lire sa fiche de paie",
+"q": "Pourquoi ton salaire net est-il bien plus bas que le brut ?"
+},
+{
+"k": "Types de contrats",
+"t": "Types de contrats",
+"q": "CDI, CDD, intérim, freelance : qu'est-ce qui change vraiment pour toi ?"
+},
+{
+"k": "TVA et impôts du quotidien",
+"t": "TVA et impôts du quotidien",
+"q": "Quel est l'impôt que tout le monde paie, même sans le savoir ?"
+},
+{
+"k": "Faire un budget",
+"t": "Faire un budget",
+"q": "Où part ton argent à la fin du mois ?"
+},
+{
+"k": "Banque, découvert, frais",
+"t": "Banque, découvert, frais",
+"q": "Combien te coûte vraiment ta banque chaque année ?"
+},
+{
+"k": "Ouvrir son premier compte",
+"t": "Ouvrir son premier compte",
+"q": "Comment ouvrir un compte sans payer de frais inutiles ?"
+},
+{
+"k": "Mutuelle et Sécurité sociale",
+"t": "Mutuelle et Sécurité sociale",
+"q": "Qui rembourse quoi quand tu vas chez le médecin ?"
+},
+{
+"k": "Arnaques courantes",
+"t": "Arnaques courantes",
+"q": "Comment reconnaître une arnaque avant qu'il ne soit trop tard ?"
+},
+{
+"k": "Les aides de la CAF",
+"t": "Les aides de la CAF",
+"q": "Et si tu avais droit à une aide sans le savoir ?"
+},
+{
+"k": "Libertés fondamentales",
+"t": "Libertés fondamentales",
+"q": "Peut-on vraiment tout dire en France ?"
+},
+{
+"k": "Garde à vue et tes droits",
+"t": "Garde à vue et tes droits",
+"q": "Que peux-tu exiger si tu es placé en garde à vue ?"
+},
+{
+"k": "Droit du travail",
+"t": "Droit du travail",
+"q": "Ton patron a-t-il le droit de te demander ça ?"
+},
+{
+"k": "Logement et bail",
+"t": "Logement et bail",
+"q": "Ton propriétaire peut-il garder ta caution ?"
+},
+{
+"k": "Consommation",
+"t": "Consommation",
+"q": "Peux-tu te faire rembourser un achat en ligne qui ne te plaît pas ?"
+},
+{
+"k": "Code de la route et permis à points",
+"t": "Code de la route et permis à points",
+"q": "Comment perd-on son permis en quelques mois seulement ?"
+},
+{
+"k": "Harcèlement et droits en ligne",
+"t": "Harcèlement et droits en ligne",
+"q": "Que faire si on te harcèle sur les réseaux sociaux ?"
+},
+{
+"k": "Administration",
+"t": "Administration",
+"q": "Comment contester une décision de l'administration ?"
+},
+{
+"k": "Socrate, Platon, Aristote",
+"t": "Socrate, Platon, Aristote",
+"q": "Pourquoi un homme qui disait « je sais que je ne sais rien » a-t-il été condamné à mort ?"
+},
+{
+"k": "Stoïcisme et épicurisme",
+"t": "Stoïcisme et épicurisme",
+"q": "Comment être heureux quand on ne contrôle presque rien ?"
+},
+{
+"k": "La morale",
+"t": "La morale",
+"q": "Peut-on mentir pour sauver quelqu'un ?"
+},
+{
+"k": "La liberté",
+"t": "La liberté",
+"q": "Es-tu vraiment libre de tes choix ?"
+},
+{
+"k": "Le bonheur",
+"t": "Le bonheur",
+"q": "Faut-il chercher le bonheur pour le trouver ?"
+},
+{
+"k": "Le sens de la vie",
+"t": "Le sens de la vie",
+"q": "Faut-il que la vie ait un sens pour valoir la peine d'être vécue ?"
+},
+{
+"k": "Le travail",
+"t": "Le travail",
+"q": "Travailler, est-ce perdre sa vie à la gagner ?"
+},
+{
+"k": "La mort",
+"t": "La mort",
+"q": "Faut-il avoir peur de la mort ?"
+},
+{
+"k": "Hypothèse, preuve, consensus",
+"t": "Hypothèse, preuve, consensus",
+"q": "Comment les scientifiques savent-ils qu'ils ont raison ?"
+},
+{
+"k": "Corrélation et causalité",
+"t": "Corrélation et causalité",
+"q": "Si deux choses augmentent en même temps, l'une cause-t-elle forcément l'autre ?"
+},
+{
+"k": "Big Bang et étoiles",
+"t": "Big Bang et étoiles",
+"q": "D'où viennent les atomes de ton corps ? D'étoiles mortes il y a des milliards d'années."
+},
+{
+"k": "Le système solaire",
+"t": "Le système solaire",
+"q": "Pourquoi Pluton n'est-elle plus une planète ?"
+},
+{
+"k": "L'électricité",
+"t": "L'électricité",
+"q": "Que se passe-t-il vraiment dans un fil quand tu allumes la lumière ?"
+},
+{
+"k": "Le corps humain",
+"t": "Le corps humain",
+"q": "Ton corps fabrique des millions de cellules chaque seconde : comment ?"
+},
+{
+"k": "Virus, vaccins, antibiotiques",
+"t": "Virus, vaccins, antibiotiques",
+"q": "Pourquoi les antibiotiques ne servent-ils à rien contre un rhume ?"
+},
+{
+"k": "Le sommeil",
+"t": "Le sommeil",
+"q": "Que fait ton cerveau pendant que tu dors ?"
+},
+{
+"k": "Cycles de l'eau et du carbone",
+"t": "Cycles de l'eau et du carbone",
+"q": "Où va le carbone que nous rejetons, et pourquoi en reste-t-il trop dans l'air ?"
+},
+{
+"k": "Pourcentages, probabilités, exponentielles",
+"t": "Pourcentages, probabilités, exponentielles",
+"q": "Pourquoi notre cerveau se trompe-t-il presque toujours avec les exponentielles ?"
+},
+{
+"k": "Effet de serre",
+"t": "Effet de serre",
+"q": "Sans effet de serre, il ferait -18 °C sur Terre : alors où est le problème ?"
+},
+{
+"k": "Météo et climat",
+"t": "Météo et climat",
+"q": "Un hiver très froid prouve-t-il que le réchauffement n'existe pas ?"
+},
+{
+"k": "Réchauffement et événements extrêmes",
+"t": "Réchauffement et événements extrêmes",
+"q": "Peut-on dire qu'une canicule précise est due au changement climatique ?"
+},
+{
+"k": "Sécheresses et eau douce",
+"t": "Sécheresses et eau douce",
+"q": "Comment la France a-t-elle pu manquer d'eau potable en 2022 ?"
+},
+{
+"k": "Ton empreinte carbone",
+"t": "Ton empreinte carbone",
+"q": "Qu'est-ce qui pèse le plus dans ton empreinte carbone ?"
+},
+{
+"k": "Transports et climat",
+"t": "Transports et climat",
+"q": "Pourquoi les transports sont-ils le seul secteur dont les émissions ont à peine baissé ?"
+},
+{
+"k": "Agriculture et alimentation",
+"t": "Agriculture et alimentation",
+"q": "Ton assiette peut-elle peser autant que ta voiture pour le climat ?"
+},
+{
+"k": "Judaïsme",
+"t": "Judaïsme",
+"q": "Comment un petit peuple a-t-il inventé une idée qui a changé le monde : un Dieu unique ?"
+},
+{
+"k": "Christianisme",
+"t": "Christianisme",
+"q": "Comment la religion d'une petite secte juive est-elle devenue celle de l'Empire romain ?"
+},
+{
+"k": "Islam",
+"t": "Islam",
+"q": "Que croient vraiment les musulmans, au-delà des clichés ?"
+},
+{
+"k": "Athéisme et agnosticisme",
+"t": "Athéisme et agnosticisme",
+"q": "Quelle différence entre ne pas croire en Dieu et ne pas savoir ?"
+},
+{
+"k": "Les grandes fêtes religieuses",
+"t": "Les grandes fêtes religieuses",
+"q": "Pourquoi le ramadan ne tombe-t-il jamais à la même date ?"
+},
+{
+"k": "La laïcité (1905)",
+"t": "La laïcité (1905)",
+"q": "La laïcité interdit-elle la religion, ou la protège-t-elle ?"
+},
+{
+"k": "Biais cognitifs",
+"t": "Biais cognitifs",
+"q": "Pourquoi ton cerveau te trompe-t-il, même quand tu es sûr de toi ?"
+},
+{
+"k": "Info, opinion, publicité",
+"t": "Info, opinion, publicité",
+"q": "Comment savoir si on lit une information, un avis ou une pub déguisée ?"
+},
+{
+"k": "Vérifier une info",
+"t": "Vérifier une info",
+"q": "Comment vérifier une info en moins de deux minutes ?"
+},
+{
+"k": "Fake news et complots",
+"t": "Fake news et complots",
+"q": "Pourquoi croit-on aux fausses informations, même quand on est intelligent ?"
+},
+{
+"k": "Les pseudo-sciences",
+"t": "Les pseudo-sciences",
+"q": "Pourquoi l'horoscope a-t-il l'air de si bien te décrire ?"
+},
+{
+"k": "La manipulation publicitaire",
+"t": "La manipulation publicitaire",
+"q": "Comment la publicité vend-elle une émotion plutôt qu'un produit ?"
+},
+{
+"k": "Comment marche un ordinateur",
+"t": "Comment marche un ordinateur",
+"q": "Comment des 0 et des 1 peuvent-ils afficher une vidéo ?"
+},
+{
+"k": "L'impact écologique du numérique",
+"t": "L'impact écologique du numérique",
+"q": "Qu'est-ce qui pollue le plus : ton smartphone ou tes vidéos en streaming ?"
+},
+{
+"k": "Le modèle du gratuit",
+"t": "Le modèle du gratuit",
+"q": "Si c'est gratuit, qu'est-ce qu'on te vend ?"
+},
+{
+"k": "L'économie de l'attention",
+"t": "L'économie de l'attention",
+"q": "Pourquoi est-il si difficile de lâcher son téléphone ?"
+},
+{
+"k": "Mots de passe et double authentification",
+"t": "Mots de passe et double authentification",
+"q": "Combien de temps faut-il pour pirater ton mot de passe ?"
+},
+{
+"k": "Piratages courants",
+"t": "Piratages courants",
+"q": "Comment les pirates s'y prennent-ils le plus souvent ? Rarement comme dans les films."
+},
+{
+"k": "Ce que fait vraiment une IA",
+"t": "Ce que fait vraiment une IA",
+"q": "Une IA comprend-elle ce qu'elle dit ?"
+},
+{
+"k": "c:ukraine",
+"t": "Russie – Ukraine",
+"q": "Pourquoi la Russie s'acharne-t-elle sur l'Ukraine depuis 2014 ?"
+},
+{
+"k": "c:iran",
+"t": "Iran – États-Unis et Israël",
+"q": "Comment un détroit de 40 km peut-il faire flamber le prix de l'essence partout ?"
+},
+{
+"k": "c:gaza",
+"t": "Israël – Gaza",
+"q": "Comment un territoire plus petit que l'Essonne se retrouve-t-il au centre du monde ?"
+}
+]

@@ -1221,6 +1221,13 @@ body.modesOn .mpFloat, body.matchOn .mpFloat{opacity:0; pointer-events:none}
 .dfRes .vs > span{color:var(--muted); font-size:.85rem}
 .dfRes p{margin:8px 0 0; font-weight:700}
 </style>
+<style>
+.rpTog{display:flex; align-items:center; gap:12px; width:100%; margin-top:14px; padding:14px; border-radius:16px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); font:inherit; text-align:left; cursor:pointer}
+.rpTog span{flex:1} .rpTog b{display:block} .rpTog small{display:block; color:var(--muted); font-size:.84rem; margin-top:2px}
+.rpTog i{width:46px; height:28px; border-radius:14px; background:color-mix(in srgb, var(--ink) 18%, transparent); position:relative; flex:none; transition:background .2s}
+.rpTog i::after{content:""; position:absolute; top:3px; left:3px; width:22px; height:22px; border-radius:50%; background:#fff; box-shadow:0 1px 4px rgb(0 0 0 / .3); transition:transform .2s var(--ease)}
+.rpTog[aria-pressed="true"] i{background:#FF9142} .rpTog[aria-pressed="true"] i::after{transform:translateX(18px)}
+</style>
 <div class="feed" id="feed" hidden></div>
 <div class="modes" id="modes" hidden></div>
 <div class="journal" id="journal" hidden></div>
@@ -12311,6 +12318,90 @@ let MP_LAST = null;
   if (m){ const d = unb64(decodeURIComponent(m[1]));
     try { history.replaceState(null, "", location.pathname + location.search); } catch(e){}
     if (d && QUIZ[d.k] && d.n){ setTimeout(() => openDefi({k:d.k, s:Math.max(0, Math.min(+d.s || 0, +d.n)), n:+d.n}), 700); } }
+}
+
+
+/* ==========================================================================
+   Rappels (notifications) via OneSignal — fin de l'étape 1
+   Un rappel par jour au maximum à l'heure choisie, plus « ta série t'attend » le soir
+   seulement si l'objectif du jour n'est pas encore fait. Tout se coupe en un geste.
+   ========================================================================== */
+const OS_APP_ID = "";
+const RP_SLOTS = [["matin", "Le matin", "vers 8 h"], ["midi", "Le midi", "vers 12 h 30"], ["soir", "Le soir", "vers 19 h"]];
+let RP = {on:false, slot:"soir", serie:true, ...(store.get("rappels") || {})};
+const saveRP = () => store.set("rappels", RP);
+const rpReady = () => !!OS_APP_ID && onWeb;
+let OSP = null;
+function loadOS(){
+  if (OSP || !rpReady()) return OSP;
+  OSP = new Promise(res => {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    window.OneSignalDeferred.push(async OneSignal => {
+      try {
+        await OneSignal.init({appId:OS_APP_ID, serviceWorkerPath:"aalam/push/onesignal/OneSignalSDKWorker.js", serviceWorkerParam:{scope:"/aalam/push/onesignal/"},
+          allowLocalhostAsSecureOrigin:/^localhost$|^127\./.test(location.hostname), notifyButton:{enable:false}, promptOptions:{slidedown:{prompts:[]}}});
+        res(OneSignal);
+      } catch(e){ res(null); }
+    });
+    const s = document.createElement("script"); s.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"; s.defer = true; s.onerror = () => res(null); document.head.appendChild(s);
+  });
+  return OSP;
+}
+const goalKey = () => { const k = Object.keys(SK.days).filter(d => SK.days[d] === "g").sort().pop(); return k ? k.replaceAll("-", "") : "0"; };
+async function rpSync(){
+  if (!RP.on || !rpReady()) return;
+  const OS = await loadOS(); if (!OS) return;
+  try { OS.User.addTags({slot:RP.slot, serie:RP.serie ? "1" : "0", streak:String(curStreak()), last_goal:goalKey()}); } catch(e){}
+}
+async function rpEnable(){
+  const OS = await loadOS(); if (!OS) return toast("Les rappels ne sont pas disponibles pour l'instant");
+  try { await OS.Notifications.requestPermission(); } catch(e){}
+  if (OS.Notifications.permission){ RP.on = true; saveRP(); await rpSync(); try { OS.User.PushSubscription.optIn(); } catch(e){} toast("Rappels activés. À demain !"); }
+  else toast("Les notifications sont refusées. Tu peux les autoriser dans Réglages > Notifications > Aalam.");
+  openRappels();
+}
+async function rpDisable(){
+  RP.on = false; saveRP();
+  const OS = await loadOS(); try { OS && OS.User.PushSubscription.optOut(); } catch(e){}
+  toast("Rappels coupés"); openRappels();
+}
+function openRappels(){
+  const needInstall = isIOS && !isStandalone();
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">${RP.on ? "Activés" : "Désactivés"}</span><h2>Rappels</h2></div><button class="close" aria-label="Fermer">×</button></div>
+    <p class="lead">Un seul rappel par jour, avec la question de la fiche du jour. Tu la touches, elle s'ouvre.</p>
+    <h3 class="skH">Quand ?</h3>
+    <div class="skGoals">${RP_SLOTS.map(([id, t, d]) => `<button data-rp-slot="${id}" aria-pressed="${RP.slot === id}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
+    <button class="rpTog" data-rp-serie aria-pressed="${RP.serie}"><span><b>Sauver ma série</b><small>Le soir, seulement si ton objectif du jour n'est pas encore fait</small></span><i></i></button>
+    ${needInstall ? `<p class="note instWarn">Sur iPhone, les rappels marchent seulement depuis l'icône Aalam de ton écran d'accueil. Installe l'appli, ouvre-la depuis l'icône, puis reviens ici.</p><button class="bigBtn go" data-inst style="width:100%; margin-top:12px">Installer Aalam</button>`
+      : RP.on ? `<button class="bigBtn" data-rp-off style="width:100%; margin-top:18px">Couper les rappels</button>`
+      : `<button class="bigBtn go" data-rp-on style="width:100%; margin-top:18px">Activer les rappels</button>`}
+    <p class="note" style="margin-top:12px">Ton iPhone te demandera ton accord. Tu peux tout couper ici ou dans Réglages > Notifications.</p>`, 24);
+}
+document.addEventListener("click", e => {
+  const t = e.target;
+  if (t.closest("[data-rappels]")){ e.stopPropagation(); if ($("#drawer").classList.contains("open")) openDrawer(false); return openRappels(); }
+  if (t.closest("[data-rp-on]")){ e.stopPropagation(); return rpEnable(); }
+  if (t.closest("[data-rp-off]")){ e.stopPropagation(); return rpDisable(); }
+  const sl = t.closest("[data-rp-slot]"); if (sl){ e.stopPropagation(); RP.slot = sl.dataset.rpSlot; saveRP(); rpSync(); return openRappels(); }
+  if (t.closest("[data-rp-serie]")){ e.stopPropagation(); RP.serie = !RP.serie; saveRP(); rpSync(); return openRappels(); }
+}, true);
+if (rpReady()){
+  // points d'entrée : tiroir, accueil, feuille « Ma série »
+  const rd = renderDrawer;
+  renderDrawer = () => { rd(); $("#dList .dStreak")?.insertAdjacentHTML("afterend", `<button class="dTrophy" data-rappels>${ICN.clock}<span>Rappels</span><small>${RP.on ? "activés" : "non"}</small></button>`); };
+  const sm = showModes;
+  showModes = () => { sm(); if (!RP.on && (!isIOS || isStandalone())) $("#modes .mdMore")?.insertAdjacentHTML("afterbegin", `<button class="hot" data-rappels>${ICN.clock}Me rappeler chaque jour</button>`); };
+  const os = openStreak;
+  openStreak = () => { os(); if (!RP.on) $(".sheet .skFrz")?.insertAdjacentHTML("afterend", `<button class="bigBtn shBtn" data-rappels>${ICN.clock}Me rappeler de garder ma série</button>`); };
+  // la série et l'objectif du jour sont transmis à chaque objectif atteint, et à l'ouverture
+  const ax = addXP; addXP = n => { const was = SK.days[today()] === "g"; ax(n); if (!was && SK.days[today()] === "g") rpSync(); };
+  if (RP.on) setTimeout(rpSync, 2500);
+}
+// ouverture depuis une notification : ?f=<fiche>
+{
+  const q = new URLSearchParams(location.search), f = q.get("f");
+  if (q.has("f") || q.has("src")){ try { history.replaceState(null, "", location.pathname + location.hash); } catch(e){} }
+  if (f){ const b = fromKey(f); if (b.c || b.n) setTimeout(() => { hideModes(); f.startsWith("c:") ? openConflict(f.slice(2)) : openNotion(f); }, 900); }
 }
 
 measure(); readPalette(); refreshChrome(); renderLayers(); paint(); render();
