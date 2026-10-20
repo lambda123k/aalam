@@ -961,6 +961,33 @@ body.matchOn{overflow:hidden}
 body.modesOn .mpFloat, body.matchOn .mpFloat{opacity:0; pointer-events:none}
 
 
+
+/* ----- À suivre : l'enchaînement automatique ----- */
+.nxCard{margin-top:28px; padding-top:18px; border-top:1px solid var(--line)}
+.nxHead{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px}
+.nxLab{font-family:var(--f-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); font-weight:500}
+.nxChain{font-family:var(--f-mono); font-size:.68rem; letter-spacing:.02em; padding:3px 9px; border-radius:20px; background:hsl(24 85% 55% / .14); color:hsl(24 75% 42%); font-weight:600}
+.nxMain{position:relative; display:flex; flex-direction:column; align-items:flex-start; gap:6px; width:100%; text-align:left; cursor:pointer; color:var(--ink);
+  padding:16px 70px 16px 16px; border-radius:18px; border:1.5px solid hsl(var(--nh) 60% var(--secLit) / .55);
+  background:linear-gradient(120deg, hsl(var(--nh) 70% var(--secLit) / .2), hsl(var(--nh) 70% var(--secLit) / .05)); transition:transform .15s var(--ease)}
+.nxMain:active{transform:scale(.985)}
+.nxWhere{font-family:var(--f-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.08em; color:hsl(var(--nh) 55% var(--secL, 40%))}
+.nxT{font-family:var(--f-display); font-size:1.22rem; line-height:1.25; font-weight:800}
+.nxHook{font-size:.98rem; line-height:1.45; color:var(--ink); opacity:.85; max-width:52ch}
+.nxMeta{display:flex; gap:12px; font-family:var(--f-mono); font-size:.68rem; color:var(--muted); margin-top:2px}
+.nxPlay{position:absolute; right:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+  background:hsl(var(--nh) 70% var(--secLit)); color:#fff; box-shadow:0 6px 18px hsl(var(--nh) 70% var(--secLit) / .35)}
+.nxPlay svg{width:20px; height:20px; margin-left:2px}
+.nxBar{height:4px; border-radius:4px; background:var(--line); overflow:hidden; margin-top:12px}
+.nxBar i{display:block; height:100%; width:0; background:hsl(var(--nh) 70% var(--secLit)); border-radius:4px}
+.nxCard.run .nxBar i{width:100%; transition:width 6.5s linear}
+.nxCard.run .nxPlay{animation:nxPulse 1.3s var(--ease) infinite}
+.nxCard.held .nxBar, .nxCard.paused .nxBar i{opacity:.5}
+.nxFoot{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:10px}
+.nxHint{font-size:.82rem; color:var(--muted)}
+.nxStay{flex:none; font:inherit; font-size:.84rem; font-weight:600; padding:7px 13px; border-radius:20px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
+@keyframes nxPulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.08)}}
+@media (prefers-reduced-motion: reduce){.nxCard.run .nxPlay{animation:none}}
 </style>
 
 <div class="stage" id="stage">
@@ -12407,6 +12434,149 @@ measure(); readPalette(); refreshChrome(); renderLayers(); paint(); render();
 if (cur.id === "histoire") setFrise(true);
 setTimeout(() => focusSection(), 250);
 showModes();
+
+/* ==========================================================================
+   Étape 7 : l'enchaînement automatique, façon épisode suivant
+   En bas de chaque fiche (et de chaque page « En savoir plus »), une carte
+   « À suivre » montre la fiche liée la plus logique, avec son accroche.
+   Quand on arrive en bas, une barre se remplit et la fiche suivante s'ouvre
+   toute seule ; un tap l'ouvre tout de suite, « Rester ici » arrête.
+   ========================================================================== */
+const NX = {chain:0, seen:new Set(), timer:null, io:null, stop:false};
+const NX_MS = 6500;
+const NX_OFF = () => store.get("nxOff") === true;
+
+function nxKeyOfNotion(t){
+  const c = CONFLICTS.find(x => x.name === t);
+  if (c) return "c:" + c.id;
+  return NOTIONS.find(x => x.t === t && x.ready) ? t : null;
+}
+function nxOk(k){
+  const b = fromKey(k);
+  if (b.c) return shownC(b.c);
+  return !!b.n && shown(b.n);
+}
+function nxCandidates(key){
+  const b = fromKey(key), out = [];
+  const push = k => { if (k && !out.includes(k)) out.push(k); };
+  if (b.n){
+    const n = b.n;
+    (n.see || []).forEach(t => push(nxKeyOfNotion(t)));
+    const grp = NOTIONS.filter(x => x.ready && x.sec === n.sec && x.group === n.group);
+    const i = grp.indexOf(n);
+    grp.slice(i + 1).concat(grp.slice(0, i)).forEach(x => push(x.t));
+    NOTIONS.filter(x => x.ready && x.sec === n.sec && x.group !== n.group).forEach(x => push(x.t));
+    if (n.sec.id === "geo") CONFLICTS.forEach(c => push("c:" + c.id));
+  } else if (b.c){
+    const c = b.c;
+    GEO_GROUPS.flatMap(g => g.notions).filter(x => (x.see || []).includes(c.name)).forEach(x => push(nxKeyOfNotion(x.t)));
+    CONFLICTS.filter(x => x !== c && x.region === c.region).forEach(x => push("c:" + x.id));
+    CONFLICTS.filter(x => x !== c && x.region !== c.region).forEach(x => push("c:" + x.id));
+  }
+  return out.filter(k => k !== key && nxOk(k));
+}
+function nxPick(key){
+  const all = nxCandidates(key).filter(k => !NX.seen.has(k));
+  return all.find(k => !READ.has(k)) || all[0] || null;
+}
+function nxTeaser(k){
+  const h = hookOf(k); if (h) return h;
+  const b = fromKey(k), s = String(b.c ? b.c.short : b.n.intro);
+  const first = s.split(/(?<=[.!?])\s+/)[0];
+  return first.length > 150 ? first.slice(0, 147).replace(/\s+\S*$/, "") + "…" : first;
+}
+function nxMin(k){
+  const b = fromKey(k);
+  return b.c ? readMin(b.c.short, b.c.why, b.c.now, b.c.stakes, b.c.you) : readMin(b.n.intro, b.n.ex, b.n.why);
+}
+const NX_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>';
+
+function nxCard(fromK){
+  const k = nxPick(fromK); if (!k) return "";
+  const b = fromKey(k), hue = hueOfKey(k);
+  const where = b.c ? "Géopolitique · Conflit" : `${b.n.sec.name} · ${b.n.group}`;
+  const unread = !READ.has(k);
+  const streakLine = NX.chain >= 2 ? `<span class="nxChain">${NX.chain} fiches d'affilée</span>` : "";
+  const auto = !NX_OFF();
+  return `<section class="nxCard${auto ? " auto" : ""}" data-nx="${esc(k)}" data-from="${esc(fromK)}" style="--nh:${hue}">
+    <div class="nxHead"><span class="nxLab">À suivre</span>${streakLine}</div>
+    <button class="nxMain" data-nx-go="${esc(k)}">
+      <span class="nxWhere">${esc(where)}</span>
+      <span class="nxT">${esc(titleOf(k))}</span>
+      <span class="nxHook">${fmt(nxTeaser(k))}</span>
+      <span class="nxMeta"><span>${nxMin(k)} min</span>${unread ? "<span>Nouvelle pour toi</span>" : "<span>Déjà lue</span>"}</span>
+      <span class="nxPlay">${NX_PLAY}</span>
+    </button>
+    ${auto ? `<div class="nxBar"><i></i></div>
+    <div class="nxFoot"><span class="nxHint">S'ouvre toute seule dans un instant</span><button class="nxStay" data-nx-stay>Rester ici</button></div>`
+           : `<div class="nxFoot"><span class="nxHint">Enchaînement automatique coupé</span><button class="nxStay" data-nx-auto>Le réactiver</button></div>`}
+  </section>`;
+}
+function nxClear(){
+  clearTimeout(NX.timer); NX.timer = null;
+  if (NX.io){ NX.io.disconnect(); NX.io = null; }
+}
+function nxAttach(fromK){
+  nxClear(); NX.stop = false;
+  const sh = $(".sheet"); if (!sh) return;
+  sh.querySelector(".nxCard")?.remove();
+  const html = nxCard(fromK); if (!html) return;
+  sh.insertAdjacentHTML("beforeend", html);
+  const card = sh.querySelector(".nxCard");
+  if (!card.classList.contains("auto") || typeof IntersectionObserver === "undefined") return;
+  // un contenu trop court pour défiler ne lance pas le compte à rebours tout seul :
+  // il faut au moins avoir lu un peu (avoir fait défiler ou passé quelques secondes)
+  const opened = Date.now();
+  NX.io = new IntersectionObserver(es => es.forEach(en => {
+    const vis = en.isIntersecting && en.intersectionRatio >= .75;
+    if (vis && !NX.stop && !NX.timer && !card.classList.contains("paused")){
+      const wait = sh.scrollHeight > sh.clientHeight + 40 ? 0 : Math.max(0, 4000 - (Date.now() - opened));
+      NX.timer = setTimeout(() => {
+        if (NX.stop || !card.isConnected) return;
+        card.classList.add("run");
+        NX.timer = setTimeout(() => { if (!NX.stop && card.isConnected) nxGo(card.dataset.nx, true); }, NX_MS);
+      }, wait);
+    } else if (!vis && !NX.stop){
+      // la carte sort de l'écran : on remet à zéro, ça repartira quand on y reviendra
+      clearTimeout(NX.timer); NX.timer = null; card.classList.remove("run", "paused");
+      const h = card.querySelector(".nxHint"); if (h) h.textContent = "S'ouvre toute seule dans un instant";
+    }
+  }), {root:sh, threshold:[0, .75, 1]});
+  NX.io.observe(card);
+}
+function nxGo(k, auto){
+  nxClear();
+  const sh = $(".sheet"); if (sh) NX.seen.add(sh.querySelector(".nxCard")?.dataset.from || "");
+  NX.chain++; NX.seen.add(k);
+  if (k.startsWith("c:")) openConflict(k.slice(2)); else openNotion(k);
+  if (NX.chain === 5 || NX.chain === 10 || NX.chain === 20) toast(`${NX.chain} fiches d'affilée, belle lancée`);
+}
+function nxStop(card){
+  NX.stop = true; nxClear();
+  if (!card) return;
+  card.classList.remove("run", "auto"); card.classList.add("held");
+  const f = card.querySelector(".nxFoot"); if (f) f.innerHTML = `<span class="nxHint">Tu restes ici. Touche la carte quand tu veux.</span><button class="nxStay" data-nx-off>Ne plus enchaîner</button>`;
+}
+{
+  const on = openNotion; openNotion = t => { const before = $(".sheet"); on(t); if ($(".sheet") !== before){ NX.seen.add(t); nxAttach(t); } };
+  const oc = openConflict; openConflict = id => { const before = $(".sheet"); oc(id); if ($(".sheet") !== before){ NX.seen.add("c:" + id); nxAttach("c:" + id); } };
+  const om = openMore; openMore = k => { om(k); nxAttach(k); };
+  // fermeture de la fiche : l'enchaînement repart de zéro
+  const root = $("#modalRoot");
+  if (root && typeof MutationObserver !== "undefined") new MutationObserver(() => {
+    if (!root.querySelector(".sheet")){ nxClear(); NX.chain = 0; NX.seen.clear(); }
+  }).observe(root, {childList:true});
+}
+document.addEventListener("click", e => {
+  const t = e.target;
+  const g = t.closest("[data-nx-go]"); if (g){ e.stopPropagation(); return nxGo(g.dataset.nxGo, false); }
+  if (t.closest("[data-nx-stay]")){ e.stopPropagation(); return nxStop(t.closest(".nxCard")); }
+  if (t.closest("[data-nx-off]")){ e.stopPropagation(); store.set("nxOff", true); toast("Enchaînement automatique coupé"); const c = t.closest(".nxCard"); if (c){ const f = c.querySelector(".nxFoot"); f.innerHTML = `<span class="nxHint">Enchaînement automatique coupé</span><button class="nxStay" data-nx-auto>Le réactiver</button>`; } return; }
+  if (t.closest("[data-nx-auto]")){ e.stopPropagation(); store.set("nxOff", false); toast("Enchaînement automatique réactivé"); const c = t.closest(".nxCard"); if (c) nxAttach(c.dataset.from || ""); return; }
+}, true);
+// toucher la fiche ou la faire défiler vers le haut pendant le compte à rebours le met en pause
+document.addEventListener("touchstart", e => { const c = document.querySelector(".nxCard.run"); if (c && !e.target.closest(".nxCard")) { clearTimeout(NX.timer); NX.timer = null; c.classList.remove("run"); c.classList.add("paused"); const h = c.querySelector(".nxHint"); if (h) h.textContent = "En pause, touche la carte pour continuer"; } }, {passive:true, capture:true});
+
 </script>
 
 </body></html>
