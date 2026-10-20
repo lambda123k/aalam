@@ -12322,47 +12322,46 @@ let MP_LAST = null;
 
 
 /* ==========================================================================
-   Rappels (notifications) via OneSignal — fin de l'étape 1
+   Rappels (notifications) via le serveur Supabase — fin de l'étape 1
    Un rappel par jour au maximum à l'heure choisie, plus « ta série t'attend » le soir
    seulement si l'objectif du jour n'est pas encore fait. Tout se coupe en un geste.
    ========================================================================== */
-const OS_APP_ID = "";
+const SB_URL = "https://hslnyzbpuhmqekjbusrl.supabase.co", SB_KEY = "sb_publishable_TQSglO05NtQHZ1TVF8xpdQ_l66-kAJI";
+const VAPID_PUBLIC = "BHN9slVICkSmEegmAkJoOCMFDsOX0DoBgwlAcpKSETCSmNAEjdipdjJBm04aJiAiiUWG8x8HiWW6YarbEkJwVgo";
 const RP_SLOTS = [["matin", "Le matin", "vers 8 h"], ["midi", "Le midi", "vers 12 h 30"], ["soir", "Le soir", "vers 19 h"]];
 let RP = {on:false, slot:"soir", serie:true, ...(store.get("rappels") || {})};
 const saveRP = () => store.set("rappels", RP);
-const rpReady = () => !!OS_APP_ID && onWeb;
-let OSP = null;
-function loadOS(){
-  if (OSP || !rpReady()) return OSP;
-  OSP = new Promise(res => {
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-    window.OneSignalDeferred.push(async OneSignal => {
-      try {
-        await OneSignal.init({appId:OS_APP_ID, serviceWorkerPath:"aalam/push/onesignal/OneSignalSDKWorker.js", serviceWorkerParam:{scope:"/aalam/push/onesignal/"},
-          allowLocalhostAsSecureOrigin:/^localhost$|^127\./.test(location.hostname), notifyButton:{enable:false}, promptOptions:{slidedown:{prompts:[]}}});
-        res(OneSignal);
-      } catch(e){ res(null); }
-    });
-    const s = document.createElement("script"); s.src = "https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js"; s.defer = true; s.onerror = () => res(null); document.head.appendChild(s);
-  });
-  return OSP;
-}
+const rpReady = () => onWeb && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
+const sbPost = (path, body) => fetch(SB_URL + path, {method:"POST", headers:{"Content-Type":"application/json", apikey:SB_KEY}, body:JSON.stringify(body)});
+const b64key = k => Uint8Array.from(atob(k.replace(/-/g, "+").replace(/_/g, "/") + "==".slice(0, (4 - k.length % 4) % 4)), c => c.charCodeAt(0));
+async function rpReg(){ const reg = await navigator.serviceWorker.register("sw.js"); await navigator.serviceWorker.ready; return reg; }
 const goalKey = () => { const k = Object.keys(SK.days).filter(d => SK.days[d] === "g").sort().pop(); return k ? k.replaceAll("-", "") : "0"; };
+const rpArgs = sub => ({p_sub:sub.toJSON(), p_slot:RP.slot, p_serie:RP.serie, p_streak:curStreak(), p_last_goal:goalKey()});
 async function rpSync(){
   if (!RP.on || !rpReady()) return;
-  const OS = await loadOS(); if (!OS) return;
-  try { OS.User.addTags({slot:RP.slot, serie:RP.serie ? "1" : "0", streak:String(curStreak()), last_goal:goalKey()}); } catch(e){}
+  try { const reg = await rpReg(), sub = await reg.pushManager.getSubscription();
+    if (!sub || Notification.permission !== "granted"){ RP.on = false; saveRP(); return; }
+    await sbPost("/rest/v1/rpc/aalam_subscribe", rpArgs(sub)); } catch(e){}
 }
 async function rpEnable(){
-  const OS = await loadOS(); if (!OS) return toast("Les rappels ne sont pas disponibles pour l'instant");
-  try { await OS.Notifications.requestPermission(); } catch(e){}
-  if (OS.Notifications.permission){ RP.on = true; saveRP(); await rpSync(); try { OS.User.PushSubscription.optIn(); } catch(e){} toast("Rappels activés. À demain !"); }
-  else toast("Les notifications sont refusées. Tu peux les autoriser dans Réglages > Notifications > Aalam.");
+  if (!rpReady()) return toast("Les rappels ne marchent pas sur ce navigateur");
+  let perm = "default";
+  try { perm = await Notification.requestPermission(); } catch(e){}
+  if (perm !== "granted"){ toast("Notifications refusées. Tu peux les autoriser dans Réglages > Notifications > Aalam."); return openRappels(); }
+  try {
+    const reg = await rpReg();
+    const sub = (await reg.pushManager.getSubscription()) || await reg.pushManager.subscribe({userVisibleOnly:true, applicationServerKey:b64key(VAPID_PUBLIC)});
+    const r = await sbPost("/rest/v1/rpc/aalam_subscribe", rpArgs(sub)); if (!r.ok) throw new Error(await r.text());
+    RP.on = true; saveRP();
+    sbPost("/functions/v1/aalam-push", {mode:"test", endpoint:sub.endpoint}).catch(() => {});
+    toast("Rappels activés : une notification de test arrive");
+  } catch(e){ toast("L'activation n'a pas marché, réessaie dans un instant"); }
   openRappels();
 }
 async function rpDisable(){
   RP.on = false; saveRP();
-  const OS = await loadOS(); try { OS && OS.User.PushSubscription.optOut(); } catch(e){}
+  try { const reg = await rpReg(), sub = await reg.pushManager.getSubscription();
+    if (sub){ await sbPost("/rest/v1/rpc/aalam_unsubscribe", {p_endpoint:sub.endpoint}); await sub.unsubscribe(); } } catch(e){}
   toast("Rappels coupés"); openRappels();
 }
 function openRappels(){
