@@ -1031,6 +1031,148 @@ body.modesOn .mpFloat, body.matchOn .mpFloat{opacity:0; pointer-events:none}
 
 <div class="searchBar" id="searchBar" hidden><input id="q" type="search" placeholder="Chercher : Grèce, OTAN, Gengis Khan…" autocomplete="off" aria-label="Rechercher"><button class="round cardish" id="closeSearch" aria-label="Fermer la recherche" style="font-size:18px">×</button></div>
 <div class="results" id="results" hidden></div>
+<style>
+/* ---------- Série de jours ---------- */
+@media (max-width:440px){ .secBtn .brand .ar{display:none} }
+.skChip{position:relative; width:auto!important; min-width:46px; padding:0 13px 0 6px; border-radius:23px!important; display:flex!important; align-items:center; gap:5px; color:var(--ink)}
+.skChip .skRing{width:34px; height:34px; position:absolute; left:6px; top:50%; translate:0 -50%; rotate:-90deg}
+.skChip .skRing circle{fill:none; stroke-width:3}
+.skChip .skRing .bg{stroke:color-mix(in srgb, var(--ink) 14%, transparent)}
+.skChip .skRing .fg{stroke:#FF9142; stroke-linecap:round; transition:stroke-dashoffset .6s var(--ease)}
+.skChip .skRing .fg.done{stroke:transparent}
+.skChip .skF{width:34px; height:34px; display:grid; place-items:center; color:color-mix(in srgb, var(--ink) 38%, transparent); flex:none}
+.skChip .skF svg{width:19px; height:19px}
+.skChip .skF.on{color:#FF7A2E; filter:drop-shadow(0 0 6px rgb(255 122 46 / .55))}
+.skChip b{font-family:var(--f-display); font-weight:800; font-size:1.02rem; font-variant-numeric:tabular-nums}
+.skChip.done{background:linear-gradient(120deg, #FF5A4E, #FF9142)!important; border-color:transparent!important; color:#fff}
+.skChip.done .skF.on{color:#FFF3D6; filter:none}
+.skChip.bump{animation:skBump .5s cubic-bezier(.2,1.6,.4,1)}
+@keyframes skBump{40%{transform:scale(1.14)}}
+.skChip.mini{height:34px; min-width:0; padding:0 10px 0 2px; border:1px solid rgb(255 255 255 / .18); background:rgb(255 255 255 / .08); color:#E5EBEE; cursor:pointer; font:inherit; flex:none}
+.skChip.mini .skRing{width:28px; height:28px; left:3px}
+.skChip.mini .skRing .bg{stroke:rgb(255 255 255 / .16)}
+.skChip.mini .skF{width:28px; height:28px; color:rgb(255 255 255 / .45)}
+.skChip.mini .skF svg{width:15px; height:15px}
+.skChip.mini b{font-size:.88rem}
+.xpPop{position:fixed; z-index:96; left:50%; bottom:calc(92px + env(safe-area-inset-bottom,0px)); translate:-50% 0; padding:6px 13px; border-radius:20px; background:#2B1B0C; color:#FFC59A; border:1px solid #FF9142;
+  font-family:var(--f-mono); font-size:.8rem; font-weight:500; pointer-events:none; animation:xpUp 1.4s var(--ease) forwards}
+@keyframes xpUp{0%{opacity:0; transform:translateY(10px)}15%{opacity:1; transform:none}75%{opacity:1}100%{opacity:0; transform:translateY(-18px)}}
+
+.mdStreak{display:flex; align-items:center; gap:14px; width:100%; margin-top:14px; padding:12px 14px; border-radius:20px; cursor:pointer; text-align:left; font:inherit; color:inherit;
+  background:rgb(255 255 255 / .05); border:1px solid rgb(255 255 255 / .13)}
+.mdStreak .big{position:relative; width:52px; height:52px; flex:none; display:grid; place-items:center; color:rgb(255 255 255 / .28)}
+.mdStreak .big svg{width:52px; height:52px}
+.mdStreak .big b{position:absolute; top:58%; left:50%; translate:-50% -50%; font-family:var(--f-display); font-weight:800; font-size:1.05rem; color:#fff; text-shadow:0 1px 6px rgb(0 0 0 / .5)}
+.mdStreak.done .big{color:#FF7A2E}
+.mdStreak:not(.done) .big{color:rgb(255 145 66 / .55)}
+.mdStreak.done{border-color:rgb(255 145 66 / .55); background:linear-gradient(120deg, rgb(255 90 78 / .16), rgb(255 145 66 / .06))}
+.mdStreak .txt{flex:1; min-width:0}
+.mdStreak .txt b{display:block; font-family:var(--f-display); font-size:1.05rem}
+.mdStreak .txt small{display:block; color:#A9B7BF; font-size:.84rem; margin-top:1px}
+.gbar{display:block; height:6px; border-radius:3px; background:rgb(127 127 127 / .2); overflow:hidden; margin-top:7px}
+.gbar i{display:block; height:100%; border-radius:3px; background:linear-gradient(90deg, #FF5A4E, #FF9142); transition:width .6s var(--ease)}
+.mdStreak .wk{display:grid; grid-template-columns:repeat(7, 8px); gap:4px; flex:none}
+.mdStreak .wk i{width:8px; height:8px; border-radius:50%; background:rgb(255 255 255 / .14)}
+.mdStreak .wk i.g{background:#FF9142}
+.mdStreak .wk i.f{background:#7CC4FF}
+.mdStreak .wk i.t{outline:1.5px solid rgb(255 255 255 / .7); outline-offset:1.5px}
+@media (max-width:360px){ .mdStreak .wk{display:none} }
+
+.skHero{display:flex; align-items:center; gap:16px; margin-top:16px; padding:16px; border-radius:20px; background:var(--surface2)}
+.skHero .flm{width:64px; height:64px; flex:none; color:color-mix(in srgb, #FF7A2E 55%, var(--muted))}
+.skHero.done .flm{color:#FF7A2E; filter:drop-shadow(0 0 12px rgb(255 122 46 / .45))}
+.skHero .flm svg{width:100%; height:100%}
+.skHero b{display:block; font-family:var(--f-display); font-weight:800; font-size:2.6rem; line-height:1}
+.skHero span{display:block; font-weight:700}
+.skHero small{display:block; color:var(--muted); font-size:.84rem; margin-top:2px}
+.skGoal, .skStep{margin-top:16px}
+.skGoal .row, .skStep .row{display:flex; justify-content:space-between; align-items:baseline; gap:10px}
+.skGoal .note{margin-top:8px; font-size:.86rem}
+.skFrz{display:flex; gap:12px; align-items:flex-start; margin-top:16px; padding:12px 14px; border-radius:16px; border:1px solid color-mix(in srgb, #3E9BE8 35%, var(--line)); background:color-mix(in srgb, #3E9BE8 8%, var(--surface))}
+.skFrz .ic{width:36px; height:36px; border-radius:12px; flex:none; display:grid; place-items:center; color:#fff; background:linear-gradient(140deg, #3E9BE8, #7CC4FF)}
+.skFrz .ic svg{width:20px; height:20px}
+.skFrz b{display:block}
+.skFrz small{display:block; color:var(--muted); font-size:.84rem; line-height:1.4; margin-top:2px}
+.skH{font-size:.68rem!important; font-family:var(--f-mono)!important; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); font-weight:500!important; margin:22px 0 8px!important}
+.skStep .steps{display:flex; justify-content:space-between; margin-top:8px}
+.skStep .steps span{font-family:var(--f-mono); font-size:.72rem; color:var(--muted); padding:2px 6px; border-radius:10px}
+.skStep .steps span.on{background:#FF9142; color:#fff}
+.calHead{display:flex; align-items:center; justify-content:space-between; margin-bottom:6px}
+.calHead b{font-family:var(--f-display); text-transform:capitalize}
+.calHead button{width:34px; height:34px; border-radius:50%; border:0; background:var(--surface2); color:var(--ink); font-size:20px; cursor:pointer}
+.calHead button:disabled{opacity:.3; cursor:default}
+.calGrid{display:grid; grid-template-columns:repeat(7, 1fr); gap:4px; text-align:center}
+.calGrid > span{font-family:var(--f-mono); font-size:.66rem; color:var(--muted); padding:2px 0}
+.calGrid i{font-style:normal; aspect-ratio:1; max-height:42px; display:grid; place-items:center; border-radius:50%; font-size:.84rem; font-variant-numeric:tabular-nums; color:var(--muted)}
+.calGrid i.g{background:linear-gradient(140deg, #FF5A4E, #FF9142); color:#fff; font-weight:700}
+.calGrid i.f{background:color-mix(in srgb, #3E9BE8 22%, var(--surface)); color:#3E9BE8}
+.calGrid i.f svg{width:15px; height:15px}
+.calGrid i.t{outline:2px solid var(--ink); outline-offset:-2px; color:var(--ink); font-weight:700}
+.calGrid i.fut{opacity:.4}
+.calGrid i.e{visibility:hidden}
+.wkHead{display:flex; align-items:baseline; gap:8px}
+.wkHead b{font-family:var(--f-display); font-size:1.15rem}
+.wkHead span{color:var(--muted); font-size:.86rem}
+.wkBars{position:relative; display:grid; grid-template-columns:repeat(7, 1fr); gap:8px; height:150px; margin-top:8px}
+.wkBars > div{display:flex; flex-direction:column; align-items:center; gap:4px; min-width:0}
+.wkBars .v{height:16px; font-family:var(--f-mono); font-size:.68rem; color:var(--muted)}
+.wkBars .b{flex:1; width:100%; max-width:34px; display:flex; align-items:flex-end; border-radius:8px; background:var(--surface2); overflow:hidden}
+.wkBars .b i{display:block; width:100%; border-radius:8px 8px 0 0; background:color-mix(in srgb, #FF9142 45%, var(--surface2))}
+.wkBars .g .b i{background:linear-gradient(#FF9142, #FF5A4E)}
+.wkBars .d{height:16px; font-family:var(--f-mono); font-size:.68rem; color:var(--muted)}
+.wkBars .t .d{color:var(--ink); font-weight:700}
+.wkBars .goalLine{position:absolute; left:0; right:0; border-top:1.5px dashed color-mix(in srgb, #FF7A2E 70%, transparent); pointer-events:none}
+.skGoals{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px}
+.skGoals button{font:inherit; color:var(--ink); text-align:left; padding:12px; border-radius:16px; border:1.5px solid var(--line); background:var(--surface); cursor:pointer; min-width:0}
+.skGoals button b{display:block; font-family:var(--f-display)}
+.skGoals button span{display:block; font-size:.8rem; margin-top:2px}
+.skGoals button small{display:block; font-size:.74rem; color:var(--muted); margin-top:2px}
+.skGoals button[aria-pressed="true"]{border-color:#FF9142; background:color-mix(in srgb, #FF9142 12%, var(--surface))}
+.dTrophy.dStreak svg{color:#FF7A2E}
+
+.skCel{position:fixed; inset:0; z-index:95; display:grid; place-items:center; padding:24px; text-align:center; color:#fff; cursor:pointer;
+  background:radial-gradient(circle at 50% 38%, #4A2214, #0A0E16 62%); animation:celIn .35s ease}
+.skCel.out{opacity:0; transition:opacity .3s ease}
+.skCel .in{max-width:360px}
+.skCel .flm{display:block; width:120px; height:120px; margin:0 auto; color:#FF7A2E; filter:drop-shadow(0 0 30px rgb(255 122 46 / .7)); animation:flameIn .9s cubic-bezier(.2,1.5,.4,1)}
+.skCel .flm svg{width:100%; height:100%}
+.skCel .n{display:block; font-family:var(--f-display); font-weight:800; font-size:4.4rem; line-height:1; margin-top:6px; animation:numIn .6s .25s cubic-bezier(.2,1.5,.4,1) both}
+.skCel .lbl{display:block; font-family:var(--f-mono); font-size:.76rem; letter-spacing:.1em; text-transform:uppercase; color:#FFC59A}
+.skCel h2{font-family:var(--f-display); font-size:1.6rem; margin-top:18px}
+.skCel p{color:#D5DEE3; margin:8px 0 0}
+.skCel .frz{display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:8px 14px; border-radius:20px; background:rgb(62 155 232 / .2); color:#BFE2FF; border:1px solid rgb(124 196 255 / .5)}
+.skCel .frz svg{width:16px; height:16px}
+.skCel .bigBtn{margin-top:24px; width:100%}
+.skCel.step .flm{width:140px; height:140px}
+@keyframes celIn{from{opacity:0}}
+@keyframes flameIn{0%{transform:scale(.2) translateY(30px); opacity:0}100%{transform:none; opacity:1}}
+@keyframes numIn{0%{transform:scale(.5); opacity:0}100%{transform:none; opacity:1}}
+
+/* ---------- Question d'abord / Le chiffre ---------- */
+.fcTq .rvTag svg{width:14px; height:14px}
+.numOpts{display:grid!important; grid-template-columns:1fr 1fr; gap:8px}
+.numOpts .qzOpt{flex-direction:column; align-items:flex-start; gap:6px; min-height:84px}
+.numOpts .qzOpt span:last-child{font-family:var(--f-display); font-weight:800; font-size:1.12rem; line-height:1.2}
+
+/* ---------- Installation ---------- */
+.mdInst{display:flex; align-items:stretch; gap:6px; margin:-6px 0 14px}
+.mdInst .go{flex:1; display:flex; align-items:center; gap:12px; text-align:left; padding:12px 14px; border-radius:18px; cursor:pointer; font:inherit; color:inherit;
+  background:linear-gradient(120deg, rgb(95 224 200 / .16), rgb(95 224 200 / .04)); border:1px solid rgb(95 224 200 / .45)}
+.mdInst .go > svg:first-child{width:30px; height:30px; flex:none}
+.mdInst .go b{display:block; font-family:var(--f-display); font-size:1rem}
+.mdInst .go small{display:block; color:#A9B7BF; font-size:.82rem; line-height:1.35}
+.mdInst .go > svg:last-child{width:18px; height:18px; flex:none; margin-left:auto; opacity:.6}
+.mdInst .later{width:40px; border-radius:14px; border:1px solid rgb(255 255 255 / .13); background:none; color:#A9B7BF; font-size:18px; cursor:pointer; flex:none}
+.instSteps{list-style:none; padding:0; margin:20px 0 0; display:flex; flex-direction:column; gap:10px}
+.instSteps li{display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:16px; background:var(--surface2)}
+.instSteps .n{width:26px; height:26px; border-radius:50%; flex:none; display:grid; place-items:center; font-family:var(--f-mono); font-size:.8rem; background:var(--ink); color:var(--bg)}
+.instSteps .ic{width:40px; height:40px; flex:none; display:grid; place-items:center; border-radius:12px; background:var(--surface); color:#1D7FE6}
+.instSteps .ic svg{width:22px; height:22px}
+.instSteps b{display:block; font-weight:400}
+.instSteps b b{font-weight:700; display:inline}
+.instSteps small{display:block; color:var(--muted); font-size:.84rem; line-height:1.35; margin-top:2px}
+.instWarn{margin-top:14px; padding:10px 12px; border-radius:12px; background:color-mix(in srgb, #FF9142 14%, var(--surface))}
+</style>
 <div class="feed" id="feed" hidden></div>
 <div class="modes" id="modes" hidden></div>
 <div class="journal" id="journal" hidden></div>
@@ -11602,6 +11744,277 @@ function sheetTips(){
 }
 document.addEventListener("click", e => { if (e.target.closest("[data-tips-reset]")){ e.stopPropagation(); openDrawer(false); resetTips(); setTimeout(globeTips, 500); } }, true);
 
+
+
+/* ==========================================================================
+   Série de jours, objectif du jour et points (étape 3 du programme)
+   ========================================================================== */
+const dk = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+const dShift = (k, n) => { const [y, m, d] = k.split("-").map(Number); return dk(new Date(y, m - 1, d + n)); };
+const today = () => dk(new Date());
+const SK_GOALS = [[20, "Tranquille", "2 fiches environ"], [30, "Régulier", "3 fiches environ"], [60, "Sérieux", "6 fiches environ"]];
+const SK_STEPS = [3, 7, 14, 30, 50, 100, 200, 365];
+const SK_XP = {read:10, deep:5, quizOk:3, quizEnd:5, review:5, flash:10, teaser:2};
+let SK = store.get("streak2");
+if (!SK){
+  // reprise des jours d'activité déjà enregistrés, pour ne pas perdre la série en cours
+  SK = {goal:30, xp:{}, days:{}, frz:1, frzKey:"", best:0, lost:0, lostSeen:""};
+  (store.get("days") || []).forEach(s => { const [y, m, d] = s.split("-").map(Number); if (y) SK.days[dk(new Date(y, m - 1, d))] = "g"; });
+}
+const saveSK = () => store.set("streak2", SK);
+const xpOn = k => SK.xp[k] || 0;
+function curStreak(){
+  let k = today(); if (!SK.days[k]) k = dShift(k, -1);
+  let n = 0; while (SK.days[k]){ if (SK.days[k] === "g") n++; k = dShift(k, -1); }
+  return n;
+}
+// À l'ouverture : les jours manqués sont couverts par les gels de série en réserve, sinon la série repart de zéro.
+function settleStreak(){
+  const t = today(), y = dShift(t, -1);
+  if (SK.days[y] || SK.days[t]) return;
+  let k = dShift(y, -1), gap = [y];
+  while (!SK.days[k] && gap.length < 400) { gap.push(k); k = dShift(k, -1); }
+  if (!SK.days[k]) return;                       // jamais eu de série
+  if (gap.length <= SK.frz){ gap.forEach(g => SK.days[g] = "f"); SK.frz -= gap.length; SK.usedFrz = gap.length; SK.usedSeen = ""; }
+  else { let n = 0, j = k; while (SK.days[j]){ if (SK.days[j] === "g") n++; j = dShift(j, -1); } SK.lost = n; SK.lostSeen = ""; }
+  saveSK();
+}
+function addXP(n){
+  const k = today(), before = xpOn(k);
+  SK.xp[k] = before + n;
+  Object.keys(SK.xp).forEach(d => { if (d < dShift(k, -120)) delete SK.xp[d]; });
+  let won = null;
+  if (before < SK.goal && before + n >= SK.goal){
+    SK.days[k] = "g";
+    const s = curStreak(); SK.best = Math.max(SK.best, s);
+    let frz = false;
+    if (s > 0 && s % 7 === 0 && SK.frzKey !== k && SK.frz < 2){ SK.frz++; SK.frzKey = k; frz = true; }
+    won = {s, frz};
+  }
+  saveSK(); refreshStreak(true);
+  xpPop(n);
+  if (won){ setTimeout(() => celebrate(won.s, won.frz), 900); checkAch(); }
+}
+
+/* ----- icônes ----- */
+const IC_FLAME = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.6 2.2c.4 3-1.2 4.6-2.7 6.2C8.4 10 7 11.6 7 14.3A5 5 0 0 0 12 19.5a5 5 0 0 0 5-5.1c0-2-1-3.4-1.9-4.6-.2 1.3-.9 2.3-2 2.6.9-2.6.6-6.3-.5-10.2Z"/><path d="M12 21.8c-3.9 0-7-3.1-7-7 0-.5 0-1 .1-1.4C5.6 17 8.5 20 12 20s6.4-3 6.9-6.6c.1.4.1.9.1 1.4 0 3.9-3.1 7-7 7Z" opacity=".55"/></svg>';
+const IC_ICE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M4 7l16 10M20 7 4 17M9 3.5 12 6l3-2.5M9 20.5 12 18l3 2.5M3.2 10.3 4.6 13.9 1.9 16.6M20.8 10.3l-1.4 3.6 2.7 2.7M2.6 6.7 6.4 6l1-3.6M21.4 6.7 17.6 6l-1-3.6"/></svg>';
+
+/* ----- pastille de série, toujours visible ----- */
+function ringSvg(p, done){
+  const r = 15, c = 2 * Math.PI * r;
+  return `<svg class="skRing" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="${r}" class="bg"/><circle cx="18" cy="18" r="${r}" class="fg${done ? " done" : ""}" stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - Math.min(1, p))}"/></svg>`;
+}
+function chipHtml(){
+  const x = xpOn(today()), done = x >= SK.goal, s = curStreak();
+  return `${ringSvg(x / SK.goal, done)}<span class="skF${done ? " on" : ""}">${IC_FLAME}</span><b>${s}</b>`;
+}
+function refreshStreak(bump){
+  document.querySelectorAll("[data-sk-chip]").forEach(el => { el.innerHTML = chipHtml(); el.classList.toggle("done", xpOn(today()) >= SK.goal);
+    el.setAttribute("aria-label", `Série : ${curStreak()} jour${curStreak() > 1 ? "s" : ""}. Objectif du jour : ${Math.min(xpOn(today()), SK.goal)} sur ${SK.goal} points.`);
+    if (bump){ el.classList.remove("bump"); void el.offsetWidth; el.classList.add("bump"); } });
+  const md = $("#modes .mdStreak"); if (md) md.outerHTML = mdStreakHtml();
+}
+function xpPop(n){
+  const el = document.createElement("div"); el.className = "xpPop"; el.textContent = `+${n} pts`;
+  document.body.appendChild(el); setTimeout(() => el.remove(), 1400);
+}
+{
+  const tools = $(".tools");
+  tools.insertAdjacentHTML("afterbegin", `<button class="round cardish skChip" data-sk-chip data-sk-open></button>`);
+}
+
+/* ----- carte de série sur l'écran d'accueil ----- */
+function mdStreakHtml(){
+  const x = xpOn(today()), s = curStreak(), done = x >= SK.goal, left = Math.max(0, SK.goal - x);
+  const wk = [...Array(7)].map((_, i) => dShift(today(), i - 6));
+  return `<button class="mdStreak${done ? " done" : ""}" data-sk-open>
+    <span class="big">${IC_FLAME}<b>${s}</b></span>
+    <span class="txt"><b>${s ? `${s} jour${s > 1 ? "s" : ""} d'affilée` : "Lance ta série aujourd'hui"}</b>
+      <small>${done ? "Objectif du jour atteint. À demain !" : `Encore ${left} points pour l'objectif du jour`}</small>
+      <span class="gbar"><i style="width:${Math.min(100, x / SK.goal * 100)}%"></i></span></span>
+    <span class="wk">${wk.map(k => `<i class="${SK.days[k] === "g" ? "g" : SK.days[k] === "f" ? "f" : ""}${k === today() ? " t" : ""}"></i>`).join("")}</span>
+  </button>`;
+}
+
+/* ----- feuille « Ma série » ----- */
+const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+let skMonth = 0;
+function calHtml(){
+  const now = new Date(), base = new Date(now.getFullYear(), now.getMonth() + skMonth, 1);
+  const y = base.getFullYear(), m = base.getMonth(), first = (base.getDay() + 6) % 7, n = new Date(y, m + 1, 0).getDate();
+  const cells = [...Array(first)].map(() => `<i class="e"></i>`);
+  for (let d = 1; d <= n; d++){ const k = dk(new Date(y, m, d)), v = SK.days[k];
+    cells.push(`<i class="${v === "g" ? "g" : v === "f" ? "f" : ""}${k === today() ? " t" : ""}${k > today() ? " fut" : ""}">${v === "f" ? IC_ICE : d}</i>`); }
+  return `<div class="calHead"><button data-sk-m="-1" aria-label="Mois précédent">‹</button><b>${MOIS[m]} ${y}</b><button data-sk-m="1" aria-label="Mois suivant"${skMonth >= 0 ? " disabled" : ""}>›</button></div>
+    <div class="calGrid"><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span>${cells.join("")}</div>`;
+}
+function weekHtml(){
+  const ks = [...Array(7)].map((_, i) => dShift(today(), i - 6)), mx = Math.max(SK.goal, ...ks.map(xpOn));
+  const J = ["D", "L", "M", "M", "J", "V", "S"], tot = ks.reduce((a, k) => a + xpOn(k), 0);
+  return `<div class="wkHead"><b>${tot} points</b><span>sur les 7 derniers jours</span></div>
+    <div class="wkBars">${ks.map(k => { const v = xpOn(k), [Y, M, D] = k.split("-").map(Number);
+      return `<div class="${v >= SK.goal ? "g" : ""}${k === today() ? " t" : ""}"><span class="v">${v || ""}</span><span class="b"><i style="height:${v / mx * 100}%"></i></span><span class="d">${J[new Date(Y, M - 1, D).getDay()]}</span></div>`; }).join("")}
+      <span class="goalLine" style="bottom:calc(${SK.goal / mx} * (100% - 40px) + 20px)"></span></div>`;
+}
+function openStreak(){
+  const s = curStreak(), x = xpOn(today()), next = SK_STEPS.find(v => v > s) || s + 100, prev = [...SK_STEPS].reverse().find(v => v <= s) || 0;
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">Ta régularité</span><h2>Ma série</h2></div><button class="close" aria-label="Fermer">×</button></div>
+    <div class="skHero${x >= SK.goal ? " done" : ""}"><span class="flm">${IC_FLAME}</span><div><b>${s}</b><span>jour${s > 1 ? "s" : ""} d'affilée</span><small>Record : ${Math.max(SK.best, s)} jour${Math.max(SK.best, s) > 1 ? "s" : ""}</small></div></div>
+    <div class="skGoal"><div class="row"><b>Objectif du jour</b><span class="mono">${Math.min(x, SK.goal)} / ${SK.goal} pts</span></div>
+      <span class="gbar"><i style="width:${Math.min(100, x / SK.goal * 100)}%"></i></span>
+      <p class="note">${x >= SK.goal ? "C'est fait pour aujourd'hui. Tout ce que tu lis en plus compte pour ta semaine." : "Une fiche lue rapporte 10 points, un article 5, une bonne réponse 3, un quiz fini 5, une révision réussie 5, un Flash terminé 10."}</p></div>
+    <div class="skFrz"><span class="ic">${IC_ICE}</span><div><b>${SK.frz} gel${SK.frz > 1 ? "s" : ""} de série en réserve</b><small>Un gel protège ta série un jour où tu ne viens pas. Tu en gagnes un à chaque semaine complète (2 au maximum).</small></div></div>
+    <h3 class="skH">Prochain palier</h3>
+    <div class="skStep"><div class="row"><span>${s} jours</span><b>${next} jours</b></div><span class="gbar"><i style="width:${(s - prev) / (next - prev) * 100}%"></i></span>
+      <div class="steps">${SK_STEPS.map(v => `<span class="${v <= Math.max(SK.best, s) ? "on" : ""}">${v}</span>`).join("")}</div></div>
+    <h3 class="skH">Calendrier</h3><div class="skCal" id="skCal">${calHtml()}</div>
+    <h3 class="skH">Ta semaine</h3><div class="skWeek">${weekHtml()}</div>
+    <h3 class="skH">Ton rythme</h3>
+    <div class="skGoals">${SK_GOALS.map(([v, t, d]) => `<button data-sk-goal="${v}" aria-pressed="${SK.goal === v}"><b>${t}</b><span>${v} pts par jour</span><small>${d}</small></button>`).join("")}</div>
+    <p class="note" style="margin-top:10px">Choisis un objectif que tu peux tenir même les jours chargés. Mieux vaut peu chaque jour que beaucoup une fois.</p>`, 24);
+}
+
+/* ----- célébration quand l'objectif du jour est atteint ----- */
+function celebrate(s, frz){
+  const step = SK_STEPS.includes(s);
+  const msg = s === 1 ? "Ta série commence. Reviens demain pour la faire grandir."
+    : step ? `Palier des ${s} jours franchi. Peu de gens tiennent aussi longtemps.`
+    : `${s} jours d'affilée. Continue comme ça.`;
+  const el = document.createElement("div"); el.className = "skCel" + (step ? " step" : "");
+  el.innerHTML = `<div class="in"><span class="flm">${IC_FLAME}</span><b class="n">${s}</b><span class="lbl">jour${s > 1 ? "s" : ""} d'affilée</span>
+    <h2>${step && s > 1 ? "Nouveau palier !" : "Objectif du jour atteint"}</h2><p>${msg}</p>
+    ${frz ? `<p class="frz">${IC_ICE}Semaine complète : tu gagnes un gel de série.</p>` : ""}
+    <button class="bigBtn go" data-sk-cel>Continuer</button></div>`;
+  document.body.appendChild(el);
+  const close = () => { el.classList.add("out"); setTimeout(() => el.remove(), 300); };
+  el.onclick = e => { e.stopPropagation(); close(); };
+}
+
+/* ----- un mot à l'ouverture si un gel a servi, ou si la série s'est arrêtée ----- */
+function streakNews(){
+  if (SK.usedFrz && !SK.usedSeen){ SK.usedSeen = today(); saveSK(); toast(`Un gel de série a protégé ta série${SK.usedFrz > 1 ? ` (${SK.usedFrz} jours)` : ""}. Elle est intacte.`); }
+  else if (SK.lost >= 3 && !SK.lostSeen){ SK.lostSeen = today(); saveSK(); toast(`Ta série de ${SK.lost} jours s'est arrêtée. Ton record reste : ${Math.max(SK.best, SK.lost)} jours.`); }
+}
+
+/* ----- branchements ----- */
+streak = curStreak;
+ACH.push({id:"streak30", e:"flame", t:"Pilier", d:"Atteindre ton objectif 30 jours d'affilée", k:"streak", n:30},
+         {id:"streak100", e:"flame", t:"Légende", d:"Atteindre ton objectif 100 jours d'affilée", k:"streak", n:100});
+{
+  const mr = markRead; markRead = k => { const had = READ.has(k); mr(k); if (!had && !k.startsWith("tq:")) addXP(SK_XP.read); };
+  const md = markDeep; markDeep = k => { const had = !k || DEEP.has(k); md(k); if (!had) addXP(SK_XP.deep); };
+  const aq = answerQuiz; answerQuiz = j => { const was = QZ.answered; aq(j); if (!was && QZ.qs[QZ.i].ok) addXP(SK_XP.quizOk); };
+  const rq = renderQuiz; renderQuiz = () => { const end = QZ.i >= QZ.qs.length && !QZ.xpDone; if (end) QZ.xpDone = true; rq(); if (end) addXP(SK_XP.quizEnd); };
+  const ar = answerReview; answerReview = (i, j) => { const it = FEED[i], was = it && it.done; ar(i, j); if (it && !was && it.ok) addXP(SK_XP.review); };
+  const oc = onCurrent; onCurrent = () => { const was = fdDone; oc(); if (!was && fdDone) addXP(SK_XP.flash); };
+  const sm = showModes; showModes = () => { sm(); const b = $("#modes .mdBrand"); if (b) b.insertAdjacentHTML("afterend", mdStreakHtml()); installCard(); };
+  const rf = renderFeed; renderFeed = () => { rf(); $("#feed .fdLeft")?.insertAdjacentHTML("afterend", `<button class="skChip mini" data-sk-chip data-sk-open></button>`); refreshStreak(); };
+}
+document.addEventListener("click", e => {
+  const t = e.target;
+  if (t.closest("[data-sk-open]")){ e.stopPropagation(); skMonth = 0; return openStreak(); }
+  const g = t.closest("[data-sk-goal]"); if (g){ e.stopPropagation(); SK.goal = +g.dataset.skGoal;
+    if (xpOn(today()) >= SK.goal && !SK.days[today()]){ SK.days[today()] = "g"; SK.best = Math.max(SK.best, curStreak()); }
+    saveSK(); refreshStreak(); return openStreak(); }
+  const m = t.closest("[data-sk-m]"); if (m){ e.stopPropagation(); skMonth = Math.min(0, skMonth + +m.dataset.skM); $("#skCal").innerHTML = calHtml(); }
+}, true);
+settleStreak();
+addEventListener("visibilitychange", () => { if (document.visibilityState === "visible"){ settleStreak(); refreshStreak(); } });
+
+/* ==========================================================================
+   « Question d'abord » : environ une fiche sur trois est précédée d'une question
+   sur ce qu'elle explique (étape 4 du programme : varier les cartes du Flash)
+   ========================================================================== */
+const hasNum = s => /\d/.test(String(s));
+function teaserFor(it){
+  const fk = itemKey(it), qs = QUIZ[fk]; if (!qs || !qs.length) return null;
+  const nums = qs.filter(q => hasNum(q[1]) && q.slice(1, 5).every(hasNum));
+  const pickN = nums.length && Math.random() < .5, q = shuffle(pickN ? nums : qs)[0];
+  return {k:"t", key:"tq:" + fk, fk, num:pickN, q:q[0], good:q[1], why:q[5], opts:shuffle(q.slice(1, 5))};
+}
+{
+  const bf = buildFeed;
+  buildFeed = (budget, fav) => {
+    const r = bf(budget, fav); if (fav) return r;
+    const out = []; let n = 0;
+    r.items.forEach(it => { if ((it.k === "n" || it.k === "c") && n++ % 3 === 1){ const t = teaserFor(it); if (t) out.push(t); } out.push(it); });
+    return {items:out, min:r.min};
+  };
+  const fc = feedCard;
+  feedCard = (it, i) => it.k !== "t" ? fc(it, i) : `<section class="fc fcRv fcTq${it.num ? " num" : ""}" style="--h:${hueOfKey(it.fk)}" data-i="${i}"><div class="fcH"><div class="pane"><div class="fcIn">
+    <span class="rvTag">${it.num ? ICN.target : ICN.bulb}${it.num ? "Le chiffre" : "Question d'abord"}</span>
+    <p class="rvHint">${it.num ? "À ton avis ? Réponds d'instinct, la fiche suivante t'explique tout." : "Avant de lire : qu'est-ce que tu en penses ? La fiche suivante te donne la réponse."}</p>
+    <h2 class="rvQ">${fmt(it.q)}</h2>
+    <div class="qzOpts${it.num ? " numOpts" : ""}">${it.opts.map((o, j) => `<button class="qzOpt" data-tq="${j}"><span class="l">${"ABCD"[j]}</span><span>${fmt(o)}</span></button>`).join("")}</div>
+    <div class="rvFb"></div></div></div></div></section>`;
+  const oc = onCurrent;
+  onCurrent = () => {
+    const it = FEED[fdCur]; if (!it || it.k !== "t") return oc();
+    cardEl(fdCur).classList.add("in");
+    const real = FEED.length - 1, pos = Math.min(fdCur + 1, real), left = FEED.slice(fdCur).reduce((s, x) => s + itemMin(x), 0);
+    $("#fdBar").style.width = pos / real * 100 + "%";
+    $("#fdLeft").textContent = `${pos} / ${real} · ≈ ${Math.max(1, Math.round(left))} min`;
+    $("#fdAct").classList.add("end"); clearTimeout(fdReadT); clearTimeout(fdDeepT); saveFlash();
+  };
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-tq]"); if (!b) return; e.stopPropagation();
+  const i = +b.closest(".fc").dataset.i, it = FEED[i]; if (!it || it.k !== "t" || it.done) return; it.done = true;
+  const j = +b.dataset.tq, ok = it.opts[j] === it.good, el = cardEl(i);
+  el.querySelectorAll(".qzOpt").forEach((x, k) => { x.disabled = true; if (it.opts[k] === it.good) x.classList.add("good"); else if (k === j) x.classList.add("bad"); });
+  el.querySelector(".rvFb").innerHTML = `<div class="qzFb ${ok ? "ok" : "ko"}"><b>${ok ? "Bien vu !" : "Raté, mais c'est le moment de l'apprendre."}</b> ${ok ? "" : `La bonne réponse : ${fmt(it.good)}.`}</div>
+    <div class="btnRow"><button class="bigBtn go" data-rv-next>Voir l'explication ${IC_UP}</button></div>`;
+  if (ok) addXP(SK_XP.teaser);
+}, true);
+
+/* ==========================================================================
+   Installation sur le téléphone + fonctionnement hors ligne (étape 1)
+   ========================================================================== */
+const isStandalone = () => navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const onWeb = /github\.io$|^localhost$|^127\./.test(location.hostname);
+let installEvt = null;
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); installEvt = e; });
+if (onWeb && "serviceWorker" in navigator) { try { navigator.serviceWorker.register("sw.js").catch(() => {}); } catch(e){} }
+function installCard(){
+  if (!onWeb || isStandalone()) return;
+  const d = store.get("instLater"); if (d && d > Date.now()) return;
+  $("#modes .mdIn h1")?.insertAdjacentHTML("afterend", `<div class="mdInst"><button class="go" data-inst>${IC_LOGO}<span><b>Installe Aalam sur ton téléphone</b><small>Une icône sur ton écran d'accueil, en plein écran, même sans réseau</small></span>${CHEV}</button><button class="later" data-inst-later aria-label="Plus tard">×</button></div>`);
+}
+function openInstall(){
+  const android = /Android/.test(navigator.userAgent);
+  const share = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
+  const plus = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+  const steps = isIOS || !android ? [
+    [share, "Touche le bouton <b>Partager</b>", "En bas de Safari, le carré avec une flèche vers le haut. Sur iPad, il est en haut à droite."],
+    [plus, "Choisis <b>Sur l'écran d'accueil</b>", "Fais défiler la liste vers le bas si tu ne le vois pas tout de suite."],
+    [IC_LOGO, "Touche <b>Ajouter</b>", "L'icône Aalam apparaît sur ton écran d'accueil. Ouvre Aalam depuis cette icône."]
+  ] : [
+    ['<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>', "Touche le <b>menu</b> de Chrome", "Les trois points en haut à droite."],
+    [plus, "Choisis <b>Installer l'application</b>", "Ou « Ajouter à l'écran d'accueil » selon ton téléphone."],
+    [IC_LOGO, "Confirme", "Aalam apparaît avec tes autres applis."]
+  ];
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">30 secondes</span><h2>Installe Aalam</h2></div><button class="close" aria-label="Fermer">×</button></div>
+    <p class="lead">Avec l'icône sur ton écran d'accueil, Aalam s'ouvre en plein écran comme une vraie appli, et marche même sans réseau.</p>
+    ${installEvt ? `<button class="bigBtn go" data-inst-now style="width:100%; margin-top:16px">Installer maintenant</button>` : ""}
+    ${isIOS && !/Safari/.test(navigator.userAgent) || /CriOS|FxiOS/.test(navigator.userAgent) ? `<p class="note instWarn">Sur iPhone, ouvre cette page dans <b>Safari</b> pour pouvoir l'installer.</p>` : ""}
+    <ol class="instSteps">${steps.map(([ic, t, d], i) => `<li><span class="n">${i + 1}</span><span class="ic">${ic}</span><span><b>${t}</b><small>${d}</small></span></li>`).join("")}</ol>`, 172);
+}
+document.addEventListener("click", e => {
+  const t = e.target;
+  if (t.closest("[data-inst-later]")){ e.stopPropagation(); store.set("instLater", Date.now() + 7 * 864e5); t.closest(".mdInst").remove(); return; }
+  if (t.closest("[data-inst-now]")){ e.stopPropagation(); if (installEvt){ installEvt.prompt(); installEvt = null; } $("#modalRoot").innerHTML = ""; return; }
+  if (t.closest("[data-inst]")){ e.stopPropagation(); return openInstall(); }
+}, true);
+{
+  const rd = renderDrawer;
+  renderDrawer = () => { rd(); $("#dList").insertAdjacentHTML("afterbegin", `<button class="dTrophy dStreak" data-sk-open>${IC_FLAME}<span>Ma série</span><small>${curStreak()} j</small></button>`);
+    if (onWeb && !isStandalone()) $("#dList").insertAdjacentHTML("beforeend", `<button class="dTrophy" data-inst>${IC_LOGO}<span>Installer sur le téléphone</span><small></small></button>`); };
+}
+checkAch(true);
+refreshStreak();
+setTimeout(streakNews, 1500);
 
 measure(); readPalette(); refreshChrome(); renderLayers(); paint(); render();
 if (cur.id === "histoire") setFrise(true);
