@@ -1130,7 +1130,7 @@ body.modesOn .mpFloat, body.matchOn .mpFloat{opacity:0; pointer-events:none}
 .skGoals button[aria-pressed="true"]{border-color:#FF9142; background:color-mix(in srgb, #FF9142 12%, var(--surface))}
 .dTrophy.dStreak svg{color:#FF7A2E}
 
-.skCel{position:fixed; inset:0; z-index:95; display:grid; place-items:center; padding:24px; text-align:center; color:#fff; cursor:pointer;
+.skCel{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:24px; text-align:center; color:#fff; cursor:pointer;
   background:radial-gradient(circle at 50% 38%, #4A2214, #0A0E16 62%); animation:celIn .35s ease}
 .skCel.out{opacity:0; transition:opacity .3s ease}
 .skCel .in{max-width:360px}
@@ -1172,6 +1172,54 @@ body.modesOn .mpFloat, body.matchOn .mpFloat{opacity:0; pointer-events:none}
 .instSteps b b{font-weight:700; display:inline}
 .instSteps small{display:block; color:var(--muted); font-size:.84rem; line-height:1.35; margin-top:2px}
 .instWarn{margin-top:14px; padding:10px 12px; border-radius:12px; background:color-mix(in srgb, #FF9142 14%, var(--surface))}
+</style>
+<style>
+/* ---------- Nouveaux formats du Flash ---------- */
+.vfProp{margin:14px 0 0; padding:16px 18px; border-radius:18px; border:1.5px dashed hsl(var(--h) 70% 62% / .6); background:hsl(var(--h) 60% 40% / .14); font-family:var(--f-display); font-weight:700; font-size:1.25rem; line-height:1.3}
+.vfOpts{display:grid!important; grid-template-columns:1fr 1fr; gap:10px}
+.vfOpts .qzOpt{justify-content:center; text-align:center; font-weight:700; font-size:1.05rem; min-height:58px}
+.tqGlobe{display:block; width:min(72vw, 300px, 34vh); height:auto; margin:6px auto 14px; filter:drop-shadow(0 0 26px rgb(63 134 201 / .35))}
+.tq-geo .qzOpts{display:grid!important; grid-template-columns:1fr 1fr; gap:8px}
+.tq-geo .qzOpt{min-height:56px}
+.tqBig{display:block; font-family:var(--f-display); font-weight:800; font-size:clamp(3rem, 16vw, 5.4rem); line-height:1; margin-top:18px; color:hsl(var(--h) 85% 72%); letter-spacing:-.02em; overflow-wrap:anywhere}
+.tqLbl{font-family:var(--f-display); font-size:1.3rem; font-weight:700; margin:12px 0 0; line-height:1.3}
+.dsShort{font-family:var(--f-display); font-size:1.25rem; font-weight:700; line-height:1.35; margin:12px 0 0}
+.dsMini{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px}
+.dsMini > div{padding:12px; border-radius:16px; display:flex; flex-direction:column; gap:6px}
+.dsMini .win{background:rgb(47 182 124 / .14); border:1px solid rgb(47 182 124 / .45)}
+.dsMini .lose{background:rgb(255 90 78 / .12); border:1px solid rgb(255 90 78 / .45)}
+.dsMini h4{margin:0 0 2px; font-family:var(--f-mono); font-size:.66rem; letter-spacing:.09em; text-transform:uppercase; font-weight:500}
+.dsMini .win h4{color:#5FD6A0} .dsMini .lose h4{color:#FF8A80}
+.dsMini span{font-weight:700; font-size:.92rem; line-height:1.3}
+
+/* ---------- Ma collection ---------- */
+.colMap{display:block; width:100%; height:auto; margin-top:16px}
+.colMap .sea{fill:color-mix(in srgb, #3E9BE8 10%, var(--surface2))}
+.colMap path:not(.sea){fill:color-mix(in srgb, var(--ink) 13%, var(--surface)); stroke:var(--surface); stroke-width:.5}
+.colMap path.on{fill:#FF9142}
+.colSecs{display:flex; flex-direction:column; gap:10px}
+.colSec{display:grid; grid-template-columns:auto 1fr auto; gap:4px 10px; align-items:center}
+.colSec b{font-size:.95rem}
+.colSec .bar{grid-column:1 / -1; margin-top:0}
+.colNames{display:flex; flex-wrap:wrap; gap:6px}
+.colNames span{font-size:.84rem; padding:4px 10px; border-radius:20px; background:color-mix(in srgb, #FF9142 14%, var(--surface)); border:1px solid color-mix(in srgb, #FF9142 40%, var(--line))}
+
+/* ---------- Partage et défis ---------- */
+.shRow{margin-top:10px}
+.shBtn{width:100%; margin-top:12px}
+.mpShare{margin:18px 0 6px}
+.dfHero{margin-top:16px; padding:20px; border-radius:20px; text-align:center; background:var(--surface2)}
+.dfHero b{display:block; font-family:var(--f-display); font-weight:800; font-size:3rem; line-height:1}
+.dfHero span{display:block; color:var(--muted); margin-top:6px}
+.dfRes{width:100%; padding:14px; border-radius:18px; margin-bottom:16px; text-align:center; border:1.5px solid var(--line)}
+.dfRes.win{border-color:#2FB67C; background:rgb(47 182 124 / .1)}
+.dfRes.lose{border-color:#FF5A4E; background:rgb(255 90 78 / .08)}
+.dfRes .eyb{font-family:var(--f-mono); font-size:.66rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted)}
+.dfRes .vs{display:flex; justify-content:center; align-items:center; gap:18px; margin-top:6px}
+.dfRes .vs b{display:block; font-family:var(--f-display); font-weight:800; font-size:1.7rem}
+.dfRes .vs small{color:var(--muted)}
+.dfRes .vs > span{color:var(--muted); font-size:.85rem}
+.dfRes p{margin:8px 0 0; font-weight:700}
 </style>
 <div class="feed" id="feed" hidden></div>
 <div class="modes" id="modes" hidden></div>
@@ -11960,7 +12008,7 @@ function teaserFor(it){
 }
 document.addEventListener("click", e => {
   const b = e.target.closest("[data-tq]"); if (!b) return; e.stopPropagation();
-  const i = +b.closest(".fc").dataset.i, it = FEED[i]; if (!it || it.k !== "t" || it.done) return; it.done = true;
+  const i = +b.closest(".fc").dataset.i, it = FEED[i]; if (!it || it.k !== "t" || it.mode || it.done) return; it.done = true;
   const j = +b.dataset.tq, ok = it.opts[j] === it.good, el = cardEl(i);
   el.querySelectorAll(".qzOpt").forEach((x, k) => { x.disabled = true; if (it.opts[k] === it.good) x.classList.add("good"); else if (k === j) x.classList.add("bad"); });
   el.querySelector(".rvFb").innerHTML = `<div class="qzFb ${ok ? "ok" : "ko"}"><b>${ok ? "Bien vu !" : "Raté, mais c'est le moment de l'apprendre."}</b> ${ok ? "" : `La bonne réponse : ${fmt(it.good)}.`}</div>
@@ -12015,6 +12063,255 @@ document.addEventListener("click", e => {
 checkAch(true);
 refreshStreak();
 setTimeout(streakNews, 1500);
+
+/* ==========================================================================
+   Étape 4 (suite) : des formats variés dans le Flash, tirés du contenu existant
+   - Vrai ou faux (questions des quiz)   - Devine où (globe miniature)
+   - Le chiffre (chiffres clés des « dessous »)   - Qui gagne, qui perd (court)
+   ========================================================================== */
+const placesOf = it => (it.k === "c" ? it.c.countries : it.n.places || []).filter(id => COUNTRY[id]);
+let tqLast = "";
+teaserFor = it => {
+  const fk = itemKey(it), qs = QUIZ[fk] || [], ds = DESSOUS && DESSOUS[fk], pl = placesOf(it);
+  const opts = [];
+  if (qs.length){ opts.push("qcm", "vf"); }
+  if (pl.length) opts.push("geo");
+  if (ds && ds.keys && ds.keys.length) opts.push("chiffre");
+  if (ds && ds.win && ds.lose && ds.win.length && ds.lose.length) opts.push("ds");
+  const pool = opts.filter(m => m !== tqLast); if (!pool.length) return null;
+  const mode = shuffle(pool)[0]; tqLast = mode;
+  const base = {k:"t", key:"tq:" + fk, fk, mode};
+  if (mode === "qcm"){
+    const nums = qs.filter(q => hasNum(q[1]) && q.slice(1, 5).every(hasNum)), pickN = nums.length && Math.random() < .5, q = shuffle(pickN ? nums : qs)[0];
+    return {...base, mode:undefined, num:pickN, q:q[0], good:q[1], why:q[5], opts:shuffle(q.slice(1, 5))};
+  }
+  if (mode === "vf"){
+    const q = shuffle(qs)[0], truth = Math.random() < .5, shown = truth ? q[1] : shuffle(q.slice(2, 5))[0];
+    return {...base, q:q[0], prop:shown, real:q[1], opts:["Vrai", "Faux"], good:truth ? "Vrai" : "Faux"};
+  }
+  if (mode === "geo"){
+    const id = pl[0], c = COUNTRY[id];
+    const near = COUNTRIES.filter(x => x.id !== id && x.n && !pl.includes(x.id)).map(x => [d3.geoDistance(c.c, x.c), x]).sort((a, b) => a[0] - b[0]).slice(2, 14).map(x => x[1]);
+    const wrong = shuffle(near).slice(0, 3).map(x => x.n);
+    return {...base, cid:id, opts:shuffle([c.n, ...wrong]), good:c.n};
+  }
+  if (mode === "chiffre"){ const [k, l] = shuffle(ds.keys)[0]; return {...base, big:k, lbl:l}; }
+  return {...base, after:true, hook:ds.hook, win:ds.win.slice(0, 3), lose:ds.lose.slice(0, 3)};
+};
+{
+  // la carte « Qui gagne, qui perd » vient après sa fiche, pas avant
+  const bf = buildFeed;
+  buildFeed = (budget, fav) => {
+    const r = bf(budget, fav), a = r.items;
+    for (let i = 0; i < a.length - 1; i++) if (a[i].k === "t" && a[i].after && !a[i].moved){ a[i].moved = true; [a[i], a[i + 1]] = [a[i + 1], a[i]]; i++; }
+    return r;
+  };
+}
+function miniGlobe(id){
+  const c = COUNTRY[id], S = 300, p = d3.geoOrthographic().rotate([-c.c[0], -c.c[1]]).clipAngle(90).precision(.5);
+  p.scale(1).translate([0, 0]);
+  const b = d3.geoPath(p).bounds(c.f), w = Math.max(b[1][0] - b[0][0], b[1][1] - b[0][1], .0001);
+  const sc = Math.max(135, Math.min(1400, S * .32 / w));
+  p.scale(sc).translate([S / 2, S / 2]);
+  const path = d3.geoPath(p), small = w * sc < 18, ctr = p(c.c);
+  return `<svg class="tqGlobe" viewBox="0 0 ${S} ${S}" aria-label="Carte : un pays est mis en évidence">
+    <defs><clipPath id="tqc"><circle cx="${S / 2}" cy="${S / 2}" r="${S / 2 - 2}"/></clipPath><radialGradient id="tqo" cx="40%" cy="35%"><stop offset="0" stop-color="#1A4C78"/><stop offset="1" stop-color="#0B2A47"/></radialGradient></defs>
+    <circle cx="${S / 2}" cy="${S / 2}" r="${S / 2 - 2}" fill="url(#tqo)"/>
+    <g clip-path="url(#tqc)"><path d="${path({type:"Sphere"}) || ""}" fill="url(#tqo)"/><path d="${path(d3.geoGraticule10()) || ""}" fill="none" stroke="rgb(255 255 255 / .08)" stroke-width=".6"/>
+      ${COUNTRIES.filter(x => x.id !== id).map(x => { const d = path(x.f); return d ? `<path d="${d}" fill="#2B4252" stroke="#0B2A47" stroke-width=".6"/>` : ""; }).join("")}
+      <path d="${path(c.f) || ""}" fill="#FF9142" stroke="#FFE1C4" stroke-width="1.2"/>
+      ${small && ctr ? `<circle cx="${ctr[0]}" cy="${ctr[1]}" r="16" fill="none" stroke="#FF9142" stroke-width="2.5"/><circle cx="${ctr[0]}" cy="${ctr[1]}" r="26" fill="none" stroke="#FF9142" stroke-width="1.2" opacity=".5"/>` : ""}</g>
+    <circle cx="${S / 2}" cy="${S / 2}" r="${S / 2 - 2}" fill="none" stroke="rgb(124 196 255 / .35)" stroke-width="1.5"/></svg>`;
+}
+const TQ_TAG = {vf:["check", "Vrai ou faux ?"], geo:["globe", "Devine où"], chiffre:["target", "Le chiffre"], ds:["coins", "Qui gagne, qui perd ?"]};
+function tqCard(it, i){
+  const [ic, tag] = TQ_TAG[it.mode], btns = o => `<div class="qzOpts${it.mode === "vf" ? " vfOpts" : ""}">${o.map((x, j) => `<button class="qzOpt" data-tq="${j}">${it.mode === "vf" ? "" : `<span class="l">${"ABCD"[j]}</span>`}<span>${fmt(x)}</span></button>`).join("")}</div><div class="rvFb"></div>`;
+  let body = "";
+  if (it.mode === "vf") body = `<p class="rvHint">Une seule réponse proposée. Est-elle juste ?</p><h2 class="rvQ">${fmt(it.q)}</h2><p class="vfProp">${fmt(it.prop)}</p>${btns(it.opts)}`;
+  else if (it.mode === "geo") body = `<p class="rvHint">Ce pays est au cœur de la fiche suivante. Lequel est-ce ?</p>${miniGlobe(it.cid)}${btns(it.opts)}`;
+  else if (it.mode === "chiffre") body = `<p class="rvHint">${esc(titleOf(it.fk))}</p><b class="tqBig">${esc(it.big)}</b><p class="tqLbl">${esc(it.lbl)}</p>
+    <p class="rvHint" style="margin-top:22px">D'où vient ce chiffre, et qu'est-ce qu'il change ? La fiche suivante te le dit.</p><div class="btnRow"><button class="bigBtn go" data-rv-next>Voir la fiche ${IC_UP}</button></div>`;
+  else body = `<p class="rvHint">${esc(titleOf(it.fk))} · derrière la fiche que tu viens de lire</p><p class="dsShort">${fmt(it.hook)}</p>
+    <div class="dsMini"><div class="win"><h4>Ils y gagnent</h4>${it.win.map(([a]) => `<span>${esc(a)}</span>`).join("")}</div><div class="lose"><h4>Ils y perdent</h4>${it.lose.map(([a]) => `<span>${esc(a)}</span>`).join("")}</div></div>
+    <div class="btnRow"><button class="bigBtn" data-dessous="${esc(it.fk)}">Comprendre pourquoi</button><button class="bigBtn go" data-rv-next>Continuer ${IC_UP}</button></div>`;
+  return `<section class="fc fcRv fcTq tq-${it.mode}" style="--h:${hueOfKey(it.fk)}" data-i="${i}"><div class="fcH"><div class="pane"><div class="fcIn">
+    <span class="rvTag">${ICN[ic]}${tag}</span>${body}</div></div></div></section>`;
+}
+{
+  const fc = feedCard;
+  feedCard = (it, i) => it.k === "t" && it.mode ? tqCard(it, i) : fc(it, i);
+}
+// réponses des nouveaux formats (avant le gestionnaire de « Question d'abord »)
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-tq]"); if (!b) return;
+  const i = +b.closest(".fc").dataset.i, it = FEED[i]; if (!it || it.k !== "t" || !it.mode) return;
+  e.stopImmediatePropagation(); if (it.done) return; it.done = true;
+  const j = +b.dataset.tq, ok = it.opts[j] === it.good, el = cardEl(i);
+  el.querySelectorAll(".qzOpt").forEach((x, k) => { x.disabled = true; if (it.opts[k] === it.good) x.classList.add("good"); else if (k === j) x.classList.add("bad"); });
+  const msg = it.mode === "vf" ? (it.good === "Vrai" ? `C'est bien ça : ${fmt(it.real)}.` : `La bonne réponse : ${fmt(it.real)}.`)
+    : `La réponse : ${fmt(it.good)}.`;
+  el.querySelector(".rvFb").innerHTML = `<div class="qzFb ${ok ? "ok" : "ko"}"><b>${ok ? "Bien vu !" : "Raté."}</b> ${msg}</div>
+    <div class="btnRow"><button class="bigBtn go" data-rv-next>Voir la fiche ${IC_UP}</button></div>`;
+  if (ok) addXP(SK_XP.teaser);
+}, true);
+
+/* ==========================================================================
+   Ma collection : les pays découverts sur une carte, les sections parcourues
+   ========================================================================== */
+function collected(){
+  const set = new Set();
+  READ.forEach(k => { const b = fromKey(k); (b.c ? b.c.countries : b.n ? b.n.places || [] : []).forEach(id => COUNTRY[id] && set.add(id)); });
+  return set;
+}
+function openCollection(){
+  const got = collected(), total = COUNTRIES.filter(c => c.id !== "ATA").length, n = [...got].length;
+  const p = d3.geoEqualEarth().fitSize([640, 320], {type:"Sphere"}), path = d3.geoPath(p);
+  const secs = SECTIONS.map(s => ({s, st:secStats(s)})).filter(x => x.st.ready);
+  const names = [...got].map(id => COUNTRY[id].n).sort((a, b) => a.localeCompare(b, "fr"));
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">${n} pays sur ${total}</span><h2>Ma collection</h2></div><button class="close" aria-label="Fermer">×</button></div>
+    <p class="lead">Chaque fiche lue allume les pays dont elle parle. Combien en connaîtras-tu ?</p>
+    <svg class="colMap" viewBox="0 0 640 320" role="img" aria-label="Carte des pays découverts : ${n} sur ${total}">
+      <path d="${path({type:"Sphere"})}" class="sea"/>
+      ${COUNTRIES.filter(c => c.id !== "ATA").map(c => `<path d="${path(c.f) || ""}" class="${got.has(c.id) ? "on" : ""}"><title>${esc(c.n)}</title></path>`).join("")}
+    </svg>
+    <span class="gbar"><i style="width:${n / total * 100}%"></i></span>
+    <h3 class="skH">Par section</h3>
+    <div class="colSecs">${secs.map(({s, st}) => `<div class="colSec" style="--h:${s.hue}"><span class="sw"></span><b>${esc(s.name)}</b><span class="mono">${st.read} / ${st.ready}</span><span class="bar"><i style="width:${st.read / st.ready * 100}%"></i></span></div>`).join("")}</div>
+    ${names.length ? `<h3 class="skH">Pays découverts</h3><div class="colNames">${names.map(x => `<span>${esc(x)}</span>`).join("")}</div>` : `<p class="note" style="margin-top:16px">Lis ta première fiche pour allumer tes premiers pays.</p>`}`, 205);
+}
+{
+  const sm = showModes;
+  showModes = () => { sm(); const tr = $("#modes .mdMore [data-eval]"); tr?.insertAdjacentHTML("beforebegin", `<button data-collection>${ICN.map}Ma collection · ${collected().size} pays</button>`); };
+  const rd = renderDrawer;
+  renderDrawer = () => { rd(); $("#dList .dStreak")?.insertAdjacentHTML("afterend", `<button class="dTrophy" data-collection>${ICN.map}<span>Ma collection</span><small>${collected().size} pays</small></button>`); };
+}
+
+/* ==========================================================================
+   Étape 6 : partager un résultat en image, défier un ami par lien
+   ========================================================================== */
+const APP_URL = "https://lambda123k.github.io/aalam/";
+function wrapLines(ctx, text, maxW){
+  const words = String(text).split(/\s+/), out = []; let line = "";
+  words.forEach(w => { const t = line ? line + " " + w : w; if (ctx.measureText(t).width > maxW && line){ out.push(line); line = w; } else line = t; });
+  if (line) out.push(line); return out;
+}
+async function shareCard({eyebrow, big, bigLbl, title, rows, sub, text, url}){
+  try { await document.fonts.ready; } catch(e){}
+  const W = 1080, H = 1350, cv = document.createElement("canvas"); cv.width = W; cv.height = H; const g = cv.getContext("2d");
+  const bg = g.createRadialGradient(W * .5, H * .3, 50, W * .5, H * .4, H * .9); bg.addColorStop(0, "#173450"); bg.addColorStop(.55, "#0A1826"); bg.addColorStop(1, "#03060D");
+  g.fillStyle = bg; g.fillRect(0, 0, W, H);
+  g.fillStyle = "rgba(255,255,255,.55)"; [[120,180,3],[930,140,2.5],[980,620,2],[90,820,2.5],[300,1180,2],[860,1120,3],[540,90,2]].forEach(([x, y, r]) => { g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); });
+  // logo
+  g.save(); g.translate(130, 150); g.strokeStyle = "#5FE0C8"; g.lineWidth = 7; g.lineJoin = "round";
+  g.strokeRect(-34, -34, 68, 68); g.rotate(Math.PI / 4); g.strokeRect(-34, -34, 68, 68); g.restore();
+  g.fillStyle = "#FFD166"; g.beginPath(); g.arc(130, 150, 15, 0, 7); g.fill();
+  const D = "'Bricolage Grotesque', 'Avenir Next', system-ui, sans-serif", B = "'Atkinson Hyperlegible', system-ui, sans-serif", M = "'JetBrains Mono', ui-monospace, monospace";
+  g.fillStyle = "#fff"; g.font = `800 56px ${D}`; g.textBaseline = "middle"; g.fillText("Aalam", 200, 152);
+  g.textBaseline = "alphabetic";
+  let y = 360;
+  g.fillStyle = "#FFC59A"; g.font = `500 34px ${M}`; g.fillText(String(eyebrow).toUpperCase(), 90, y); y += 40;
+  if (big){ g.fillStyle = "#fff"; g.font = `800 260px ${D}`; g.fillText(big, 80, y + 230); y += 270;
+    if (bigLbl){ g.fillStyle = "#FF9142"; g.font = `700 48px ${D}`; g.fillText(bigLbl, 90, y + 30); y += 70; } }
+  g.fillStyle = "#fff"; g.font = `800 72px ${D}`;
+  wrapLines(g, title, W - 180).slice(0, 4).forEach(l => { y += 86; g.fillText(l, 90, y); });
+  if (rows){ y += 50; rows.forEach(([lbl, pct], k) => { y += 108;
+    g.fillStyle = k ? "#D5DEE3" : "#fff"; g.font = `${k ? 500 : 800} 42px ${D}`; g.fillText(lbl, 90, y);
+    g.fillStyle = "rgba(255,255,255,.12)"; g.fillRect(90, y + 22, W - 300, 16);
+    g.fillStyle = k ? "#5FE0C8" : "#FF9142"; g.fillRect(90, y + 22, (W - 300) * pct / 100, 16);
+    g.fillStyle = "#fff"; g.font = `500 38px ${M}`; g.textAlign = "right"; g.fillText(pct + " %", W - 90, y + 38); g.textAlign = "left"; }); }
+  if (sub){ y += 70; g.fillStyle = "#B9C6CD"; g.font = `400 40px ${B}`; wrapLines(g, sub, W - 180).slice(0, 3).forEach(l => { if (y + 54 < H - 180){ y += 54; g.fillText(l, 90, y); } }); }
+  g.fillStyle = "rgba(255,255,255,.14)"; g.fillRect(90, H - 150, W - 180, 2);
+  g.fillStyle = "#5FE0C8"; g.font = `500 36px ${M}`; g.fillText(APP_URL.replace("https://", "").replace(/\/$/, ""), 90, H - 85);
+  const blob = await new Promise(r => cv.toBlob(r, "image/png"));
+  const file = new File([blob], "aalam.png", {type:"image/png"});
+  try {
+    if (navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file], text:(text || "") + " " + (url || APP_URL)}); return; }
+  } catch(e){ if (e && e.name === "AbortError") return; }
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "aalam.png"; document.body.appendChild(a); a.click(); a.remove();
+  toast("Image enregistrée : tu peux l'envoyer à qui tu veux");
+}
+async function shareLink(text, url){
+  try { if (navigator.share){ await navigator.share({text, url}); return; } } catch(e){ if (e && e.name === "AbortError") return; }
+  try { await navigator.clipboard.writeText(text + " " + url); toast("Lien copié : colle-le dans un message"); }
+  catch(e){ prompt("Copie ce lien :", url); }
+}
+const b64 = o => btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/=+$/, "");
+const unb64 = s => { try { return JSON.parse(decodeURIComponent(escape(atob(s)))); } catch(e){ return null; } };
+function defiUrl(key, s, n){ return APP_URL + "#defi=" + encodeURIComponent(b64({k:key, s, n})); }
+
+/* ----- fin de quiz : partager, défier ; résultat d'un défi reçu ----- */
+{
+  const rq = renderQuiz;
+  renderQuiz = () => {
+    const z = QZ; rq();
+    if (!z || z.i < z.qs.length) return;
+    const end = $("#qzBody .qzEnd"); if (!end) return;
+    if (z.defi){
+      const me = z.score / z.qs.length, him = z.defi.s / z.defi.n;
+      end.insertAdjacentHTML("afterbegin", `<div class="dfRes ${me > him ? "win" : me === him ? "tie" : "lose"}"><span class="eyb">Défi</span>
+        <div class="vs"><div><b>${z.score} / ${z.qs.length}</b><small>Toi</small></div><span>contre</span><div><b>${z.defi.s} / ${z.defi.n}</b><small>Ton ami</small></div></div>
+        <p>${me > him ? "Tu as gagné le défi." : me === him ? "Égalité parfaite." : "Ton ami garde l'avantage. Relis la fiche et retente."}</p></div>`);
+      z.defi = null;
+    }
+    end.querySelector(".btnRow")?.insertAdjacentHTML("afterend", `<div class="btnRow shRow"><button class="bigBtn" data-defi="${esc(z.key)}" data-s="${z.score}" data-n="${z.qs.length}">${ICN.target}Défier un ami</button><button class="bigBtn" data-share-quiz="${esc(z.key)}" data-s="${z.score}" data-n="${z.qs.length}">${ICN.star}Partager</button></div>`);
+  };
+}
+function openDefi(d){
+  const t = titleOf(d.k);
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">Un ami te défie</span><h2>${esc(t)}</h2></div><button class="close" aria-label="Fermer">×</button></div>
+    <div class="dfHero"><b>${d.s} / ${d.n}</b><span>c'est le score de ton ami à ce quiz</span></div>
+    <p class="lead">Fais mieux en ${d.n} questions. Tu peux lire la fiche avant, ou te lancer directement.</p>
+    <div class="btnRow" style="margin-top:18px"><button class="bigBtn go" data-defi-go>Relever le défi</button><button class="bigBtn" data-defi-read>Lire la fiche d'abord</button></div>`, hueOfKey(d.k));
+  PENDING_DEFI = d;
+}
+let PENDING_DEFI = null;
+document.addEventListener("click", e => {
+  const t = e.target;
+  const df = t.closest("[data-defi]"); if (df){ e.stopPropagation(); const k = df.dataset.defi, s = +df.dataset.s, n = +df.dataset.n;
+    return shareLink(`J'ai eu ${s}/${n} au quiz « ${titleOf(k)} » sur Aalam. Tu fais mieux ?`, defiUrl(k, s, n)); }
+  const sq = t.closest("[data-share-quiz]"); if (sq){ e.stopPropagation(); const k = sq.dataset.shareQuiz, s = +sq.dataset.s, n = +sq.dataset.n;
+    return shareCard({eyebrow:"Mon score au quiz", big:`${s}/${n}`, title:titleOf(k), sub:"Et toi, tu ferais combien ?", text:`J'ai eu ${s}/${n} au quiz « ${titleOf(k)} » sur Aalam.`, url:defiUrl(k, s, n)}); }
+  if (t.closest("[data-defi-go]")){ e.stopPropagation(); const d = PENDING_DEFI; if (!d) return; $("#modalRoot").innerHTML = ""; openQuiz(d.k); if (QZ) QZ.defi = d; return; }
+  if (t.closest("[data-defi-read]")){ e.stopPropagation(); const d = PENDING_DEFI; if (!d) return; $("#modalRoot").innerHTML = ""; hideModes(); d.k.startsWith("c:") ? openConflict(d.k.slice(2)) : openNotion(d.k);
+    setTimeout(() => toast("Quand tu es prêt, lance le quiz en bas de la fiche : ton défi t'attend"), 600); return; }
+  if (t.closest("[data-share-streak]")){ e.stopPropagation(); const s = curStreak();
+    return shareCard({eyebrow:"Ma série", big:String(s), bigLbl:`jour${s > 1 ? "s" : ""} d'affilée`, title:"à apprendre un peu chaque jour sur le monde qui nous entoure", sub:`${collected().size} pays découverts`, text:`${s} jour${s > 1 ? "s" : ""} d'affilée sur Aalam.`}); }
+  if (t.closest("[data-share-mp]")){ e.stopPropagation(); const r = MP_LAST; if (!r) return; const P = id => MP_PARTIES.find(p => p.id === id);
+    return shareCard({eyebrow:"Mon match politique", title:"Les partis les plus proches de mes réponses", rows:r.scores.slice(0, 3).map(s => [P(s.id).n, s.pct]), sub:"Et toi, de qui es-tu le plus proche ? Fais le test.", text:"Mon match politique sur Aalam."}); }
+  if (t.closest("[data-collection]")){ e.stopPropagation(); if ($("#drawer").classList.contains("open")) openDrawer(false); return openCollection(); }
+}, true);
+// le quiz relancé pendant un défi garde le défi
+{
+  const oq = openQuiz; openQuiz = k => { const d = PENDING_DEFI && PENDING_DEFI.k === k ? PENDING_DEFI : null; oq(k); if (d && QZ) QZ.defi = d; };
+}
+// partager sa série depuis « Ma série »
+{
+  const os = openStreak;
+  openStreak = () => { os(); $(".sheet .skHero")?.insertAdjacentHTML("afterend", `<button class="bigBtn shBtn" data-share-streak>${ICN.star}Partager ma série</button>`); };
+}
+// partager son match politique
+let MP_LAST = null;
+{
+  const mr = mpResults;
+  mpResults = r => { MP_LAST = r; const h = mr(r); return h.replace('<h3 class="mpH">', `<button class="bigBtn shBtn mpShare" data-share-mp>${ICN.star}Partager mon résultat</button><h3 class="mpH">`); };
+}
+// les astuces attendent qu'une feuille ou une célébration soit fermée (sauf si elles visent cette feuille)
+{
+  const st = showTip;
+  showTip = (t, el) => {
+    const busy = (document.querySelector("#modalRoot .sheet") && !(el && el.closest(".sheet"))) || document.querySelector(".skCel");
+    if (busy){ tipQ.push({...t, at:Date.now() + 1500}); return schedTip(); }
+    st(t, el);
+  };
+}
+
+// un lien de défi ouvert : on propose le défi
+{
+  const m = location.hash.match(/^#defi=(.+)$/);
+  if (m){ const d = unb64(decodeURIComponent(m[1]));
+    try { history.replaceState(null, "", location.pathname + location.search); } catch(e){}
+    if (d && QUIZ[d.k] && d.n){ setTimeout(() => openDefi({k:d.k, s:Math.max(0, Math.min(+d.s || 0, +d.n)), n:+d.n}), 700); } }
+}
 
 measure(); readPalette(); refreshChrome(); renderLayers(); paint(); render();
 if (cur.id === "histoire") setFrise(true);
