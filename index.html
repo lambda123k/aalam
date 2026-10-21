@@ -790,6 +790,52 @@ body.jOn .fl:not(.toast){visibility:hidden}
 @keyframes hLeft{0%{transform:translateX(12px); opacity:0} 20%{opacity:1} 70%{transform:translateX(-12px); opacity:1} 100%{transform:translateX(-14px); opacity:0}}
 @keyframes hSpin{0%,100%{transform:translateX(-18px) rotate(-8deg)} 50%{transform:translateX(18px) rotate(8deg)}}
 @media (prefers-reduced-motion: reduce){.chHand, .chRing{animation:none !important}}
+body:has(.skCel) .coach, body:has(.wkCel) .coach, body:has(.lvTest) .coach{display:none}
+/* ----- Test de niveau ----- */
+.ltIntro .lead{margin-top:6px}
+.ltAll{display:flex; align-items:center; gap:12px; width:100%; margin-top:18px; padding:14px; border-radius:18px; border:1.5px solid hsl(24 80% 58% / .6); cursor:pointer; text-align:left; color:var(--ink);
+  background:linear-gradient(110deg, hsl(24 90% 60% / .2), hsl(24 90% 60% / .05)); font:inherit}
+.ltAll .ic{width:42px; height:42px; border-radius:13px; background:linear-gradient(135deg, #FF5A4E, #FF9142); color:#fff; display:grid; place-items:center; flex:none}
+.ltAll .ic svg{width:22px; height:22px}
+.ltAll b{display:block; font-family:var(--f-display); font-size:1.08rem}
+.ltAll small{display:block; color:var(--muted); font-size:.84rem}
+.ltAll > svg:last-child{margin-left:auto; width:18px; height:18px; flex:none; color:hsl(24 75% 50%)}
+.ltOr{font-family:var(--f-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted); margin:22px 0 10px}
+.ltGrid{display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:8px}
+.ltDom{display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding:12px; border-radius:14px; border:1px solid var(--line); background:var(--surface); color:var(--ink); font:inherit; text-align:left; cursor:pointer}
+.ltDom i{width:22px; height:4px; border-radius:2px; background:hsl(var(--h) 65% var(--secLit))}
+.ltDom b{font-family:var(--f-display); font-size:.95rem}
+.ltBest{display:inline-block; margin-top:3px; font-family:var(--f-mono); font-size:.66rem; color:hsl(24 75% 45%)}
+.ltMeta{display:flex; align-items:center; flex-wrap:wrap; gap:8px; margin-top:18px}
+.ltMeta .qzN{margin:0}
+.ltAbout{margin:12px 0 0; font-size:.88rem; color:var(--muted)} .ltAbout b{color:var(--ink); font-weight:600}
+.lvTest .qzQ{margin-top:4px}
+.ltSec{font-family:var(--f-mono); font-size:.68rem; padding:3px 8px; border-radius:20px; background:hsl(var(--h) 65% var(--secLit) / .16); color:hsl(var(--h) 55% var(--secL, 40%))}
+.ltLv{margin-left:auto; font-family:var(--f-mono); font-size:.68rem; color:var(--muted); letter-spacing:.02em}
+.ltLv.l2{color:hsl(36 80% 45%)} .ltLv.l3{color:hsl(4 75% 52%)}
+.ltEnd{text-align:center; padding:22px 0 4px}
+.ltRank{font-family:var(--f-display); font-size:clamp(2.2rem, 10vw, 3rem); font-weight:800; margin:4px 0 14px; background:linear-gradient(110deg, #FF5A4E, #FF9142); -webkit-background-clip:text; background-clip:text; color:transparent}
+.ltGauge{position:relative; height:10px; border-radius:6px; background:var(--surface2); overflow:hidden; max-width:420px; margin:0 auto}
+.ltGauge i{position:absolute; inset:0 auto 0 0; border-radius:6px; background:linear-gradient(90deg, #FF9142, #FF5A4E); animation:ltFill 1.1s var(--ease) both}
+.ltGauge s{position:absolute; top:0; bottom:0; width:2px; background:var(--surface); opacity:.8}
+@keyframes ltFill{from{width:0}}
+.ltPct{margin:10px 0 0; color:var(--muted); font-size:.88rem}
+.ltPct b{color:var(--ink); font-family:var(--f-display); font-size:1.05rem}
+.ltMsg{margin:14px auto 0; max-width:46ch; font-size:1.04rem; line-height:1.55}
+.ltPraise{list-style:none; padding:0; margin:14px 0 0; display:flex; flex-wrap:wrap; justify-content:center; gap:6px}
+.ltPraise li{font-size:.84rem; padding:6px 11px; border-radius:20px; background:color-mix(in srgb, #2FB67C 14%, var(--surface)); color:color-mix(in srgb, #2FB67C 70%, var(--ink)); font-weight:600}
+.ltLearn{display:flex; flex-direction:column; gap:12px}
+.ltL{padding-bottom:12px; border-bottom:1px solid var(--line)}
+.ltL:last-child{border-bottom:0; padding-bottom:0}
+.ltL p{margin:0; font-size:.92rem; color:var(--muted)}
+.ltL b{display:block; margin-top:3px; font-family:var(--f-display); font-size:1rem}
+.ltL button{display:inline-flex; align-items:center; gap:4px; margin-top:6px; padding:0; border:0; background:none; font:inherit; font-size:.86rem; font-weight:600; color:hsl(24 75% 45%); cursor:pointer}
+.ltL button svg{width:14px; height:14px}
+.ltNote{font-size:.86rem; color:var(--muted); margin:12px 2px 0}
+.ltEvBtn{display:flex; align-items:center; gap:10px; width:100%; margin:4px 0 14px; padding:11px 14px; border-radius:14px; border:1px dashed rgb(255 184 102 / .6); background:rgb(255 160 70 / .08); color:#F3E6D8; font:inherit; font-size:.9rem; text-align:left; cursor:pointer}
+.ltEvBtn svg{width:20px; height:20px; flex:none; color:#FFB866}
+.ltEvBtn b{color:#FFB866}
+
 .mdBrand .ar, .dHead .ar{font-family:"Noto Naskh Arabic", "Geeza Pro", "Arial", serif; font-weight:500; opacity:.6; font-size:.95em; margin-left:2px}
 .secBtn .brand .ar{font-family:"Noto Naskh Arabic", "Geeza Pro", "Arial", serif; font-weight:500; font-size:1.05rem; opacity:.6}
 
@@ -1281,7 +1327,7 @@ const DOT_N=34000;
 const COUNTRIES = GEO.map(g => { const f = {type:"Feature", geometry:{type: g.t === "P" ? "Polygon" : "MultiPolygon", coordinates:g.c}};
   if (d3.geoArea(f) > 2*Math.PI){ const rv = r => r.reverse(); g.t === "P" ? f.geometry.coordinates.forEach(rv) : f.geometry.coordinates.forEach(p => p.forEach(rv)); }
   return {id:g.id, n:g.n, f, c:d3.geoCentroid(f)}; });
-const CONFLICTS_ASOF = "18 octobre 2026";
+const CONFLICTS_ASOF = "21 octobre 2026";
 const LEVELS = {
   critique: {label: "Guerre majeure", rank: 4},
   eleve: {label: "Guerre", rank: 3},
@@ -1300,7 +1346,7 @@ const CONFLICTS = [
     parties: ["Russie", "Ukraine (aidée par l'Europe et, en partie, les États-Unis)"],
     short: "La plus grande guerre en Europe depuis 1945. La Russie occupe environ un cinquième de l'Ukraine.",
     why: "L'Ukraine a été soviétique jusqu'en 1991. En 2014, après une révolution pro-européenne à Kiev, la Russie annexe la Crimée et soutient des séparatistes dans le Donbass, à l'est. Le 24 février 2022, elle lance une invasion à grande échelle. Moscou dit vouloir empêcher l'Ukraine de rejoindre l'OTAN et protéger les russophones. Kiev et ses alliés y voient une guerre de conquête qui viole sa souveraineté.",
-    now: "Le front fait environ 1 200 km. Les avancées russes sont lentes et coûteuses : leur rythme a été divisé par plus de deux en 2026. Les deux camps se frappent à distance : la Russie vise les villes et le réseau électrique ukrainien avec des drones et des missiles, l'Ukraine vise les raffineries de pétrole russes. Washington pousse à des négociations à trois, mais Moscou refuse pour l'instant tout cessez-le-feu général.",
+    now: "Le front fait environ 1 200 km. Les avancées russes sont lentes et coûteuses : leur rythme a été divisé par plus de deux en 2026. Les deux camps se frappent à distance : la Russie vise les villes et le réseau électrique ukrainien avec des drones et des missiles, l'Ukraine vise les raffineries de pétrole russes. Washington pousse à un accord : le 20 octobre, Kiev et les émissaires américains ont salué des « progrès », mais Moscou refuse pour l'instant tout cessez-le-feu général.",
     stakes: "Les frontières de l'Europe, la crédibilité de l'OTAN, le prix de l'énergie et des céréales, et une question de principe : peut-on changer une frontière par la force ?",
     you: "Cette guerre a fait monter les prix de l'énergie en France en 2022, pousse l'Europe à réarmer et pèse sur le budget de l'État."
   },
@@ -1315,7 +1361,7 @@ const CONFLICTS = [
     parties: ["Iran", "États-Unis", "Israël"],
     short: "Une guerre ouverte depuis le 28 février 2026, centrée aujourd'hui sur le détroit d'Ormuz, par où passe un cinquième du pétrole mondial.",
     why: "Depuis la révolution islamique de 1979, l'Iran est l'adversaire des États-Unis et d'Israël. Israël et Washington accusent Téhéran de vouloir la bombe atomique et d'armer des groupes alliés dans la région (Hezbollah, Houthis…). Après une première guerre de 12 jours en juin 2025, les États-Unis et Israël lancent le 28 février 2026 une offensive massive. Le guide suprême Ali Khamenei est tué ; son fils Mojtaba lui succède.",
-    now: "L'Iran a riposté contre Israël et contre des bases américaines dans le Golfe, et a fermé de fait le détroit d'Ormuz. Un accord signé le 17 juin l'a rouvert, mais il s'est effondré début juillet. En octobre, plus de 20 navires ont été attaqués dans la zone. Juste avant les élections américaines du 3 novembre, Washington a suspendu ses frappes sur les lance-missiles iraniens autour du détroit.",
+    now: "L'Iran a riposté contre Israël et contre des bases américaines dans le Golfe, et a fermé de fait le détroit d'Ormuz. Un accord signé le 17 juin l'a rouvert, mais il s'est effondré début juillet. En octobre, plus de 20 navires ont été attaqués dans la zone ; le 20, trois pétroliers ont encore heurté des mines iraniennes. Les États-Unis imposent un blocus des ports iraniens et les négociations sont bloquées. Juste avant les élections américaines du 3 novembre, Washington a suspendu ses frappes sur les lance-missiles iraniens autour du détroit.",
     stakes: "Le prix du pétrole et du gaz dans le monde entier, la prolifération nucléaire, l'avenir du régime iranien et l'équilibre de tout le Moyen-Orient.",
     you: "Quand Ormuz se ferme, le prix de l'essence et du gaz monte partout, y compris à la pompe en France."
   },
@@ -10707,13 +10753,13 @@ function startPath(id){
 
 /* ---------- Le journal de la semaine : l'actualité reliée aux fiches ---------- */
 const JOURNAL = {
-  no: 1, date: "Lundi 19 octobre 2026", asof: "19 octobre 2026", presid: "2027-04-18",
-  une: {kick: "Budget 2027", t: "Le budget de l'État s'enlise à l'Assemblée",
-    chapo: "Mardi 20 octobre, les députés votent la partie « recettes » du budget 2027. Au bout d'une semaine de débats, ils n'ont examiné que 7 articles sur 58, et le gouvernement a déjà subi un revers sur les retraités.",
+  no: 1, date: "Lundi 19 octobre 2026", asof: "21 octobre 2026", presid: "2027-04-18",
+  une: {kick: "Budget 2027", t: "Budget : le vote des recettes reporté",
+    chapo: "Le vote sur la partie « recettes » du budget 2027, prévu mardi 20 octobre, est repoussé : à la fin de la première semaine de débats, 2 828 amendements sur 3 396 restaient à examiner. Les débats reprendront après le budget de la Sécurité sociale, à partir du 27 octobre.",
     body: [
       "Le gouvernement de Sébastien Lecornu défend un budget « offensif » de 54 milliards d'euros d'efforts, avec un objectif de déficit ramené à 5 % du PIB en 2027, après 5,4 % en 2026. Mais sans majorité à l'Assemblée, chaque article se gagne ou se perd au vote. Dès le 9 octobre, la commission des finances avait rejeté la première partie du texte, par 31 voix contre 3.",
       "En séance, les oppositions ont supprimé l'article qui réduisait l'abattement fiscal des retraités, une économie de 1,4 milliard d'euros, par 116 voix contre 30 : c'est le principal revers du gouvernement. Les députés ont en revanche adopté l'indexation du barème de l'impôt sur le revenu sur l'inflation (+2,1 %), et relevé à 15 000 € le plafond des heures supplémentaires défiscalisées. Plus de 2 800 amendements restent à examiner.",
-      "Même rejeté mardi, le texte poursuivrait sa route au Sénat, puis en commission mixte paritaire. Le vote sur l'ensemble du budget est prévu le 17 novembre. Si le Parlement ne s'est pas prononcé au 17 décembre, la Constitution permet au gouvernement d'appliquer le budget par ordonnance, une procédure jamais utilisée. Le recours au 49.3 reste possible."
+      "Adopté ou rejeté, le texte poursuivra sa route au Sénat, puis en commission mixte paritaire. Le vote sur l'ensemble du budget est prévu le 17 novembre. Si le Parlement ne s'est pas prononcé au 17 décembre, la Constitution permet au gouvernement d'appliquer le budget par ordonnance, une procédure jamais utilisée. Le recours au 49.3 reste possible."
     ],
     k: ["Budget de l'État", "Comment une loi est votée", "49.3, censure et dissolution", "Composition de l'Assemblée et du gouvernement", "Impôt sur le revenu"]},
   figures: [
@@ -10736,10 +10782,10 @@ const JOURNAL = {
     {kick: "2027", t: "J-{J} avant la présidentielle", d: "Le premier tour aura lieu le 18 avril 2027 et le second le 2 mai. Marine Le Pen, Jean-Luc Mélenchon, Édouard Philippe, Gabriel Attal, Bruno Retailleau et Raphaël Glucksmann sont déjà candidats ; une partie de la gauche cherche encore une candidature commune.", k: ["Le président", "Les grandes familles politiques", "Le populisme"]}
   ],
   monde: [
-    {kick: "Moyen-Orient", t: "Ormuz : trois navires frappés en deux jours", d: "Les Gardiens de la révolution iraniens ont revendiqué de nouvelles attaques contre des pétroliers sortant du détroit, sans victime parmi les équipages. Chaque incident fait remonter le prix du baril.", k: ["c:iran", "Détroits et routes maritimes", "Offre et demande"]},
+    {kick: "Moyen-Orient", t: "Ormuz : trois pétroliers sautent sur des mines", d: "Mardi 20 octobre, les Gardiens de la révolution ont annoncé que trois pétroliers avaient heurté des mines iraniennes au sud du détroit ; deux sont en feu et immobilisés. Washington maintient son blocus des ports iraniens et les négociations sont au point mort. Le baril de WTI a bondi d'environ 5 %, autour de 109 dollars.", k: ["c:iran", "Détroits et routes maritimes", "Offre et demande"]},
     {kick: "Yémen", t: "Les Houthis frappent l'Arabie saoudite", d: "Aéroports, sites pétroliers, palais présidentiel d'Aden : les attaques se multiplient pendant que le gouvernement yéménite avance au sol avec l'appui saoudien. Les Houthis menacent de riposter si les États-Unis s'engagent. Au large de Djibouti, le naufrage d'un bateau de migrants a fait au moins 139 morts.", k: ["c:yemen", "Sunnites et chiites", "Migrations"]},
-    {kick: "Ukraine", t: "Des négociations qui piétinent", d: "Les émissaires américains font la navette entre Moscou et Kiev, mais le sort des territoires occupés bloque tout accord. En mer Noire, des drones ont frappé deux cargos au large de la Bulgarie, qui a convoqué l'ambassadeur russe. À Washington, des sénateurs républicains contestent une dérogation autorisant l'achat de diesel russe.", k: ["c:ukraine", "Les sanctions économiques", "L'OTAN"]},
-    {kick: "Proche-Orient", t: "Gaza : une trêve sous tension", d: "Le cessez-le-feu tient sur le papier, mais des Palestiniens continuent d'être tués et les discussions sur la deuxième phase, désarmement du Hamas et retrait israélien, n'avancent pas. L'armée israélienne a perquisitionné des bureaux d'ONG palestiniennes à Ramallah.", k: ["c:gaza", "Le Moyen-Orient en clés"]},
+    {kick: "Ukraine", t: "Des « progrès » salués, sans accord", d: "Mardi 20 octobre, Volodymyr Zelensky et les émissaires de Donald Trump ont salué des progrès dans leurs discussions, mais Washington continue de presser Kiev de conclure avec Moscou, et le sort des territoires occupés bloque toujours tout accord. En mer Noire, des drones ont frappé deux cargos au large de la Bulgarie, qui a convoqué l'ambassadeur russe. À Washington, des sénateurs républicains contestent une dérogation autorisant l'achat de diesel russe.", k: ["c:ukraine", "Les sanctions économiques", "L'OTAN"]},
+    {kick: "Proche-Orient", t: "Gaza : une trêve sous tension", d: "Un an après le cessez-le-feu, il tient sur le papier, mais des Palestiniens continuent d'être tués (quatre par des frappes israéliennes le 20 octobre) et les discussions sur la deuxième phase, désarmement du Hamas et retrait israélien, n'avancent pas. L'armée israélienne a perquisitionné des bureaux d'ONG palestiniennes à Ramallah.", k: ["c:gaza", "Le Moyen-Orient en clés"]},
     {kick: "Europe", t: "L'Espagne retourne aux urnes", d: "Après le rejet de son plan logement par le Parlement, le socialiste Pedro Sánchez a convoqué des élections anticipées. Des dizaines de milliers de personnes ont manifesté à Madrid contre la crise du logement, et les syndicats appellent à une grève générale le 11 novembre.", k: ["Le marché du logement", "Gauche et droite"]},
     {kick: "États-Unis", t: "Midterms le 3 novembre", d: "Toute la Chambre des représentants et un tiers du Sénat sont renouvelés. Selon le New York Times, Elon Musk a versé 366 millions de dollars aux républicains sur ce cycle électoral.", k: ["Les États-Unis", "Le financement de la vie politique", "Modes de scrutin"]}
   ],
@@ -10747,7 +10793,7 @@ const JOURNAL = {
     {kick: "Climat", t: "COP31 dans trois semaines", d: "Du 9 au 20 novembre à Antalya, en Turquie. Les États-Unis, sortis de l'accord de Paris, ne négocieront pas. Les engagements actuels mènent encore vers 2,5 à 3 °C.", k: ["Accords internationaux", "Les points de bascule"]},
     {kick: "Banques centrales", t: "La BCE face au choc pétrolier", d: "Après deux hausses en juin et septembre, le taux de dépôt est à 2,5 %. La BCE cherche à contenir une inflation tirée par l'énergie sans casser une croissance déjà faible.", k: ["Banque centrale et taux", "Inflation et déflation"]}
   ],
-  agenda: [["20 oct.", "Vote de la partie recettes du budget à l'Assemblée"], ["27 oct.", "Début de l'examen des dépenses"], ["3 nov.", "Élections de mi-mandat aux États-Unis"], ["9-20 nov.", "COP31 à Antalya"], ["11 nov.", "Grève générale appelée en Espagne"], ["17 nov.", "Vote sur l'ensemble du budget de l'État"], ["17 déc.", "Date limite pour le Parlement sur le budget"], ["18 avril 2027", "Premier tour de la présidentielle"]],
+  agenda: [["27 oct.", "Fin de la 1ʳᵉ lecture du budget de la Sécu à l'Assemblée"], ["27 oct.", "Reprise des débats sur les recettes du budget"], ["3 nov.", "Élections de mi-mandat aux États-Unis"], ["9-20 nov.", "COP31 à Antalya"], ["11 nov.", "Grève générale appelée en Espagne"], ["17 nov.", "Vote sur l'ensemble du budget de l'État"], ["17 déc.", "Date limite pour le Parlement sur le budget"], ["18 avril 2027", "Premier tour de la présidentielle"]],
   mot: {t: "Ordonnance budgétaire", d: "Si le Parlement ne s'est pas prononcé sur le budget dans un délai de 70 jours, l'article 47 de la Constitution permet au gouvernement de le mettre en vigueur par ordonnance, sans vote. Cette arme n'a jamais été utilisée sous la Vᵉ République : elle serait politiquement explosive.", k: ["Budget de l'État", "Hiérarchie des normes"]}
 };
 const ACTU = {asof: JOURNAL.asof};
@@ -11723,8 +11769,11 @@ function schedTip(){
   tipT = setTimeout(nextTip, Math.max(0, at - Date.now()) + 20);
 }
 function tipTarget(t){ return t.sel ? (typeof t.sel === "function" ? t.sel() : document.querySelector(t.sel)) : null; }
+const tipBlocked = () => !!document.querySelector(".skCel, .wkCel, .lvTest");
 function nextTip(){
   if (tipOn) return;
+  // jamais par-dessus une célébration ou le test de niveau : on réessaie un peu plus tard
+  if (tipBlocked()){ clearTimeout(tipT); tipT = setTimeout(nextTip, 1500); return; }
   const now = Date.now();
   while (tipQ.some(x => x.at <= now)){
     const i = tipQ.findIndex(x => x.at <= now), t = tipQ.splice(i, 1)[0];
@@ -12624,6 +12673,186 @@ document.addEventListener("touchstart", e => { const c = document.querySelector(
   // rare : un essai toutes les 40 à 100 secondes, une chance sur trois
   const plan = () => setTimeout(() => { if (Math.random() < .34) shoot(); plan(); }, 40000 + Math.random() * 60000);
   plan();
+}
+
+
+/* ==========================================================================
+   Test de niveau (facultatif) : un domaine ou tous les domaines.
+   Questions adaptatives : une bonne réponse fait monter la difficulté, une
+   erreur la fait redescendre. À la fin, un rang flatteur, ses points forts,
+   ce qu'on vient d'apprendre, et de quoi régler son niveau en un tap.
+   ========================================================================== */
+const LT_RANKS = [
+  [0,  "Esprit curieux", "Tu as déjà la qualité qui compte le plus : l'envie de comprendre. Le reste s'apprend vite."],
+  [25, "Bien informé",   "Tu as de vraies bases, plus solides que tu ne le crois. Il te manque surtout des clés pour relier tout ça."],
+  [50, "Éclairé",        "Tu tiens la route sur des questions qui en piègent beaucoup. Tu as de quoi suivre l'actualité sans te faire balader."],
+  [75, "Érudit",         "Rares sont ceux qui répondent juste à ce niveau de difficulté. Tu as une vraie culture."],
+  [90, "Sage",           "Presque un sans-faute, y compris sur les questions avancées. Respect."]
+];
+const LT_LV = ["", "Essentiel", "Intermédiaire", "Avancé"];
+let LT = null;
+let LT_BEST = store.get("lvTest") || {};
+
+function ltPool(sid){
+  const out = [];
+  NOTIONS.forEach(n => { if (n.ready && QUIZ[n.t] && (!sid || n.sec.id === sid)) out.push({key:n.t, sid:n.sec.id, lv:lvlOfKey(n.t)}); });
+  if (!sid || sid === "geo") CONFLICTS.forEach(c => { if (QUIZ["c:" + c.id]) out.push({key:"c:" + c.id, sid:"geo", lv:lvlOfKey("c:" + c.id)}); });
+  return out;
+}
+function ltPick(sid, d){
+  const used = new Set(LT.qs.map(q => q.key)), pool = ltPool(sid).filter(x => !used.has(x.key));
+  for (const lv of [d, d - 1, d + 1, d - 2, d + 2]){
+    const c = pool.filter(x => x.lv === lv); if (c.length) return c[Math.floor(Math.random() * c.length)];
+  }
+  return pool[Math.floor(Math.random() * pool.length)] || null;
+}
+function ltNext(){
+  const z = LT, i = z.qs.length;
+  const sid = z.sid || z.order[i];
+  const it = ltPick(sid, z.d); if (!it) return false;
+  const raw = QUIZ[it.key][Math.floor(Math.random() * QUIZ[it.key].length)];
+  z.qs.push({...it, q:raw[0], good:raw[1], opts:shuffle(raw.slice(1, 5)), why:raw[5], d:z.d});
+  return true;
+}
+function openLvTest(sid){
+  const s = sid && SECTIONS.find(x => x.id === sid);
+  LT = {sid:sid || null, n:sid ? 8 : 12, d:sid ? Math.min(2, userLvl(sid)) : 1, qs:[], answered:false, fromEval: LT && LT.fromEval,
+        order: shuffle(SECTIONS.map(x => x.id).filter(id => ltPool(id).length))};
+  if (!sid) LT.n = Math.min(12, LT.order.length);
+  ltNext();
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">Test de niveau · ${LT.n} questions</span><h2>${s ? esc(s.name) : "Culture générale"}</h2></div>
+      <button class="close" aria-label="Fermer">×</button></div><div class="qz lvTest" id="ltBody"></div>`, s ? s.hue : 24);
+  ltRender();
+}
+function ltStart(){
+  LT = {fromEval: !!(LT && LT.fromEval)};
+  const best = k => LT_BEST[k] ? `<span class="ltBest">${esc(LT_BEST[k].r)} · ${LT_BEST[k].pct} %</span>` : "";
+  openModal(`<div class="sheetTop"><div><span class="eyebrow">Facultatif · 2 à 3 minutes</span><h2>Teste ton niveau</h2></div>
+      <button class="close" aria-label="Fermer">×</button></div>
+    <div class="lvTest ltIntro">
+      <p class="lead">Les questions s'adaptent à toi : plus tu réponds juste, plus elles montent en difficulté. Tu vas sûrement découvrir que tu en sais plus que tu ne le penses, et apprendre deux ou trois choses au passage.</p>
+      <button class="ltAll" data-lt="">
+        <span class="ic">${IC_TARGET}</span><span><b>Tous les domaines</b><small>12 questions, une par domaine</small>${best("all")}</span>${CHEV}</button>
+      <p class="ltOr">Ou un seul domaine, 8 questions</p>
+      <div class="ltGrid">${SECTIONS.filter(s => ltPool(s.id).length >= 8).map(s => `<button class="ltDom" style="--h:${s.hue}" data-lt="${s.id}"><i></i><b>${esc(s.name)}</b>${best(s.id)}</button>`).join("")}</div>
+    </div>`, 24);
+}
+function ltRender(){
+  const z = LT, body = $("#ltBody"); if (!body) return;
+  const done = z.qs.filter(q => q.ok != null).length;
+  const prog = `<div class="qzProg">${Array.from({length:z.n}, (_, j) => { const q = z.qs[j]; return `<i class="${q && q.ok != null ? (q.ok ? "ok" : "ko") : j === done ? "on" : ""}"></i>`; }).join("")}</div>`;
+  if (done >= z.n) return ltEnd(body, prog);
+  const q = z.qs[done]; z.answered = false;
+  const where = z.sid ? "" : `<span class="ltSec" style="--h:${SECTIONS.find(s => s.id === q.sid).hue}">${esc(SECTIONS.find(s => s.id === q.sid).name)}</span>`;
+  body.innerHTML = `${prog}<div class="ltMeta"><span class="qzN">Question ${done + 1} sur ${z.n}</span>${where}<span class="ltLv l${q.d}">${"●".repeat(q.d)}${"○".repeat(3 - q.d)} ${LT_LV[q.d]}</span></div>
+    <p class="ltAbout">À propos de <b>${esc(titleOf(q.key))}</b></p><h3 class="qzQ">${fmt(q.q)}</h3>
+    <div class="qzOpts">${q.opts.map((o, j) => `<button class="qzOpt" data-lt-a="${j}"><span class="l">${"ABCD"[j]}</span><span>${fmt(o)}</span></button>`).join("")}</div><div id="ltFb"></div>`;
+}
+function ltAnswer(j){
+  const z = LT, q = z.qs.find(x => x.ok == null); if (!q || z.answered) return; z.answered = true;
+  const ok = q.opts[j] === q.good; q.ok = ok;
+  try { reviewResult(q.key, q.q, ok); } catch(e){}
+  if (ok) try { addXP(SK_XP.quizOk); } catch(e){}
+  z.d = ok ? Math.min(3, z.d + 1) : Math.max(1, z.d - 1);
+  document.querySelectorAll("#ltBody .qzOpt").forEach((b, k) => { b.disabled = true; if (q.opts[k] === q.good) b.classList.add("good"); else if (k === j) b.classList.add("bad"); });
+  const last = z.qs.filter(x => x.ok != null).length >= z.n;
+  const cheer = ok ? (q.d === 3 ? "Question avancée, et tu l'as eue." : q.d === 2 ? "Bien vu." : "Exact.") : "Pas cette fois.";
+  $("#ltFb").innerHTML = `<div class="qzFb ${ok ? "ok" : "ko"}"><b>${cheer}</b>${q.why ? ` ${fmt(q.why)}` : ok ? "" : ` La bonne réponse : ${fmt(q.good)}.`}</div>
+    <button class="bigBtn go" data-lt-next style="width:100%; margin-top:12px">${last ? "Voir mon résultat" : "Question suivante"}</button>`;
+  if (!last) ltNext();
+  $("#ltFb").scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+function ltScore(qs){
+  const got = qs.reduce((a, q) => a + (q.ok ? q.d : 0), 0);
+  const ideal = qs.reduce((a, q, i) => a + Math.min(3, (qs[0] ? qs[0].d : 1) + i), 0);
+  return Math.round(Math.min(1, got / Math.max(1, ideal)) * 100);
+}
+function ltEnd(body, prog){
+  const z = LT, qs = z.qs.slice(0, z.n), pct = ltScore(qs), good = qs.filter(q => q.ok).length;
+  const rank = [...LT_RANKS].reverse().find(r => pct >= r[0]);
+  const hard = qs.filter(q => q.ok && q.d === 3).length;
+  // points forts : les domaines (ou niveaux) où tu as été le plus juste
+  const bySec = {};
+  qs.forEach(q => { const b = bySec[q.sid] = bySec[q.sid] || {ok:0, n:0, top:0}; b.n++; if (q.ok){ b.ok++; b.top = Math.max(b.top, q.d); } });
+  const strong = Object.entries(bySec).filter(([, b]) => b.ok).sort((a, b) => b[1].top - a[1].top || b[1].ok - a[1].ok).slice(0, 3)
+    .map(([id]) => SECTIONS.find(s => s.id === id).name);
+  const praise = [];
+  if (hard) praise.push(`${hard} question${hard > 1 ? "s" : ""} de niveau avancé réussie${hard > 1 ? "s" : ""}`);
+  if (!z.sid && strong.length) praise.push(`Points forts : ${strong.join(", ")}`);
+  if (z.sid && good) praise.push(`${good} bonne${good > 1 ? "s" : ""} réponse${good > 1 ? "s" : ""} sur ${z.n}`);
+  // niveau estimé, et ce qu'on peut régler
+  const est = {};
+  if (z.sid){ est[z.sid] = pct >= 70 ? 3 : pct >= 40 ? 2 : 1; }
+  else Object.entries(bySec).forEach(([id, b]) => { est[id] = b.ok ? Math.max(1, b.top) : 1; });
+  const ups = Object.entries(est).filter(([id, l]) => l > userLvl(id));
+  // ce que tu viens d'apprendre : les questions ratées, avec la fiche
+  const learn = qs.filter(q => !q.ok);
+  const prev = LT_BEST[z.sid || "all"];
+  if (!prev || pct >= prev.pct) LT_BEST[z.sid || "all"] = {pct, r:rank[1]};
+  store.set("lvTest", LT_BEST);
+  try { if (pct >= 90 && !z.sid) { LT_BEST.sage = 1; store.set("lvTest", LT_BEST); } checkAch(); } catch(e){}
+  const secName = z.sid ? SECTIONS.find(s => s.id === z.sid).name : null;
+  const toRead = z.sid ? NOTIONS.filter(n => n.ready && n.sec.id === z.sid && !READ.has(n.t)).length : NOTIONS.filter(n => n.ready && !READ.has(n.t)).length;
+  body.innerHTML = `${prog}<div class="ltEnd">
+      <span class="eyebrow">Ton rang${secName ? " en " + esc(secName) : ""}</span>
+      <h3 class="ltRank">${esc(rank[1])}</h3>
+      <div class="ltGauge"><i style="width:${pct}%"></i>${LT_RANKS.slice(1).map(r => `<s style="left:${r[0]}%"></s>`).join("")}</div>
+      <p class="ltPct"><b>${pct} %</b> de réussite pondérée par la difficulté${prev && pct > prev.pct ? ` · record battu (${prev.pct} %)` : ""}</p>
+      <p class="ltMsg">${esc(rank[2])}</p>
+      ${praise.length ? `<ul class="ltPraise">${praise.map(p => `<li>${esc(p)}</li>`).join("")}</ul>` : ""}
+    </div>
+    ${ups.length ? `<div class="box why ltUp"><h4><span class="ic">${IC_LEVEL}</span>Tu mérites plus difficile</h4>
+      <p>${ups.map(([id, l]) => `${esc(SECTIONS.find(s => s.id === id).name)} : ${esc(LT_LV[l])}`).join(" · ")}</p>
+      <button class="bigBtn go" data-lt-apply style="width:100%; margin-top:10px">Débloquer ces fiches</button></div>` : ""}
+    ${learn.length ? box("ex", "ex", "Ce que tu viens d'apprendre", `<div class="ltLearn">${learn.map(q => `<div class="ltL"><p>${fmt(q.q)}</p><b>${fmt(q.good)}</b>
+      <button data-lt-open="${esc(q.key)}">Lire « ${esc(titleOf(q.key))} »${CHEV}</button></div>`).join("")}</div>`)
+      : box("ex", "ex", "Sans faute", `<p>Aucune erreur. Il te reste ${toRead} fiche${toRead > 1 ? "s" : ""} à explorer pour aller encore plus loin.</p>`)}
+    ${learn.length ? `<p class="ltNote">Ces questions reviendront dans tes révisions pour que ça reste. Et il te reste ${toRead} fiche${toRead > 1 ? "s" : ""} à découvrir${secName ? " en " + esc(secName) : ""}.</p>` : ""}
+    <div class="btnRow"><button class="bigBtn go" data-lt-share>Partager mon rang</button><button class="bigBtn" data-lt-again>Un autre test</button></div>`;
+  z.est = est; z.pct = pct; z.rank = rank[1];
+}
+function ltApply(){
+  const z = LT; if (!z || !z.est) return;
+  const base = USERLVL ? {...USERLVL} : Object.fromEntries(SECTIONS.map(s => [s.id, 1]));
+  Object.entries(z.est).forEach(([id, l]) => { if (l > (base[id] || 1)) base[id] = l; });
+  USERLVL = base; store.set("lvl", USERLVL); refreshLevels();
+  const b = $("[data-lt-apply]"); if (b){ b.disabled = true; b.textContent = "Niveaux mis à jour"; }
+  toast("Nouvelles fiches débloquées");
+}
+ACH.push({id:"sage", e:"star", t:"Sage", d:"Atteindre le rang Sage au test tous domaines", k:"sage", n:1});
+{ const as = achStats; achStats = () => ({...as(), sage: LT_BEST.sage ? 1 : 0}); }
+{
+  // entrées : écran d'accueil des modes, et écran « Ton niveau »
+  const sm = showModes; showModes = () => { sm(); $("#modes .mdMore [data-eval]")?.insertAdjacentHTML("beforebegin", `<button data-lt-start>${IC_TARGET}Teste ton niveau</button>`); };
+  const re = renderEval; renderEval = () => { re(); $("#modes .evSub")?.insertAdjacentHTML("afterend", `<button class="ltEvBtn" data-lt-start data-lt-from-eval>${IC_TARGET}<span>Pas sûr ? <b>Passe le test</b>, on règle ton niveau pour toi</span></button>`); };
+}
+document.addEventListener("click", e => {
+  const t = e.target;
+  const st = t.closest("[data-lt-start]"); if (st){ e.stopPropagation();
+    const fromEval = st.hasAttribute("data-lt-from-eval");
+    if (!$("#modes").hidden) hideModes();
+    LT = {fromEval}; return ltStart(); }
+  const d = t.closest("[data-lt]"); if (d){ e.stopPropagation(); const fe = LT && LT.fromEval; LT = {fromEval:fe}; return openLvTest(d.dataset.lt || null); }
+  const a = t.closest("[data-lt-a]"); if (a){ e.stopPropagation(); return ltAnswer(+a.dataset.ltA); }
+  if (t.closest("[data-lt-next]")){ e.stopPropagation(); ltRender(); $(".sheet").scrollTop = 0; return; }
+  if (t.closest("[data-lt-apply]")){ e.stopPropagation(); return ltApply(); }
+  if (t.closest("[data-lt-again]")){ e.stopPropagation(); return ltStart(); }
+  const o = t.closest("[data-lt-open]"); if (o){ e.stopPropagation(); const k = o.dataset.ltOpen; return k.startsWith("c:") ? openConflict(k.slice(2)) : openNotion(k); }
+  if (t.closest("[data-lt-share]")){ e.stopPropagation(); const z = LT, sec = z.sid ? SECTIONS.find(s => s.id === z.sid).name : null;
+    return shareCard({eyebrow: sec ? "Test de niveau · " + sec : "Test de culture générale", big: z.pct + "%", bigLbl: z.rank,
+      title: sec ? `mon rang en ${sec} sur Aalam` : "mon rang en culture générale sur Aalam", sub: "Et toi, tu serais quel rang ? Fais le test.",
+      text: `Je suis « ${z.rank} »${sec ? " en " + sec : " en culture générale"} sur Aalam (${z.pct} %). Et toi ?`}); }
+}, true);
+// au premier lancement, si on passe par le test, on revient à l'accueil une fois fini
+{
+  const root = $("#modalRoot");
+  if (root && typeof MutationObserver !== "undefined") new MutationObserver(() => {
+    if (!root.querySelector(".sheet") && LT && LT.fromEval){
+      const z = LT; LT = null;
+      if (!USERLVL){ USERLVL = Object.fromEntries(SECTIONS.map(s => [s.id, (z.est && z.est[s.id]) || 1])); store.set("lvl", USERLVL); refreshLevels(); }
+      showModes();
+    }
+  }).observe(root, {childList:true});
 }
 
 </script>
