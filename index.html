@@ -835,6 +835,13 @@ body:has(.skCel) .coach, body:has(.wkCel) .coach, body:has(.lvTest) .coach{displ
 .ltEvBtn{display:flex; align-items:center; gap:10px; width:100%; margin:4px 0 14px; padding:11px 14px; border-radius:14px; border:1px dashed rgb(255 184 102 / .6); background:rgb(255 160 70 / .08); color:#F3E6D8; font:inherit; font-size:.9rem; text-align:left; cursor:pointer}
 .ltEvBtn svg{width:20px; height:20px; flex:none; color:#FFB866}
 .ltEvBtn b{color:#FFB866}
+/* ----- Flash qui apprend tes goûts ----- */
+.chip.fy{background:linear-gradient(110deg, #FF5A4E, #FF9142); color:#fff; border-color:transparent; font-weight:600}
+.tsNote{margin-top:16px; padding:12px 14px; border-radius:14px; background:rgb(255 255 255 / .06); border:1px solid rgb(255 255 255 / .12); font-size:.9rem; line-height:1.5; text-align:left; max-width:440px}
+.tsNote b{color:#FFB866}
+.tsNote span{font-weight:700; color:hsl(var(--h) 75% 70%)}
+.tsNote button{display:block; margin-top:6px; padding:0; border:0; background:none; font:inherit; font-size:.8rem; color:rgb(255 255 255 / .55); text-decoration:underline; cursor:pointer}
+
 
 .mdBrand .ar, .dHead .ar{font-family:"Noto Naskh Arabic", "Geeza Pro", "Arial", serif; font-weight:500; opacity:.6; font-size:.95em; margin-left:2px}
 .secBtn .brand .ar{font-family:"Noto Naskh Arabic", "Geeza Pro", "Arial", serif; font-weight:500; font-size:1.05rem; opacity:.6}
@@ -10142,6 +10149,7 @@ function feedPool(secId, used){
 }
 // Construit le fil : on alterne les sections pour ne jamais enchaîner deux fois le même sujet.
 function buildFeed(budget, fav){
+  if (!fav && typeof tsReady === "function" && tsReady()) return tasteBuild(budget);
   const used = new Set(FEED.filter(x => x.k !== "end").map(itemKey));
   const pools = fav ? [[...FAV].map(fromKey).filter(x => x.c || x.n)] : shuffle(fq.secs).map(id => feedPool(id, used));
   const out = []; let min = 0, i = 0;
@@ -12854,6 +12862,106 @@ document.addEventListener("click", e => {
     }
   }).observe(root, {childList:true});
 }
+
+
+/* ==========================================================================
+   Étape 8 : le Flash apprend tes goûts
+   Chaque carte vue donne un petit signal : lue jusqu'au bout, article ouvert,
+   gardée, quiz fait → tu aimes ; zappée en deux secondes → moins.
+   Le fil suivant donne plus de place aux sections et chapitres que tu aimes,
+   sans t'enfermer : environ une carte sur cinq reste une découverte.
+   ========================================================================== */
+let TASTE = store.get("taste") || {sec:{}, grp:{}, n:0};
+var tasteBuild = null;
+const TS_KEY = it => it.k === "c" ? {sec:"geo", grp:"geo|Conflits"} : {sec:it.n.sec.id, grp:it.n.sec.id + "|" + it.n.group};
+let tsView = null;
+function tsBegin(){
+  const it = FEED[fdCur];
+  if (!it || (it.k !== "n" && it.k !== "c") || fdIsFav){ tsView = null; return; }
+  const key = itemKey(it);
+  tsView = {i:fdCur, it, key, t:Date.now(), fav:FAV.has(key), deep:DEEP.has(key), quiz:!!QRES[key], bottom:false};
+  const p = cardEl(fdCur)?.querySelector(".pane.p0");
+  if (p){
+    const chk = () => { if (tsView && tsView.i === +p.closest(".fc").dataset.i && p.scrollTop + p.clientHeight >= p.scrollHeight - 40) tsView.bottom = true; };
+    if (!p.dataset.ts){ p.dataset.ts = 1; p.addEventListener("scroll", chk, {passive:true}); }
+    if (p.scrollHeight <= p.clientHeight + 40) tsView.bottom = "short";
+  }
+}
+function tsEnd(){
+  const v = tsView; tsView = null; if (!v) return;
+  const sec = (Date.now() - v.t) / 1000, need = Math.max(8, itemMin(v.it) * 60);
+  const ratio = sec / need;
+  let s = 0;
+  if (sec < 3) s = -1;                                  // zappée
+  else if (ratio < .3 && !v.bottom) s = -.3;            // survolée
+  else if (ratio >= .6 || v.bottom === true) s = 1;     // lue
+  else s = .3;
+  if (!v.deep && DEEP.has(v.key)) s += 1;               // article ouvert
+  if (!v.fav && FAV.has(v.key)) s += 2;                 // gardée
+  if (!v.quiz && QRES[v.key]) s += .5;                  // quiz fait
+  if (sec > 1200) s = Math.min(s, .3);                  // téléphone posé : on ne compte pas
+  const {sec:sid, grp} = TS_KEY(v.it);
+  // les vieux signaux comptent un peu moins que les récents
+  for (const m of [TASTE.sec, TASTE.grp]) for (const k in m){ m[k] *= .985; if (Math.abs(m[k]) < .05) delete m[k]; }
+  TASTE.sec[sid] = Math.max(-6, Math.min(12, (TASTE.sec[sid] || 0) + s));
+  TASTE.grp[grp] = Math.max(-6, Math.min(12, (TASTE.grp[grp] || 0) + s));
+  TASTE.n++;
+  store.set("taste", TASTE);
+}
+const tsSecW = id => Math.max(.35, Math.min(3, 1 + (TASTE.sec[id] || 0) * .2));
+const tsGrpW = it => { const g = TS_KEY(it).grp; return TASTE.grp[g] || 0; };
+const tsReady = () => TASTE.n >= 6;
+function tsLikes(n = 2){
+  return Object.entries(TASTE.sec).filter(([, v]) => v >= 2).sort((a, b) => b[1] - a[1]).slice(0, n)
+    .map(([id]) => SECTIONS.find(s => s.id === id)).filter(Boolean);
+}
+{
+  tasteBuild = budget => {
+    const used = new Set(FEED.filter(x => x.k !== "end").map(itemKey));
+    // dans chaque section : les chapitres que tu aimes remontent (avec un peu de hasard), les non lues d'abord
+    const pools = {};
+    fq.secs.forEach(id => {
+      const p = feedPool(id, used), unread = p.filter(x => !READ.has(itemKey(x))), read = p.filter(x => READ.has(itemKey(x)));
+      const rank = a => a.map((x, j) => [tsGrpW(x) * .6 - j * .08 + Math.random() * 1.2, x]).sort((u, w) => w[0] - u[0]).map(x => x[1]);
+      pools[id] = [...rank(unread), ...read];
+    });
+    const ids = fq.secs.filter(id => pools[id].length);
+    const out = []; let min = 0, last = null, n = 0;
+    while (ids.some(id => pools[id].length)){
+      const live = ids.filter(id => pools[id].length && (id !== last || ids.filter(x => pools[x].length).length === 1));
+      if (!live.length) break;
+      let id;
+      if (++n % 5 === 0){
+        // une carte sur cinq : découverte, plutôt dans ce que tu lis le moins
+        const low = [...live].sort((a, b) => tsSecW(a) - tsSecW(b)), half = low.slice(0, Math.max(1, Math.ceil(low.length / 2)));
+        id = half[Math.floor(Math.random() * half.length)];
+      } else {
+        const tot = live.reduce((s, x) => s + tsSecW(x), 0); let r = Math.random() * tot;
+        id = live.find(x => (r -= tsSecW(x)) <= 0) || live[live.length - 1];
+      }
+      const it = pools[id].shift(), m = itemMin(it);
+      if (min + m > budget && out.length) break;
+      if (n % 5 !== 0 && (TASTE.sec[id] || 0) >= 2) it.forYou = true;
+      out.push(it); min += m; last = id;
+    }
+    return {items:out, min};
+  };
+  const oc = onCurrent; onCurrent = () => { if (!tsView || tsView.i !== fdCur) { tsEnd(); } oc(); if (!tsView) tsBegin(); };
+  const cf = closeFeed; closeFeed = () => { tsEnd(); cf(); };
+  const rf = renderFeed; renderFeed = () => { tsEnd(); rf();
+    FEED.forEach((it, i) => { if (it.forYou) cardEl(i)?.querySelector(".chips")?.insertAdjacentHTML("afterbegin", `<span class="chip fy">Pour toi</span>`); });
+  };
+  const fe = fcEnd; fcEnd = () => {
+    const h = fe(), likes = tsLikes();
+    if (!tsReady() || !likes.length || fdIsFav) return h;
+    return h.replace('<div class="endStats">', `<div class="tsNote"><b>Ton Flash s'adapte.</b> Tu sembles aimer ${likes.map(s => `<span style="--h:${s.hue}">${esc(s.name)}</span>`).join(" et ")} : le prochain t'en proposera un peu plus, avec toujours quelques découvertes. <button data-ts-reset>Remettre à zéro</button></div><div class="endStats">`);
+  };
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-ts-reset]"); if (!b) return; e.stopPropagation();
+  TASTE = {sec:{}, grp:{}, n:0}; store.set("taste", TASTE);
+  b.closest(".tsNote").innerHTML = "<b>C'est noté.</b> Ton Flash repart de zéro et réapprendra tes goûts.";
+}, true);
 
 </script>
 
