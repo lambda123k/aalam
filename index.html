@@ -839,6 +839,7 @@ body:has(.skCel) .coach, body:has(.wkCel) .coach, body:has(.lvTest) .coach{displ
 .chip.fy{background:linear-gradient(110deg, #FF5A4E, #FF9142); color:#fff; border-color:transparent; font-weight:600}
 .tsNote{margin-top:16px; padding:12px 14px; border-radius:14px; background:rgb(255 255 255 / .06); border:1px solid rgb(255 255 255 / .12); font-size:.9rem; line-height:1.5; text-align:left; max-width:440px}
 .tsNote b{color:#FFB866}
+.stNote{margin:0 0 10px; font-size:.76rem; line-height:1.4; color:rgb(255 255 255 / .5); text-align:center}
 .tsNote span{font-weight:700; color:hsl(var(--h) 75% 70%)}
 .tsNote button{display:block; margin-top:6px; padding:0; border:0; background:none; font:inherit; font-size:.8rem; color:rgb(255 255 255 / .55); text-decoration:underline; cursor:pointer}
 
@@ -12962,6 +12963,46 @@ document.addEventListener("click", e => {
   TASTE = {sec:{}, grp:{}, n:0}; store.set("taste", TASTE);
   b.closest(".tsNote").innerHTML = "<b>C'est noté.</b> Ton Flash repart de zéro et réapprendra tes goûts.";
 }, true);
+
+
+/* ==========================================================================
+   Statistiques de fréquentation anonymes (serveur Supabase des rappels)
+   Un identifiant tiré au hasard par téléphone, aucun nom, aucune adresse.
+   On envoie seulement : ouverture de l'appli, fiche lue, article ouvert,
+   quiz terminé, Flash terminé, test de niveau, fiche gardée.
+   ========================================================================== */
+{
+  let uid = store.get("uid");
+  if (!uid){ uid = Array.from(crypto.getRandomValues(new Uint8Array(12)), b => b.toString(16).padStart(2, "0")).join(""); store.set("uid", uid); }
+  const app = !!(matchMedia("(display-mode: standalone)").matches || navigator.standalone);
+  const Q = [];
+  const secOf = k => { if (!k) return null; const b = fromKey(k); return b.c ? "geo" : b.n ? b.n.sec.id : null; };
+  const ev = (e, k, v, sec) => { Q.push({uid, ev:e, k:k ? String(k).slice(0, 120) : null, sec:(sec || secOf(k) || null), v:v == null ? null : Math.round(v), app}); if (Q.length >= 20) flush(); };
+  function flush(){
+    if (!Q.length || !navigator.onLine) return;
+    const rows = Q.splice(0, Q.length);
+    try {
+      fetch(SB_URL + "/rest/v1/aalam_events", {method:"POST", keepalive:true,
+        headers:{apikey:SB_KEY, Authorization:"Bearer " + SB_KEY, "Content-Type":"application/json", Prefer:"return=minimal"},
+        body:JSON.stringify(rows)}).catch(() => {});
+    } catch(e){}
+  }
+  setInterval(flush, 15000);
+  addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") flush(); else ev("open", null, null); });
+  addEventListener("pagehide", flush);
+  ev("open", null, null);
+  if (app && !store.get("installSent")){ store.set("installSent", 1); ev("install", null, null); }
+
+  const mr = markRead; markRead = k => { const had = READ.has(k); mr(k); if (!had && !String(k).startsWith("tq:")) ev("read", k); };
+  const md = markDeep; markDeep = k => { const had = !k || DEEP.has(k); md(k); if (!had) ev("deep", k); };
+  const rq = renderQuiz; renderQuiz = () => { const z = QZ, end = z && z.i >= z.qs.length && !z.stSent; if (end) z.stSent = true; rq(); if (end) ev("quiz", z.key, Math.round(z.score / z.qs.length * 100)); };
+  const oc = onCurrent; onCurrent = () => { const was = fdDone; oc(); if (!was && fdDone) ev("flash", fdMode, Math.round(fdMin), null); };
+  const le = ltEnd; ltEnd = (body, prog) => { le(body, prog); const z = LT; if (z && !z.stSent){ z.stSent = true; ev("lvtest", z.rank, z.pct, z.sid || "all"); } };
+  const tf = toggleFav; toggleFav = (f, x, y) => { const it = FEED[fdCur], k = it && it.k !== "end" ? itemKey(it) : null, had = k && FAV.has(k); tf(f, x, y); if (k && !had && FAV.has(k)) ev("fav", k); };
+
+  // une ligne d'information, discrète, sur l'écran « Ton niveau »
+  const re = renderEval; renderEval = () => { re(); $("#modes .evFoot")?.insertAdjacentHTML("afterbegin", `<p class="stNote">L'appli compte les visites de façon anonyme (aucun nom, aucune adresse) pour savoir ce qui plaît.</p>`); };
+}
 
 </script>
 
