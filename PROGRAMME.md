@@ -14,8 +14,8 @@ Point de départ (22 oct. 2026) : 512 fiches, 47 parcours.
 
 | # | Contenu | Fiches | Total visé |
 |---|---------|--------|-----------|
-| 3 (en cours, 1ʳᵉ partie faite) | Tour du monde — Afrique (Ouest, Sahel, Corne, Grands Lacs, australe, Maghreb, Égypte moderne) + « Pourquoi ce pays pèse » (Chine, Allemagne, Israël, Qatar…) | ~75 | ~590 |
-| 4 | Tour du monde — Amériques (Mexique, Andes, Brésil, Caraïbes, Cône Sud, Canada, États-Unis modernes) + 10 pays « qui pèsent » | ~75 | ~665 |
+| 3 (terminée, 578 fiches) | Tour du monde — Afrique (Ouest, Sahel, Corne, Grands Lacs, australe, Maghreb, Égypte moderne) + « Pourquoi ce pays pèse » (Chine, Allemagne, Israël, Qatar…) | ~75 | ~590 |
+| 4 (prochaine) | Tour du monde — Amériques (Mexique, Andes, Brésil, Caraïbes, Cône Sud, Canada, États-Unis modernes) + 10 pays « qui pèsent » | ~75 | ~665 |
 | 5 | Tour du monde — Asie (Chine, Japon, Corée, Inde, Asie du Sud-Est, Asie centrale, Iran, Afghanistan) + 10 pays | ~75 | ~740 |
 | 6 | Tour du monde — Europe (Balkans, Scandinavie, Pologne, Russie, Espagne, Italie, Irlande, Caucase) + 10 pays | ~75 | ~815 |
 | 7 | Tour du monde — Moyen-Orient et Océanie + parcours « Tour du monde » par région | ~75 | ~890 |
@@ -31,3 +31,4 @@ Point de départ (22 oct. 2026) : 512 fiches, 47 parcours.
 ## Journal
 - 22 oct. 2026 : lot 1 (90 fiches, 14 parcours, 8 dessous) et lot 2 (73 fiches, 12 parcours, 5 dessous). Programme écrit.
 - 22 oct. 2026 : étape 3, première partie — 23 fiches Afrique (groupe « Tour du monde : Afrique ») et 8 « Pourquoi ce pays pèse » (Chine, Allemagne, Israël, Qatar, Suisse, Nigeria, Égypte, Royaume-Uni), 4 parcours, 2 dessous. Total : 543 fiches. Reste pour l'étape 3 : Afrique de l'Est et australe moderne (Kenya, Rwanda d'avant 1994, Afrique du Sud après 1994, Madagascar, Côte d'Ivoire, Sénégal), et d'autres pays qui pèsent (Turquie, Iran, Brésil, Japon, Corée du Sud, Émirats).
+- 22 oct. 2026 (soir) : étape 3 terminée — 20 fiches d'Afrique moderne (Kenya, Rwanda avant 1994 et de Kagame, Afrique du Sud après 1994, Madagascar, Côte d'Ivoire, Sénégal, Tanzanie, Ouganda, Zimbabwe, Angola et Mozambique, Somalie, Éthiopie, Érythrée, Françafrique, Botswana, Mali, Cameroun, Gabon, Tchad) et 15 « Pourquoi ce pays pèse » (États-Unis, Russie, France, Japon, Corée du Sud, Brésil, Iran, Indonésie, Afrique du Sud, Maroc, Éthiopie, Émirats, Norvège, Singapour, Pays-Bas ; la Turquie était déjà couverte). 5 parcours, 4 dessous. Total : 578 fiches, 56 parcours. Prochaine : étape 4, Amériques.
