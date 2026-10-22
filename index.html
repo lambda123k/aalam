@@ -17468,7 +17468,9 @@ const sbPost = (path, body) => fetch(SB_URL + path, {method:"POST", headers:{"Co
 const b64key = k => Uint8Array.from(atob(k.replace(/-/g, "+").replace(/_/g, "/") + "==".slice(0, (4 - k.length % 4) % 4)), c => c.charCodeAt(0));
 async function rpReg(){ const reg = await navigator.serviceWorker.register("sw.js"); await navigator.serviceWorker.ready; return reg; }
 const goalKey = () => { const k = Object.keys(SK.days).filter(d => SK.days[d] === "g").sort().pop(); return k ? k.replaceAll("-", "") : "0"; };
-const rpArgs = sub => ({p_sub:sub.toJSON(), p_slot:RP.slot, p_serie:RP.serie, p_streak:curStreak(), p_last_goal:goalKey()});
+// les thèmes que tu lis le plus (le Flash les apprend) : les rappels piocheront surtout dedans
+const rpLikes = () => { try { return Object.entries(TASTE.sec).filter(([, v]) => v >= 1).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([id]) => id); } catch(e){ return []; } };
+const rpArgs = sub => ({p_sub:sub.toJSON(), p_slot:RP.slot, p_serie:RP.serie, p_streak:curStreak(), p_last_goal:goalKey(), p_likes:rpLikes()});
 async function rpSync(){
   if (!RP.on || !rpReady()) return;
   try { const reg = await rpReg(), sub = await reg.pushManager.getSubscription();
@@ -17499,7 +17501,7 @@ async function rpDisable(){
 function openRappels(){
   const needInstall = isIOS && !isStandalone();
   openModal(`<div class="sheetTop"><div><span class="eyebrow">${RP.on ? "Activés" : "Désactivés"}</span><h2>Rappels</h2></div><button class="close" aria-label="Fermer">×</button></div>
-    <p class="lead">Un seul rappel par jour, avec la question de la fiche du jour. Tu la touches, elle s'ouvre.</p>
+    <p class="lead">Un seul rappel par jour : une question qui interpelle, tirée de toutes les fiches, jamais deux fois la même, et surtout dans les thèmes que tu lis le plus. Tu la touches, la fiche s'ouvre.</p>
     <h3 class="skH">Quand ?</h3>
     <div class="skGoals">${RP_SLOTS.map(([id, t, d]) => `<button data-rp-slot="${id}" aria-pressed="${RP.slot === id}"><b>${t}</b><span>${d}</span></button>`).join("")}</div>
     <button class="rpTog" data-rp-serie aria-pressed="${RP.serie}"><span><b>Sauver ma série</b><small>Le soir, seulement si ton objectif du jour n'est pas encore fait</small></span><i></i></button>
@@ -17525,6 +17527,7 @@ if (rpReady()){
   const os = openStreak;
   openStreak = () => { os(); if (!RP.on) $(".sheet .skFrz")?.insertAdjacentHTML("afterend", `<button class="bigBtn shBtn" data-rappels>${ICN.clock}Me rappeler de garder ma série</button>`); };
   // la série et l'objectif du jour sont transmis à chaque objectif atteint, et à l'ouverture
+  { const d = new Date().toDateString(); if (RP.on && store.get("rpLikesDay") !== d){ store.set("rpLikesDay", d); setTimeout(rpSync, 4000); } }
   const ax = addXP; addXP = n => { const was = SK.days[today()] === "g"; ax(n); if (!was && SK.days[today()] === "g") rpSync(); };
   if (RP.on) setTimeout(rpSync, 2500);
 }

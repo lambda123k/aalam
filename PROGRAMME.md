@@ -24,7 +24,7 @@ Point de départ (22 oct. 2026) : 512 fiches, 47 parcours.
 | 16-20 | Compléter jusqu'à 2 000 selon ce qui plaît le plus (statistiques de fréquentation) | ~550 | ~2 000 |
 
 ## Chantiers transversaux
-- **Notifications v2** : banque de messages tirée de toutes les fiches, titres variés et interpellants, jamais deux fois le même message, préférence pour les thèmes aimés (nécessite d'ajouter deux colonnes à la table `aalam_subs` sur Supabase et de redéployer `aalam-push`). En attente de l'accord de Naim.
+- **Notifications v2 ✅ (22 oct. 2026)** : la fonction Supabase `aalam-push` (v2) lit la banque `notifs.json` publiée avec l'appli. **À chaque nouveau lot, régénérer `notifs.json`** (liste `[clé, section, accroche]` de toutes les fiches prêtes et des conflits). Titres variés par section, jamais deux fois la même fiche (colonne `sent`), thèmes préférés 2 jours sur 3 (colonne `likes`, envoyée par l'appli via `rpLikes()`).
 - **Recommandations** : le Flash apprend déjà les goûts ; plus il y a de fiches par thème, mieux il colle.
 - **Parcours** : 1 parcours par région du monde, et de nouveaux parcours à chaque étape.
 
@@ -32,3 +32,4 @@ Point de départ (22 oct. 2026) : 512 fiches, 47 parcours.
 - 22 oct. 2026 : lot 1 (90 fiches, 14 parcours, 8 dessous) et lot 2 (73 fiches, 12 parcours, 5 dessous). Programme écrit.
 - 22 oct. 2026 : étape 3, première partie — 23 fiches Afrique (groupe « Tour du monde : Afrique ») et 8 « Pourquoi ce pays pèse » (Chine, Allemagne, Israël, Qatar, Suisse, Nigeria, Égypte, Royaume-Uni), 4 parcours, 2 dessous. Total : 543 fiches. Reste pour l'étape 3 : Afrique de l'Est et australe moderne (Kenya, Rwanda d'avant 1994, Afrique du Sud après 1994, Madagascar, Côte d'Ivoire, Sénégal), et d'autres pays qui pèsent (Turquie, Iran, Brésil, Japon, Corée du Sud, Émirats).
 - 22 oct. 2026 (soir) : étape 3 terminée — 20 fiches d'Afrique moderne (Kenya, Rwanda avant 1994 et de Kagame, Afrique du Sud après 1994, Madagascar, Côte d'Ivoire, Sénégal, Tanzanie, Ouganda, Zimbabwe, Angola et Mozambique, Somalie, Éthiopie, Érythrée, Françafrique, Botswana, Mali, Cameroun, Gabon, Tchad) et 15 « Pourquoi ce pays pèse » (États-Unis, Russie, France, Japon, Corée du Sud, Brésil, Iran, Indonésie, Afrique du Sud, Maroc, Éthiopie, Émirats, Norvège, Singapour, Pays-Bas ; la Turquie était déjà couverte). 5 parcours, 4 dessous. Total : 578 fiches, 56 parcours. Prochaine : étape 4, Amériques.
+- 22 oct. 2026 (nuit) : notifications v2 en service (591 messages, titres variés, sans répétition, selon les goûts).
