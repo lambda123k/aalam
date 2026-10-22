@@ -14,7 +14,7 @@ Point de départ (22 oct. 2026) : 512 fiches, 47 parcours.
 
 | # | Contenu | Fiches | Total visé |
 |---|---------|--------|-----------|
-| 3 ✅ | Tour du monde — Afrique (Ouest, Sahel, Corne, Grands Lacs, australe, Maghreb, Égypte moderne) + « Pourquoi ce pays pèse » (Chine, Allemagne, Israël, Qatar…) | ~75 | ~590 |
+| 3 (en cours, 1ʳᵉ partie faite) | Tour du monde — Afrique (Ouest, Sahel, Corne, Grands Lacs, australe, Maghreb, Égypte moderne) + « Pourquoi ce pays pèse » (Chine, Allemagne, Israël, Qatar…) | ~75 | ~590 |
 | 4 | Tour du monde — Amériques (Mexique, Andes, Brésil, Caraïbes, Cône Sud, Canada, États-Unis modernes) + 10 pays « qui pèsent » | ~75 | ~665 |
 | 5 | Tour du monde — Asie (Chine, Japon, Corée, Inde, Asie du Sud-Est, Asie centrale, Iran, Afghanistan) + 10 pays | ~75 | ~740 |
 | 6 | Tour du monde — Europe (Balkans, Scandinavie, Pologne, Russie, Espagne, Italie, Irlande, Caucase) + 10 pays | ~75 | ~815 |
