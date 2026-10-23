@@ -1,4 +1,34 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="apple-touch-icon" href="icons/icon-180.png"><link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png"><link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-title" content="Aalam"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#03060D"><title>Aalam</title><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="apple-touch-icon" href="icons/icon-180.png"><link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png"><link rel="manifest" href="manifest.webmanifest"><meta name="apple-mobile-web-app-title" content="Aalam"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#03060D"><title>Aalam</title><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ---------- « Pour toi » ---------- */
+.feed.fy .fdBar, .feed.fy .fdLeft, .feed.fy .fdTop [data-fd-close]{display:none}
+.feed.fy .fdTop{justify-content:space-between; min-height:60px}
+.fyLogo{display:grid; place-items:center; width:36px; height:36px; flex:none}
+.fyLogo svg{width:28px; height:28px}
+.fyTabs{position:absolute; left:50%; top:calc(10px + env(safe-area-inset-top,0px)); transform:translateX(-50%); display:flex; gap:22px; height:40px; align-items:center}
+.fyTabs button{font:inherit; font-family:var(--f-display); font-weight:800; font-size:1.02rem; color:rgb(255 255 255 / .5); background:none; border:0; padding:6px 2px; cursor:pointer; position:relative}
+.fyTabs button.on{color:#fff}
+.fyTabs button.on::after{content:""; position:absolute; left:25%; right:25%; bottom:-3px; height:3px; border-radius:2px; background:#fff}
+.feed.fy .skChip{margin-left:auto}
+.fc .fyMore{display:none}
+.feed.fy .fc.fyShort .p0 .fcIn > :not(.fcEye):not(.lvl):not(.hook):not(h2):not(.txt):not(.fyMore){display:none}
+.feed.fy .fc.fyShort .p0 .txt > :not(:first-child){display:none}
+.feed.fy .fc.fyShort .deepTab, .feed.fy .fc.fyShort .hDots{display:none}
+.feed.fy .fc.fyShort .hook{font-size:clamp(1.3rem, 5.8vw, 1.65rem); line-height:1.32; margin:16px 0 6px; padding-left:14px; border-left-width:4px; color:#FFC08F}
+.feed.fy .fc.fyShort h2{font-size:clamp(1.35rem, 6vw, 1.9rem); margin-top:12px}
+.feed.fy .fc.fyShort .txt{margin-top:12px}
+.feed.fy .fc.fyShort .txt .chap{font-size:1.06rem; color:#C3CED4}
+.feed.fy .fc.fyShort .fyMore{display:inline-flex; order:9; align-self:flex-start; align-items:center; gap:8px; margin-top:22px; padding:12px 18px; border:0; border-radius:26px; cursor:pointer;
+  font:inherit; font-weight:800; font-size:.92rem; color:#fff; background:hsl(var(--h) 65% 50%); box-shadow:0 8px 22px hsl(var(--h) 70% 30% / .5)}
+.feed.fy .fc.fyShort .fyMore svg{width:18px; height:18px}
+.fyNg .fcIn{gap:4px}
+.fyHint{position:absolute; z-index:4; left:50%; bottom:calc(84px + env(safe-area-inset-bottom,0px)); transform:translateX(-50%); display:flex; align-items:center; gap:6px; color:#fff; font-weight:800; font-size:.9rem; padding:9px 16px; border-radius:22px; background:rgb(255 145 66 / .95); box-shadow:0 6px 20px rgb(0 0 0 / .4); white-space:nowrap; pointer-events:none; animation:hintUp 1.4s ease-in-out infinite}
+.fyHint svg{width:18px; height:18px}
+.fyNg .rvHint{font-size:1rem; line-height:1.5}
+.fyPill{position:fixed; z-index:40; left:50%; transform:translateX(-50%); bottom:calc(94px + env(safe-area-inset-bottom,0px)); display:flex; align-items:center; gap:8px; padding:12px 22px; border-radius:28px; border:0; cursor:pointer;
+  font:inherit; font-family:var(--f-display); font-weight:800; font-size:1rem; color:#fff; background:linear-gradient(135deg, #FF5A4E, #FF9142); box-shadow:0 10px 28px rgb(0 0 0 / .45)}
+.fyPill svg{width:18px; height:18px}
+body.modesOn .fyPill{display:none}
+</style></head><body>
 <title>Aalam</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -4548,13 +4578,13 @@ if (rpReady()){
 {
   const q = new URLSearchParams(location.search), f = q.get("f");
   if (q.has("f") || q.has("src")){ try { history.replaceState(null, "", location.pathname + location.hash); } catch(e){} }
-  if (f){ const b = fromKey(f); if (b.c || b.n) setTimeout(() => { hideModes(); f.startsWith("c:") ? openConflict(f.slice(2)) : openNotion(f); }, 900); }
+  if (f){ const b = fromKey(f); if (b.c || b.n) window.FY_FIRST = f; }  // la fiche de la notification ouvre le fil « Pour toi »
 }
 
 measure(); readPalette(); refreshChrome(); renderLayers(); paint(); render();
 if (cur.id === "histoire") setFrise(true);
 setTimeout(() => focusSection(), 250);
-showModes();
+/* l'appli s'ouvre directement sur « Pour toi » : voir la fin du script */
 
 /* ==========================================================================
    Étape 7 : l'enchaînement automatique, façon épisode suivant
@@ -5341,6 +5371,253 @@ setTimeout(() => AD.moreAll(), 4000);
     closeTip(); delete TIPS[t.id]; store.set("tips", TIPS);
   }).observe(root, {childList:true, subtree:true});
 }
+
+/* ==========================================================================
+   « Pour toi » : l'appli s'ouvre directement sur le fil, façon TikTok
+   - aucune question au départ : la première fiche est là tout de suite ;
+   - des cartes courtes (accroche, titre, une phrase), « Lire la fiche » pour la suite ;
+   - le fil apprend des gestes : zappée vite = moins, lue longtemps ou ouverte = plus,
+     avec environ 30 % de découvertes et jamais deux fois de suite le même domaine ;
+   - le niveau monte tout seul selon ce qu'on lit ;
+   - une petite question toutes les six fiches, les révisions de temps en temps ;
+   - installation, rappels et test de niveau ne sont proposés qu'après un moment ;
+   - « Explorer » mène au globe, et un bouton « Pour toi » ramène au fil.
+   ========================================================================== */
+const FY_START = ["Pourquoi le sucre nous attire", "Pourquoi les mauvaises nouvelles font la une", "Pourquoi les agriculteurs gagnent si peu",
+  "Les dilemmes moraux", "Le droit à l'image", "Pourquoi les jeux gratuits te font payer", "La crise des missiles de Cuba",
+  "Des premiers primates à Homo sapiens", "Payer en plusieurs fois", "L'effet de halo", "Pourquoi la France est sur tous les océans",
+  "Les Kurdes, un peuple sans État", "Le pape et le Vatican", "Pourquoi on a peur pour rien", "Pourquoi une IA peut inventer des choses fausses",
+  "Hitler", "La voiture électrique est-elle vraiment propre ?", "Pourquoi on change rarement d'avis", "L'allégorie de la caverne",
+  "Pourquoi l'argent qui dort perd de la valeur", "Les extinctions de masse", "Pourquoi tout est fabriqué en Chine"];
+const FY = {seen:new Set(store.get("fySeen") || []), count:store.get("fyCount") || 0, nudges:store.get("fyNudges") || {},
+  opened:new Set(), counted:new Set(), depth:0, sent:{}, pend:null, rdT:null, sinceQ:0, sinceR:0, real:0, saved:null};
+const FY_IC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>';
+const FY_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+const fyOn = () => fdMode === "foryou";
+const fyIn = () => fyOn() && !$("#feed").hidden && !!$("#fdStack");
+const fyIsCard = it => it && (it.k === "n" || it.k === "c");
+const fyFirst = it => String(it.k === "c" ? it.c.short : it.n.intro).split(/(?<=[.!?…])\s+(?=[A-ZÀ-ÖØ-Ý«])/)[0];
+function fyEv(e, v){
+  try { fetch(SB_URL + "/rest/v1/aalam_events", {method:"POST", keepalive:true,
+    headers:{apikey:SB_KEY, Authorization:"Bearer " + SB_KEY, "Content-Type":"application/json", Prefer:"return=minimal"},
+    body:JSON.stringify([{uid:store.get("uid"), ev:e, k:null, sec:null, v:v == null ? null : Math.round(v), app:isStandalone()}])}).catch(() => {}); } catch(x){}
+}
+
+/* ----- le choix des fiches ----- */
+function fyLevels(){
+  const rd = {};
+  NOTIONS.forEach(n => { if (n.ready && READ.has(n.t)) rd[n.sec.id] = (rd[n.sec.id] || 0) + 1; });
+  CONFLICTS.forEach(c => { if (READ.has("c:" + c.id)) rd.geo = (rd.geo || 0) + 1; });
+  const lv = {};
+  SECTIONS.forEach(s => { const t = TASTE.sec[s.id] || 0, r = rd[s.id] || 0; let l = userLvl(s.id);
+    if (t >= 3 && r >= 6) l = Math.max(l, 2); if (t >= 7 && r >= 20) l = Math.max(l, 3); lv[s.id] = l; });
+  return lv;
+}
+function fyCands(used){
+  const lv = fyLevels(), out = [];
+  NOTIONS.forEach(n => { if (n.ready && !used.has(n.t) && lvlOfKey(n.t) <= lv[n.sec.id]) out.push({k:"n", n}); });
+  CONFLICTS.forEach(c => { const k = "c:" + c.id; if (!used.has(k) && lvlOfKey(k) <= lv.geo) out.push({k:"c", c}); });
+  return out;
+}
+function fyScore(it, explore){
+  const k = itemKey(it), {sec, grp} = TS_KEY(it), ts = TASTE.sec[sec] || 0;
+  let s = Math.random() * 1.4;
+  s += explore ? (ts > 2 ? -1 : 0) : ts * .25 + (TASTE.grp[grp] || 0) * .15;
+  if (READ.has(k)) s -= 6; else if (FY.seen.has(k)) s -= 3;
+  if (FAV.has(k)) s -= 2;
+  if (hookOf(k)) s += .4;
+  return s;
+}
+function fyPick(cands, last, explore){
+  let best = null, bs = -1e9;
+  for (const it of cands){
+    if (last[last.length - 1] === TS_KEY(it).sec) continue;   // jamais deux fois de suite le même domaine
+    const s = fyScore(it, explore); if (s > bs){ bs = s; best = it; }
+  }
+  if (!best) for (const it of cands){ const s = fyScore(it, explore); if (s > bs){ bs = s; best = it; } }
+  return best;
+}
+function fyNudge(){
+  const N = FY.nudges, c = FY.count;
+  const top = Object.entries(TASTE.sec).sort((a, b) => b[1] - a[1])[0], ts = top && top[1] >= 2 ? SECTIONS.find(s => s.id === top[0]) : null;
+  const L = [
+    {id:"inst", at:12, ok:() => onWeb && !isStandalone() && !((store.get("instLater") || 0) > Date.now()), h:172, e:IC_LOGO, eye:"Astuce",
+      t:"Garde Aalam à portée de pouce", d:"Ajoute-la à ton écran d'accueil : elle s'ouvre en plein écran comme une vraie appli, et marche même sans réseau.", attr:"data-inst", cta:"L'ajouter"},
+    {id:"rp", at:25, ok:() => !RP.on && (!isIOS || isStandalone()), h:24, e:ICN.clock, eye:"Une fiche par jour",
+      t:"On te garde une pépite chaque jour ?", d:"Une notification par jour, avec une fiche choisie selon ce que tu aimes. Tu choisis l'heure, et tu coupes quand tu veux.", attr:"data-rappels", cta:"Choisir mon heure"},
+    {id:"lt", at:35, ok:() => true, h:ts ? ts.hue : 260, e:IC_TARGET, eye:"Défi",
+      t:ts ? `Tu as l'air calé en ${ts.name}…` : "Tu serais quel rang ?", d:"Quelques questions, et on te donne ton rang. On débloque aussi des fiches plus poussées si tu les mérites.", attr:"data-lt-start", cta:"Passer le test"}
+  ];
+  const n = L.find(x => !N[x.id] && c >= x.at && x.ok()); if (!n) return null;
+  N[n.id] = 1; store.set("fyNudges", N);
+  return {k:"x", key:"x:" + n.id, ...n};
+}
+function fyBuild(n){
+  const used = new Set(FEED.filter(fyIsCard).map(itemKey));
+  const cands = fyCands(used), out = [];
+  const last = FEED.filter(fyIsCard).slice(-2).map(x => TS_KEY(x).sec);
+  const ng = fyNudge();
+  for (let i = 0; i < n; i++){
+    let it = null;
+    if (TASTE.n < 8){
+      const t = FY_START.find(t => !used.has(t) && !READ.has(t) && !FY.seen.has(t));
+      if (t){ const b = fromKey(t); if (b.n) it = b; }
+    }
+    if (!it) it = fyPick(cands, last, Math.random() < .3);
+    if (!it) break;
+    const k = itemKey(it); used.add(k);
+    const ci = cands.findIndex(x => itemKey(x) === k); if (ci >= 0) cands.splice(ci, 1);
+    last.push(TS_KEY(it).sec); if (last.length > 2) last.shift();
+    FY.real++;
+    if (FY.real > 4 && ++FY.sinceQ >= 6 && QUIZ[k]){ const q = teaserFor(it); if (q){ out.push(q); FY.sinceQ = 0; } }
+    if (++FY.sinceR >= 10 && dueReviews().length){ const r = reviewItem(shuffle(dueReviews())[0]); if (r){ out.push(r); FY.sinceR = 0; } }
+    out.push(it);
+    if (ng && i === 1) out.push(ng);
+  }
+  return out;
+}
+
+/* ----- les cartes ----- */
+{
+  const fc = feedCard;
+  feedCard = (it, i) => {
+    if (it.k === "x") return `<section class="fc fcRv fyNg" style="--h:${it.h}" data-i="${i}"><div class="fcH"><div class="pane"><div class="fcIn">
+      <span class="rvTag">${it.e}${esc(it.eye)}</span><h2 class="rvQ">${esc(it.t)}</h2><p class="rvHint">${esc(it.d)}</p>
+      <div class="btnRow"><button class="bigBtn go" ${it.attr}>${esc(it.cta)}</button><button class="bigBtn" data-rv-next>Plus tard ${IC_UP}</button></div></div></div></div></section>`;
+    const h = fc(it, i);
+    if (!fyOn() || !fyIsCard(it)) return h;
+    const k = itemKey(it), m = it.k === "n" ? readMin(it.n.intro, it.n.ex, it.n.why) : readMin(it.c.short, it.c.why, it.c.now, it.c.you);
+    return h.replace('class="fc', 'class="fc fyShort')
+      .replace('<div class="pane p0"><div class="fcIn">', `<div class="pane p0"><div class="fcIn"><button class="fyMore" data-fy-open>Lire la fiche · ${m} min${FY_DOWN}</button>`);
+  };
+}
+// une carte « astuce » : pas de lecture, pas de goût, pas de barre d'actions
+{
+  const oc = onCurrent;
+  onCurrent = () => {
+    const it = FEED[fdCur];
+    if (fyOn() && it && it.k === "x"){ tsEnd(); cardEl(fdCur)?.classList.add("in"); $("#fdAct")?.classList.add("end"); clearTimeout(fdReadT); clearTimeout(fdDeepT); }
+    else oc();
+    if (!fyIn()) return;
+    clearTimeout(FY.rdT);
+    if (fyIsCard(it)){
+      const k = itemKey(it);
+      if (!FY.counted.has(k)){
+        FY.counted.add(k); FY.count++; FY.depth++; store.set("fyCount", FY.count);
+        FY.seen.add(k); store.set("fySeen", [...FY.seen].slice(-3000));
+        const ms = [3, 10, 25, 50, 100].find(x => x === FY.depth); if (ms && !FY.sent[ms]){ FY.sent[ms] = 1; fyEv("fy", ms); }
+      }
+      // une carte qui reste à l'écran 7 secondes compte comme lue, même sans l'ouvrir
+      const i = fdCur; FY.rdT = setTimeout(() => { if (FY.pend && FY.pend.i === i && fdCur === i){ fyMR(FY.pend.k); FY.pend = null; } }, 7000);
+    }
+    if (fdCur >= FEED.length - 4) fyExtend(8);
+  };
+}
+function fyExtend(n){
+  const add = fyBuild(n); if (!add.length) return;
+  const from = FEED.length; FEED.push(...add);
+  $("#fdStack").insertAdjacentHTML("beforeend", add.map((it, j) => feedCard(it, from + j)).join(""));
+  bindPanes(); layout();
+}
+// lu = carte ouverte, ou restée 7 secondes à l'écran (sinon une accroche survolée compterait comme une fiche lue)
+const fyMR = markRead;
+markRead = k => {
+  if (fyIn()){ const it = FEED[fdCur]; if (fyIsCard(it) && itemKey(it) === k && !FY.opened.has(fdCur)){ FY.pend = {k, i:fdCur}; return; } }
+  fyMR(k);
+};
+// la fiche du Flash ne se sauvegarde pas (le fil est sans fin)
+{ const sf = saveFlash; saveFlash = () => { if (!fyOn()) sf(); }; }
+
+/* ----- ce que les gestes apprennent au fil ----- */
+{
+  const tb = tsBegin;
+  tsBegin = () => { tb(); if (tsView && fyOn()){ tsView.fy = true; tsView.opened = FY.opened.has(fdCur); tsView.openT = Date.now(); } };
+  const te = tsEnd;
+  tsEnd = () => {
+    const v = tsView; if (!v || !v.fy) return te();
+    tsView = null;
+    const sec = (Date.now() - v.t) / 1000;
+    let s;
+    if (v.opened){
+      const r = (Date.now() - v.openT) / 1000 / Math.max(8, itemMin(v.it) * 60);
+      s = .8 + (r >= .5 || v.bottom === true ? 1 : r >= .2 ? .4 : 0);
+    } else {
+      const need = Math.max(4, words(hookOf(v.key), titleOf(v.key), fyFirst(v.it)) * 190 / 4.5), r = sec / need;
+      s = sec < 1.8 ? -1 : r < .5 ? -.4 : r < 1.2 ? .15 : .5;
+    }
+    if (!v.deep && DEEP.has(v.key)) s += 1;
+    if (!v.fav && FAV.has(v.key)) s += 2;
+    if (!v.quiz && QRES[v.key]) s += .5;
+    if (sec > 1200) s = Math.min(s, .3);
+    const {sec:sid, grp} = TS_KEY(v.it);
+    for (const m of [TASTE.sec, TASTE.grp]) for (const k in m){ m[k] *= .985; if (Math.abs(m[k]) < .05) delete m[k]; }
+    TASTE.sec[sid] = Math.max(-6, Math.min(12, (TASTE.sec[sid] || 0) + s));
+    TASTE.grp[grp] = Math.max(-6, Math.min(12, (TASTE.grp[grp] || 0) + s));
+    TASTE.n++; store.set("taste", TASTE);
+  };
+}
+
+/* ----- ouvrir, quitter, revenir ----- */
+function fyOpen(first){
+  if (!$("#modes").hidden) hideModes();
+  fdMode = "foryou"; fdPath = null; fdIsFav = false; fdBudget = 0; fdMin = 0; FY.opened = new Set(); FY.pend = null;
+  const sv = FY.saved; FY.saved = null;
+  if (!first && sv && sv.feed.length > 1) FEED = sv.feed.slice(sv.cur);
+  else { FEED = []; if (first){ const b = fromKey(first); if (b.n || b.c) FEED.push(b); } FEED.push(...fyBuild(8)); }
+  renderFeed();
+}
+{
+  const rf = renderFeed;
+  renderFeed = () => {
+    rf(); if (!fyOn()) return;
+    $("#feed").classList.add("fy");
+    $("#feed .fdTop")?.insertAdjacentHTML("afterbegin", `<span class="fyLogo" aria-hidden="true">${IC_LOGO}</span><div class="fyTabs" role="tablist"><button data-fy-explore role="tab">Explorer</button><button class="on" role="tab" aria-selected="true">Pour toi</button></div>`);
+  };
+}
+function fyExplore(){ FY.saved = {feed:FEED, cur:fdCur}; closeFeed(); }
+document.addEventListener("click", e => {
+  const t = e.target;
+  const o = t.closest("[data-fy-open]");
+  if (o){ e.stopPropagation();
+    const fc = o.closest(".fc"), i = +fc.dataset.i; fc.classList.remove("fyShort"); FY.opened.add(i);
+    if (tsView && tsView.i === i){ tsView.opened = true; tsView.openT = Date.now(); }
+    if (FY.pend && FY.pend.i === i){ fyMR(FY.pend.k); FY.pend = null; }
+    else if (i === fdCur && fyIsCard(FEED[i])) fyMR(itemKey(FEED[i]));
+    return; }
+  if (t.closest("[data-fy-explore]")){ e.stopPropagation(); return fyExplore(); }
+  if (t.closest("[data-fy-go]")){ e.stopPropagation(); if ($("#drawer").classList.contains("open")) openDrawer(false); return fyOpen(); }
+  const md = t.closest('[data-md="fy"]'); if (md){ e.stopPropagation(); return fyOpen(); }
+}, true);
+// sur le globe : un gros bouton pour revenir au fil
+document.body.insertAdjacentHTML("beforeend", `<button class="fyPill" id="fyPill" data-fy-go>${FY_IC}Pour toi</button>`);
+// l'accueil (bouton du haut) garde tout le reste ; « Flash » devient « Pour toi », le Flash sur mesure reste en option
+{
+  const sm = showModes;
+  showModes = () => {
+    sm();
+    const f = $("#modes .mdCard.fil");
+    if (f){ f.dataset.md = "fy"; f.querySelector("b").textContent = "Pour toi"; f.querySelector("small").textContent = "Les fiches défilent du bout du doigt, et l'appli apprend ce que tu aimes."; }
+    $("#modes .mdMore")?.insertAdjacentHTML("beforeend", `<button data-md="fil">${IC_FEED}Flash sur mesure</button>`);
+  };
+}
+// les astuces du Flash attendent un peu : d'abord on fait défiler
+{ const tp = tip; tip = t => { if (fyIn() && (t.id === "swipe" || (["deep", "fav", "fquiz"].includes(t.id) && FY.depth < 6))) return; tp(t); }; }
+// à la place de la bulle à valider : une petite flèche animée, qui disparaît au premier geste
+{
+  const oc = onCurrent;
+  onCurrent = () => {
+    oc(); if (!fyIn()) return;
+    const h = $("#fyHint");
+    if (fdCur > 0){ if (!store.get("fySwiped")) store.set("fySwiped", 1); h?.remove(); return; }
+    if (!store.get("fySwiped") && !h) setTimeout(() => { if (fyIn() && fdCur === 0 && !$("#fyHint")) $("#feed").insertAdjacentHTML("beforeend", `<div class="fyHint" id="fyHint">${IC_UP}Glisse vers le haut</div>`); }, 2200);
+  };
+}
+
+$("#modeBtn").onclick = () => showModes();   // la version complète de l'accueil, avec tous ses compléments
+
+/* ----- au lancement : directement le fil ----- */
+if (!USERLVL){ USERLVL = Object.fromEntries(SECTIONS.map(s => [s.id, 1])); store.set("lvl", USERLVL); }
+fyOpen(window.FY_FIRST || null);
 </script>
 
 </body></html>
