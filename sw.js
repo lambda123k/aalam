@@ -1,6 +1,6 @@
 // Aalam : fonctionne hors ligne. La page est toujours redemandée au réseau d'abord
 // (pour recevoir les mises à jour), puis servie depuis le cache si le réseau manque.
-const CACHE = "aalam-v11";
+const CACHE = "aalam-v12";
 const CORE = ["./", "./index.html", "./manifest.webmanifest", "./icons/icon-180.png", "./icons/icon-192.png", "./icons/icon-512.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
@@ -12,9 +12,19 @@ self.addEventListener("fetch", e => {
       .catch(() => caches.match("./index.html")));
     return;
   }
-  // bibliothèques, polices, icônes : cache d'abord
+  // contenu (data/…?v=empreinte), bibliothèques, polices, icônes : cache d'abord.
+  // Chaque fichier de contenu porte l'empreinte de sa version : quand il change, seule sa nouvelle version est téléchargée,
+  // et l'ancienne est retirée du cache.
   e.respondWith(caches.match(r).then(hit => hit || fetch(r).then(res => {
-    if (res.ok || res.type === "opaque"){ const c = res.clone(); caches.open(CACHE).then(x => x.put(r, c)); }
+    if (res.ok || res.type === "opaque"){
+      const c = res.clone();
+      caches.open(CACHE).then(async x => {
+        if (url.origin === location.origin && url.pathname.includes("/data/") && url.search){
+          for (const k of await x.keys()){ const u = new URL(k.url); if (u.pathname === url.pathname && u.search !== url.search) x.delete(k); }
+        }
+        x.put(r, c);
+      });
+    }
     return res;
   })));
 });
