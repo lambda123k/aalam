@@ -1410,7 +1410,7 @@ const AD = (() => {
 })();
 </script>
 <script src="data/carte.js?v=ede8643fc7"></script>
-<script src="data/commun.js?v=203e7b1f71"></script>
+<script src="data/commun.js?v=0d3f7fd326"></script>
 <script src="data/geo.js?v=7e44abfe55"></script>
 <script src="data/histoire.js?v=696c200c27"></script>
 <script src="data/politique.js?v=eea4061c42"></script>
@@ -1433,7 +1433,7 @@ const DOT_N=34000;
 const COUNTRIES = GEO.map(g => { const f = {type:"Feature", geometry:{type: g.t === "P" ? "Polygon" : "MultiPolygon", coordinates:g.c}};
   if (d3.geoArea(f) > 2*Math.PI){ const rv = r => r.reverse(); g.t === "P" ? f.geometry.coordinates.forEach(rv) : f.geometry.coordinates.forEach(p => p.forEach(rv)); }
   return {id:g.id, n:g.n, f, c:d3.geoCentroid(f)}; });
-const CONFLICTS_ASOF = "26 octobre 2026";
+const CONFLICTS_ASOF = "2 novembre 2026";
 const LEVELS = {
   critique: {label: "Guerre majeure", rank: 4},
   eleve: {label: "Guerre", rank: 3},
